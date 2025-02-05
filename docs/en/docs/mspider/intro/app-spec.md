@@ -5,8 +5,6 @@ into the service mesh to ensure it operates efficiently, securely, and reliably.
 
 ## Introduction
 
-### Overview of Service Mesh
-
 Service Mesh is an infrastructure layer that handles communication between services
 in a service-to-service architecture. It helps manage complex topology and enables
 microservices to run, observe, protect and configure better. Our Istio-based product
@@ -40,9 +38,9 @@ To ensure successful integrate to the Service Mesh during integration, we recomm
 
 - **Understand the Service Mesh**: Understand basic concepts, core components, and the operation mode of the Service Mesh.
 - **Integrate Application Compatibility**: Evaluate whether your application is suitable for running in a Service Mesh
-  environment and understand changes brought by the Service Mesh like traffic routing, load balancing, etc.
+  environment and understand changes brought by the Service Mesh like traffic routing and load balancing.
 - **Modification and Optimization of Applications**: Modify your application according to the Service Mesh specifications,
-  such as exposing health checks, logs, tracking information, etc., to allow the Service Mesh to monitor and manage them.
+  such as exposing health checks, logs, and tracking information, to allow the Service Mesh to monitor and manage them.
 - **Integrating the Service Mesh**: Integrate at the code level using the interface or SDK provided by the Service Mesh.
 - **Testing and Optimization**: Test thoroughly to ensure reliable performance and behavior of the application
   in the Service Mesh environment.
@@ -52,25 +50,21 @@ To ensure successful integrate to the Service Mesh during integration, we recomm
 As a sidecar is introduced to the same Pod instance, the following runtime environment requirements
 must be met for application integrating to the Service Mesh:
 
-| Requirement                    | Mandatory | Requirement Value                                                                                                                                                                                                                                                         | Explanation                                                                                                                                                                              |
-| ------------------------------ | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Port Listening                 | Yes       | The application cannot listen on the following ports: <br><li>15000 - 15010</li><br><li>15020 - 15021</li><br><li>15053</li><br><li>15090</li>                                                                                                                           | As the data plane of the Service Mesh needs to listen on these ports, applications cannot listen on them.                                                                                |
-| Pod Label                      | Yes       | The value of the `app` label in the Pod must be the same as the associated `Service` name, not the label of the Deployment itself, but the label of the Pod (usually located in `.spec.template.metadata.labels`). | Observations, Traffic Lanes, and other functionalities are based on the `app` label of the Pod, so it is necessary to ensure that the value of the `app` label is the same as the `Service` name.|
-| User UID                       | Yes       | Cannot run as a user with UID of 1337                                                                                                                                                                                                                                       | The data plane of the Service Mesh needs to run as a user with UID of 1337, and the traffic interception of the sidecar will not process traffic from this user, so applications cannot run as a user with UID of 1337. |
-| HostNetwork                    | Yes       | The Pod cannot run in HostNetwork mode.                                                                                                                                                                                                                                     | HostNetwork mode is not supported by the Service Mesh.                                                                                                                                   |
-| DNSPolicy                      | Yes       | The recommended DNSPolicy for the Pod is ClusterFirst, and the value of ndots is recommended to be set to 5.                                                                                                                                                             | As the sidecar needs to communicate with the control plane, it depends on DNS resolution of the control plane address.                                                                |
-| Application base-id containing Envoy process | No      | If the business application runs Envoy, add the `--base-id XXX` parameter.                                                                                                                                                                                                      | As the sidecar uses Envoy, if the `--base-id` parameter is not added, two Envoys cannot coexist.                                                                                          |
+| Field | Required | Value | Explanation |
+| ----- | -------- | ----- | ----------- |
+| Port Listening | Yes | The application should not listen on the following ports:<br>- 15000 to 15010<br>- 15020 to 15021<br>- 15053<br>- 15090 | The data plane of the service mesh needs to listen on these ports, so the application should not listen on them. |
+| Pod Labels | Yes | The values of the __app__ and __version__ labels of the Pod must match the name of the associated __Service__ , not the labels of the Deployment itself. These labels are usually found in the `.spec.template.metadata.labels` section of the Pod. | Observability and traffic routing features are based on the __app__ and __version__ labels of the Pod, so it is important to ensure that the labels and their values match the __Service__ . |
+| User UID | Yes | The application should not run with a UID of 1337. | The data plane of the service mesh runs with a UID of 1337, and the traffic interception of the sidecar does not handle traffic from this user, so the application should not run with a UID of 1337. |
+| HostNetwork | Yes | Pods should not run in HostNetwork mode. | HostNetwork mode is not supported by the service mesh. |
+| DNSPolicy | Yes | The DNSPolicy of the Pod should be set to ClusterFirst, and the ndots value should be set to 5. | The sidecar needs to communicate with the control plane and relies on DNS resolution of control plane addresses. |
+| Base ID for Applications with Envoy Process | No | If the business application runs Envoy, add the `--base-id XXX` parameter. | Since the sidecar uses Envoy, if the __--base-id__ parameter is not added, two Envoy instances cannot coexist. |
 
 ### Application Communication Specifications
 
-| Requirement   | Mandatory | Requirement Value                                                                                                                                                    | Explanation                                                                                                                                                                                                                            |
-| ------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-| Traffic Protocol | Yes       | The Service Mesh supports HTTP/1.1, HTTP/2, and gRPC traffic only.                                                                                           | The Service Mesh cannot support traffic protocols other than these.                                                                                                                                                                   |
-| Protocol Scheme  | Yes       | Applications must use http:// or https:// scheme in the URL to integrate services in the Service Mesh.                                                           | The Service Mesh uses the HTTP protocol as the unified communication protocol, and the scheme is used to distinguish between plaintext and encrypted traffic.                                                                       |
-| Service Discovery    | Yes       | Integrate the service using the hostname of the service instead of integrating it directly through the IP address.                                           | The Service Mesh uses Istio's service discovery mechanism, which relies on DNS resolution of the service name, so applications need to integrate services using the hostname of the service.                                      |
-| Sidecar Injection | Yes / No   | If auto sidecar injection is enabled, applications do not need to add sidecars. Otherwise, you need to manually add the sidecar to the Pod.             | By default, the Service Mesh automatically injects a sidecar into the Pod, but if it is disabled, the application needs to manually add the sidecar to the Pod.                                                                      |
-| Service Port     | Yes       | Configure the application to use the port provided by the Service Mesh when integrating the service.                                                       | After the sidecar is injected, the application integrates the service through the localhost:port, where port numbers are assigned by the Service Mesh dynamically.                                                             |
-| Distributed Tracing | No      | To enable distributed tracing, the application needs to write tracing information into the HTTP headers according to the W3C Trace Context standard, or use the OpenTelemetry SDK to integrate with the Service Mesh. | To facilitate distributed tracing in the Service Mesh, applications can write tracing information into the HTTP headers according to the W3C Trace Context standard, or use the OpenTelemetry SDK to integrate with the Service Mesh. |
+| Field | Required | Value | Explanation |
+| ----- | -------- | ----- | ----------- |
+| Service Access Method | No | Services should be accessed using the service name or ClusterIP, not the Pod IP or NodePort. | The data plane of the service mesh needs to match policies based on the service name, so applications should not directly use the Pod IP or NodePort. Otherwise, it may cause policy failures or accessibility issues. |
+| Port Protocol | No | Configure the protocol of the Service ports correctly. In multi-cluster mode, ensure that the configuration of the service is consistent across all clusters (i.e., services with the same name in the same namespace should have consistent Service.spec configurations). | You can modify the protocol of specific ports in the DCE 5.0 service mesh interface ( __Service Management__ > __Service List__ > __Address Information__ ), or refer to the [Istio documentation](https://istio.io/latest/docs/ops/configuration/traffic-management/protocol-selection/) for configuration. Incorrect configuration may cause access or policy issues. |
 
 ## Integration with Distributed Tracing
 
@@ -79,9 +73,9 @@ in our Service Mesh. By default, the trace information is reported to the observ
 you need to import the OpenTelemetry SDK into your application and configure the tracing parameters. You can refer to the
 [official OpenTelemetry documentation](https://opentelemetry.io/docs/) for specific guidance.
 
-Alternatively, if you prefer a simpler approach, you can pass through the `TraceContext` of the W3C standard,
-which is detailed in [W3C TraceContext](https://www.w3.org/TR/trace-context/). Specifically, send the `traceparent`
-and `tracestate` headers from the request header to the message header that needs to be requested.
+Alternatively, if you prefer a simpler approach, you can pass through the __TraceContext__ of the W3C standard,
+which is detailed in [W3C TraceContext](https://www.w3.org/TR/trace-context/). Specifically, send the __traceparent__ 
+and __tracestate__ headers from the request header to the message header that needs to be requested.
 
 ## Recommended Configuration
 
@@ -127,10 +121,10 @@ to directly expose their services to the outside world as this will prevent cert
 
 In the current version, two ways can be used to expose services to the outside world:
 
-1. Use the `Mesh Gateway` to expose services to the outside world.
-2. Use the `Cloud-Native Gateway` of the `Microservice Engine` to expose services to the outside world.
+1. Use the __Mesh Gateway__ to expose services to the outside world.
+2. Use the __Cloud Native Gateway__ of the __Microservice Engine__ to expose services to the outside world.
 
-Refer to the relevant documentation for instructions on using the `Cloud-Native Gateway` of the `Microservice Engine`.
-For instructions on using the `Mesh Gateway`, also refer to the relevant documentation. Separating the VirtualService
+Refer to the relevant documentation for instructions on using the __Cloud Native Gateway__ of the __Microservice Engine__ .
+For instructions on using the __Mesh Gateway__ , also refer to the relevant documentation. Separating the VirtualService
 that needs to provide services to the outside world from other VirtualServices (such as VirtualService with the same name
 as Service) is recommended for better management purposes.

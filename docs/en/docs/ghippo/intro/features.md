@@ -10,7 +10,7 @@ This page describes the features of Global Management.
 1. Users
 
     Having a user account is a prerequisite for users to access the DCE platform.
-    [User](../user-guide/access-control/user.md) is created by Super Admin or IAM Admin in `Global Management` -> `Access Control` -> `Users` page, or connected via LDAP.
+    [User](../user-guide/access-control/user.md) is created by Admin or IAM Owner in __Global Management__ -> __Access Control__ -> __Users__ page, or connected via LDAP.
     Each user has an independent username and password. By granting different permissions to a single or a group of users, users have access to different resources.
 
     ```mermaid
@@ -46,7 +46,7 @@ This page describes the features of Global Management.
         
     click user "https://docs.daocloud.io/en/ghippo/user-guide/access-control/user/"
     click group "https://docs.daocloud.io/en/ghippo/user-guide/access-control/group/"
-    click add "https://docs.daocloud.io/en/ghippo/user-guide/access-control/group/#_5"
+    click add "https://docs.daocloud.io/en/ghippo/user-guide/access-control/group/#add-users-to-a-group"
 
     classDef plain fill:#ddd,stroke:#fff,stroke-width:0px,color:#000;
     classDef k8s fill:#326ce5,stroke:#fff,stroke-width:0px,color:#fff;
@@ -78,7 +78,7 @@ This page describes the features of Global Management.
 
 6. Platform Settings
 
-    [Platform Settings](../user-guide/platform-setting/about.md) include account security settings, appearance customization, and mail server settings. When it is necessary to manage platform-level settings, such as account security information, platform logos, license authorization, and mail server, Admins can operate through `Platform Settings`. Admins have exclusive management rights for platform settings.
+    [Platform Settings](../user-guide/platform-setting/about.md) include account security settings, appearance customization, and mail server settings. When it is necessary to manage platform-level settings, such as account security information, platform logos, license authorization, and mail server, Admins can operate through __Settings__ . Admins have exclusive management rights for platform settings.
 
     ```mermaid
     graph LR
@@ -114,7 +114,7 @@ Below is a list of features available:
         - Quickly add users to groups from the list
         - Batch deletion of users
         - Create users
-        - Edit basic user information such as email, description, enable/disable etc.
+        - Edit basic user information such as email, description, and enable/disable
         - Record user authorization information
         - Record group membership information
         - Admins can help users change passwords
@@ -135,10 +135,11 @@ Below is a list of features available:
         - Supports predefined folder roles: Folder Admin, Folder Editor, and Folder Viewer
         - Supports predefined workspace roles: Workspace Admin, Workspace Editor, and Workspace Viewer
     4. [Identity Provider](../user-guide/access-control/idprovider.md)
-        - Support LDAP and OIDC connections to external users
+        - Support LDAP, OIDC, and OAuth 2.0 connections to external users
         - LDAP protocol supports manual/automatic synchronization of external users
         - LDAP protocol supports manual synchronization of external groups
         - OIDC protocol supports manual synchronization of external users
+        - OAuth 2.0 protocol supports manual synchronization of external users
 2. Workspace and Folders
     1. [Folders](../user-guide/workspace/folders.md)
         - Display folders and workspaces in a tree structure
@@ -171,16 +172,16 @@ Below is a list of features available:
         - Custom password rules
         - Custom password policy
         - Custom session timeout policy
-        - Custom account lock strategy
-        - Login and logout strategy
+        - Custom account lock policy
+        - Login and logout policy
     2. [Email Settings](../user-guide/platform-setting/mail-server.md)
         - Configure the mail server
         - Retrieve user passwords by email
-        - Receive alert notifications, etc.
+        - Receive alert notifications
     3. [Custom Appearance](../user-guide/platform-setting/appearance.md)
-        - Custom login page appearance, including platform LOGO, login page icon, tab page icon, etc.
+        - Custom login page appearance, including platform LOGO, login page icon, and tab page icon
         - One-click restore login page appearance configuration
-        - Customize the top navigation bar, including navigation bar icons, tab page icons, etc.
+        - Customize the top navigation bar, including navigation bar icons, and tab page icons
         - One-click restoration of the appearance configuration of the top navigation bar
     4. [Licensing](../../dce/license0.md)
         - Show license name, module it belongs to, license level, and expiration time of the license status in the list

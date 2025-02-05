@@ -1,11 +1,12 @@
 # Plug-in center
 
-The plug-in Center provides two plug-ins, Sentinel governance and Mesh governance, and supports visual configuration through the user interface. After the plug-in is installed, the micro-service governance capability can be expanded to meet service requirements in different cases.
+The plug-in Center provides two plug-ins, Sentinel governance and Mesh governance, and supports visual configuration through the user interface. After the plug-in is installed, the microservice governance capability can be expanded to meet service requirements in different cases.
 
 !!! info
 
+    The same registry center instance cannot have both of these plugins enabled simultaneously, but you can switch between them based on different scenarios.
 
-<!--![]()screenshots-->
+![](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/skoala/images/plugincenter01.png)
 
 ## Sentinel governance
 
@@ -17,4 +18,4 @@ When the Sentinel governance plug-in is enabled, a Sentinel instance is created 
 
 Mesh plug-in is mainly applicable to the governance scenario of cloud native micro services, providing governance rules such as virtual services, target rules, gateway rules, peer authentication, request authentication, and authorization policies.
 
-To enable the Mesh governance plug-in, bind a mesh instance, add micro-services to the mesh, and configure resources such as sidecar according to the requirements of the service mesh.
+To enable the Mesh governance plug-in, bind a mesh instance, add microservices to the mesh, and configure resources such as sidecar according to the requirements of the service mesh.

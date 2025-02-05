@@ -78,6 +78,10 @@ videos:
   - "docs/en/docs/videos/**/*"
   - "docs/zh/docs/videos/**/*"
 
+virtnest:
+  - "docs/en/docs/virtnest/**/*"
+  - "docs/zh/docs/virtnest/**/*"
+
 en:
   - "docs/en/**/*"
 
@@ -87,3 +91,10 @@ zh:
 develop:
   - "scripts/**/*"
   - ".github/**/*"
+
+i18n:
+  - "docs/en/**/*"
+
+baize:
+  - "docs/en/docs/baize/**/*"
+  - "docs/zh/docs/baize/**/*"

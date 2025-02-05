@@ -53,7 +53,7 @@ If you want a storage component to be installed in Layer 7 load balancing mode, 
 
 ## Install F5network in a cluster
 
-1. Prepare a DCE cluster, and login to the Web UI of the global cluster. Go to `Container Management` -> `Cluster List`, login to the cluster where you want to install F5network.
+1. Prepare a DCE cluster, and login to the Web UI of the global cluster. Go to `Container Management` -> `Clusters`, login to the cluster where you want to install F5network.
 
 2. In `Helm Apps` -> `Helm Charts`, find and click install `f5network`.
 
@@ -132,7 +132,7 @@ If you want a storage component to be installed in Layer 7 load balancing mode, 
     - `storageClassName`: the storageClass Name, which will be used by the f5-ipam-controller component for common PVC objects.
       When `install f5-ipam-controller` is turned off, this option can be ignored.
 
-    - `storageSize`: the storage pool size, which will be used by the f5-ipam-controller component for common PVC objects.
+    - `storageSize`: the StorageClass size, which will be used by the f5-ipam-controller component for common PVC objects.
       This option can be ignored when `install f5-ipam-controller` is turned off.
 
 ## Configuration in cluster forwarding mode (optional)

@@ -2,33 +2,44 @@
 
 The microservice engine gateway supports JWT validation. Here"s how to use this feature.
 
-## prerequisite
+## Prerequisites
 
 - [Create a cluster](../../kpanda/user-guide/clusters/create-cluster.md) OR [Integrate a cluster](../../kpanda/user-guide/clusters/integrate-cluster.md)
-- [Create a gateway](../gateway/create-gateway.md)
+- [Create a gateway](../gateway/index.md)
 - Prepare a Token and the JWKS application used to validate the Token. If you do not already have a JWKS application, see [Create JWKS App](#jwks) to create one.
 
-## Operation procedure
+## Steps
 
-1. Reference [Create Domain](../gateway/domain/add-domain.md) create a protocol for `https` domain, in the domain security policy enabled `JWT Auth`.
+1. Access a JWT plugin in the plugin center
 
-    - JWKS name: Unique JWKS name that identifies a specific JWT policy. This parameter is mandatory
-    - JWKS Server Address: Returns the full FQDN address of the JWT service for the JWKS content. This parameter is mandatory
-    - Token Transparent transmission: Whether to send the Token information of the JWT to the back-end service
-    - Issuer: indicates the authentication of the Token issuer. If the value is not specified, the verification will not be performed
-    - Audiences: audiences of the Token, if not filled in, no verification is performed
-    - Token cache duration: Indicates the cache duration of the JWKS memory. The JWKS server address is not requested repeatedly within the cache validity period
-    - Authentication timeout duration: Response timeout duration of the JWKS server. Obtaining JWKS fails after the timeout duration
+    - Plugin name: The unique name of the JWKS used to identify the specific JWT policy (required)
+    - Plugin type: Select JWT
+    - JWKS cache time: The caching time of the JWKS in memory. No repeated requests to the JWKS server will be made within the cache validity period.
+    - Token passthrough: Whether to send the JWT token information to the backend service
+    - JWKS cache time: The complete FQDN address of the JWT service returning the JWKS content (required)
+    - Issuer: Token issuer authentication. If not filled, no verification will be performed.
+    - Audiences: Token audiences. If not filled, no verification will be performed.
+    - Access address: The complete FQDN address of the JWT service returning the JWKS content (required)
+    - Timeout: Response timeout for the JWKS server. JWKS retrieval fails if it exceeds the timeout period.
+    - Description: Description information of the plugin
 
-        <!--![]()screenshots-->
+    <!--![]()screenshots-->
 
-2. See [Add API](../gateway/api/add-api.md) to create the API and enable the JWT authentication security policy.
+2. Refer to [Creating a Domain](../gateway/domain/index.md) to create a domain with the protocol
+   set to `https`. Enable `JWT authentication` in the domain's security policy and select the JWT plugin
+   created in the previous step. The selected JWT plugin's configuration information will be displayed below.
 
     <!--![]()screenshots-->
 
-3. With the Token access authentication, if the access succeeds, the JWT policy is successfully configured
+3. Refer to [Adding an API](../gateway/api/index.md) to create an API and select the domain that was configured
+   with the JWT plugin. By default, if the API uses a domain with the JWT plugin, JWT authentication will be
+   enabled for the API. However, at the API level, you can disable JWT authentication for the current API.
+   If the API uses a domain without the JWT plugin, JWT authentication cannot be enabled at the API level.
 
     <!--![]()screenshots-->
+
+4. Access verification with the Token. If the access is successful,
+   it indicates that the JWT policy configuration is successful.
 
 ## Create the JWKS application
 
@@ -36,13 +47,13 @@ If no JWKS application exists in the current environment, follow the following s
 
 1. Download the JWKS generator code locally.
 
-    ```
+    ```git
     git clone https://github.com/projectsesame/jwks-generator
     ```
 
 2. Run the JWKS generator locally.
 
-    ```
+    ```bash
     mvn package -DskipTests && java -jar target/ROOT.war
     ```
 
@@ -50,32 +61,32 @@ If no JWKS application exists in the current environment, follow the following s
 
     <!--![]()screenshots-->
 
-3. Refer to the instructions below to fill in the information, click `Generate` to generate the JWKS content.
+3. Refer to the instructions below to fill in the information, click __Generate__ to generate the JWKS content.
 
     - KeySize: Generates the size of secret. Enter 256
     - KeyUse: Use, select a signature
     - Algorithm: indicates the algorithm. Select HS256
     - KeyID: Optional, matching parameter when JWKS has multiple values
 
-        <!--![]()screenshots-->
+    <!--![]()screenshots-->
 
 4. Copy the value of `k` in the figure above and access <https://jwt.io> to generate a Token.
 
-      - The algorithm selects HS256
-      - Paste the copied k value into secret and check `secret base64 encoded`
+    - The algorithm selects HS256
+    - Paste the copied k value into secret and check `secret base64 encoded`
 
-        <!--![]()screenshots-->
+    <!--![]()screenshots-->
 
 5. Create the YAML file based on [YAML Template](https://github.com/projectsesame/enovy-remote-jwks-go/blob/main/all-in-one.yaml), and then install the JWKS application using the `kubectl apply` command
 
     - Change `namespace` to the namespace where the gateway resides, in this example `envoy-yang`
     - Change `jwks.json` to the JWKS content generated in Step 3 above
 
-        <!--![]()screenshots-->
+    <!--![]()screenshots-->
 
     ??? note "The YAML file configured in this example is shown below"
 
-        ```yaml
+        ```yaml title="all-in-one.yaml"
         apiVersion: apps/v1
         kind: Deployment
         metadata:

@@ -1,17 +1,24 @@
-# Update multicloud services
+---
+MTPE: ModetaNiu
+DATE: 2024-08-19
+---
+
+# Update Multicloud Services
 
 Currently, two update methods are provided: editing YAML and form update.
 
-1. After entering a multicloud instance, in the left navigation bar, click `Resource Management` -> `Multicloud Service`, click `···` to update the service.
+1. After entering a multicloud instance, in the left navigation bar, click __Resource Management__ -> 
+   __Multicloud Service__ , click __┇__ to update the service.
 
-    <!--screenshot-->
+    ![Service List](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/kairship/images/update-service01.png)
 
-2. In the `Edit YAML` pop-up window, modify the YAML information, click OK to update.
+2. In the __Edit YAML__ pop-up window, modify the YAML information, click __OK__ to update.
 
-    <!--screenshot-->
+    ![Edit YAML](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/kairship/images/update-service02.png)
 
-3. Click Update to update the service through the form, but the access type, name, and multicloud namespace cannot be updated.
+3. Click __Update__ to update the service through the form, but the access mode, name, and multicloud namespace 
+   cannot be updated.
 
-    <!--screenshot-->
+    ![Update](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/kairship/images/update-service03.png)
 
-4. After completing the content that needs to be modified, click OK, and the update is successful.
+4. After completing the content that needs to be modified, click __OK__ , and the update is successful.

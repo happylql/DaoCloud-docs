@@ -4,6 +4,7 @@ hide:
 ---
 
 # 什么是 PostgreSQL
+
 [PostgreSQL](https://www.postgresql.org/) 是一种开源的关系型数据库管理系统（RDBMS），它采用了美国加州大学伯克利分校开发的 Postgres 作为基础，并由 PostgreSQL 全球开发团队进行开发和维护。它是一款功能丰富、可扩展性强、安全可靠、兼容性好的数据库，已广泛应用于企业、互联网公司和开源社区中。
 
 PostgreSQL 的特点包括：
@@ -29,4 +30,5 @@ PostgreSQL 还有一些其他的特点，如稳定性强、性能优异、易于
 - 快速复制和扩展：容器化 PostgreSQL 能够很容易地进行复制和扩展，从而满足大规模数据集的需求。
 - 跨平台支持：由于容器化是一种轻量级的虚拟化技术，因此可以在任何支持该技术的服务器上运行。
 - 可靠性和安全性：容器化技术提供了一个隔离的运行环境，可以有效地保护 PostgreSQL 实例免受外部攻击和运行环境的影响。
+
 [创建 PostgreSQL 实例](../user-guide/create.md){ .md-button .md-button--primary }

@@ -1,10 +1,10 @@
-# All-in-one 在线安装 DCE 5.0 社区版
+# 从零部署 Kind 集群到安装 DCE 5.0 社区版
 
-本页说明如何使用 kind 集群实现 all-in-one 在线安装 DCE 5.0 社区版。
+本页说明如何使用 kind 集群实现新手尝鲜在线安装 DCE 5.0 社区版。
 
 !!! note
 
-    点击[在线安装社区版](../../../videos/install.md#3)可观看视频演示。
+    点击[在线安装社区版](../../../videos/install.md#_2)可观看视频演示。
 
 ## 准备工作
 
@@ -30,9 +30,11 @@ precheck pass..
 
 ## 安装 Docker
 
-> 如果您的机器已安装了 Docker 且版本高于 1.18，请跳过这一步。
->
-> 安装 Docker 时可使用国内源：<https://developer.aliyun.com/mirror/docker-ce>
+!!! note
+
+    如果您的机器已安装了 Docker 且版本高于 1.18，请跳过这一步。
+
+    装 Docker 时可使用国内源：<https://developer.aliyun.com/mirror/docker-ce>
 
 === "如果是 CentOS"
 
@@ -160,11 +162,11 @@ precheck pass..
 
 1. 在 kind 主机下载 dce5-installer 二进制文件。
 
-    假定 VERSION 为 v0.10.0
+    假定 VERSION 为 v0.25.0
 
     ```shell
-    export VERSION=v0.10.0
-    curl -Lo ./dce5-installer  https://proxy-qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/dce5-installer-$VERSION
+    export VERSION=v0.25.0
+    curl -Lo ./dce5-installer https://proxy-qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/dce5-installer-$VERSION
     chmod +x ./dce5-installer
     ```
 

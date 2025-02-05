@@ -1,51 +1,51 @@
-# Deploying DCE 5.0 Enterprise on Oracle Linux R9/R8 U1 Operating System
+# Deploy DCE 5.0 Enterprise on Oracle Linux R9/R8 U1
 
-This article will guide you on how to deploy DCE 5.0 on Oracle Linux R9/R8 U1 operating system,
-starting from version v0.8.0 and above.
+This page will guide you on how to deploy DCE 5.0 on Oracle Linux R9/R8 U1.
+Installer v0.8.0 and higher versions support this deployment method.
 
 ## Prerequisites
 
-- Please read the [Deployment Architecture](../commercial/deploy-arch.md) in advance to
+- Read the [Deployment Architecture](../commercial/deploy-arch.md) in advance to
   confirm the deployment mode for this installation.
-- Please read the [Deployment Requirements](../commercial/deploy-requirements.md)
-  in advance to ensure that the network, hardware, ports, etc., meet the requirements.
-- Please read the [Preparation](../commercial/prepare.md) in advance to verify
+- Read the [Deployment Requirements](../commercial/deploy-requirements.md)
+  in advance to ensure that the network, hardware, and ports meet the requirements.
+- Read the [Preparation](../commercial/prepare.md) in advance to verify
   machine resources and pre-checks.
 
 ## Offline Installation
 
 1. Download the full mode offline package. You can download the latest version
-   from the [Download Center](https://docs.daocloud.io/download/dce5/).
+   from the [Download Center](../../download/index.md).
 
-    | CPU Architecture | Version | Download Link                                                                                   |
-    | ---------------- | ------- | ---------------------------------------------------------------------------------------------- |
-    | AMD64            | v0.10.0 | <https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/offline-v0.10.0-amd64.tar> |
+    | CPU Architecture | Version | Download Link |
+    | ---------------- | ------- | ------------- |
+    | AMD64            | v0.17.0 | <https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/offline-v0.17.0-amd64.tar> |
 
     After downloading, extract the offline package:
 
     ```bash
-    curl -LO https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/offline-v0.10.0-amd64.tar
-    tar -xvf offline-v0.10.0-amd64.tar
+    curl -LO https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/offline-v0.17.0-amd64.tar
+    tar -xvf offline-v0.17.0-amd64.tar
     ```
 
 2. Download the Oracle Linux R9/R8 U1 image file.
 
     ```bash
-    ## Oracle Linux R9 U1
+    # Oracle Linux R9 U1
     curl -LO https://yum.oracle.com/ISOS/OracleLinux/OL9/u1/x86_64/OracleLinux-R9-U1-x86_64-dvd.iso
 
-    ## Oracle Linux R8 U1
+    # Oracle Linux R8 U1
     curl -LO https://yum.oracle.com/ISOS/OracleLinux/OL8/u7/x86_64/OracleLinux-R8-U7-x86_64-dvd.iso
     ```
 
 3. Download the Oracle Linux R9/R8 U1 osPackage offline package.
 
     ```bash
-    ## Oracle Linux R9 U1
-    curl -LO https://files.m.daocloud.io/github.com/kubean-io/kubean/releases/download/v0.7.4/os-pkgs-oracle9-v0.7.4.tar.gz
+    # Oracle Linux R9 U1
+    curl -LO https://files.m.daocloud.io/github.com/kubean-io/kubean/releases/download/v0.13.9/os-pkgs-oracle9-v0.13.9.tar.gz
 
-    ## Oracle Linux R8 U1
-    curl -LO https://files.m.daocloud.io/github.com/kubean-io/kubean/releases/download/v0.7.4/os-pkgs-oracle8-v0.7.4.tar.gz
+    # Oracle Linux R8 U1
+    curl -LO https://files.m.daocloud.io/github.com/kubean-io/kubean/releases/download/v0.13.9/os-pkgs-oracle8-v0.13.9.tar.gz
     ```
 
 4. Download the addon offline package. You can download the latest version from
@@ -95,7 +95,7 @@ starting from version v0.8.0 and above.
 7. Start the installation of DCE 5.0.
 
     ```bash
-    ./dce5-installer cluster-create -m ./sample/mainfest.yaml -c ./sample/clusterConfig.yaml
+    ./dce5-installer cluster-create -m ./sample/manifest.yaml -c ./sample/clusterConfig.yaml
     ```
 
     !!! note
@@ -105,7 +105,7 @@ starting from version v0.8.0 and above.
         - `-z`: Minimal installation
         - `-c`: Specify the cluster configuration file (not required when exposing the console using NodePort)
         - `-d`: Enable debug mode
-        - `--serial`: Execute all installation tasks in a serial manner
+        - `--serial`: Run all installation tasks in a serial manner
 
 8. After the installation is complete, the command line will prompt for a successful installation.
    Congratulations! 🎉 Now you can explore the brand new DCE 5.0 using the default account and

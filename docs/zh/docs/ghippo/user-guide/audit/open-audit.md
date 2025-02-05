@@ -1,13 +1,16 @@
-# 开启/关闭 K8s 审计日志的采集
+# 采集 K8s 审计日志
 
-- K8s 审计日志：K8s 本身生成审计日志，开启该功能后，会在指定目录下生成 K8s 审计日志的日志文件
-- 采集 K8s 审计日志：通过 insight-agent 采集上述 ‘K8s 审计日志’的日志文件，’采集 K8s 审计日志‘ 的前提条件是集群开启了 ‘K8s 审计日志‘
+- 生成 K8s 审计日志：K8s 本身生成的审计日志，开启该功能后，会在指定目录下生成 K8s 审计日志的日志文件
+- 采集 K8s 审计日志：通过 insight-agent 采集上述 ‘K8s 审计日志’的日志文件，’采集 K8s 审计日志‘ 的前提条件是：
+    - 集群生成了 ‘K8s 审计日志‘
+    - 日志输出开关已打开
+    - 日志采集开关已打开
 
 ## DCE 5.0 安装完成时状态
 
 - 社区版安装管理集群过程中未操作 K8s 审计日志开关
 - 商业版管理集群的 K8s 审计日志开关默认开启
-    - 如需设置成默认关闭，可[修改安装器 clusterConfigt.yaml](../../../install/commercial/cluster-config.md) 来配置（logPath 设置为空 ”“）
+    - 如需设置成默认关闭，可[修改安装器 clusterConfig.yaml](../../../install/commercial/cluster-config.md) 来配置（logPath 设置为空 ”“）
 - 管理集群的采集 K8s 审计日志开关默认关闭
     - 默认设置不支持配置
 
@@ -15,16 +18,16 @@
 
 ### 商业版安装环境
 
-#### 确认开启 K8s 审计日志
+#### 确认是否开启了 K8s 审计日志
 
-执行以下命令查看`/var/log/kubernetes/audit` 目录下是否有审计日志生成。
+执行以下命令查看 __/var/log/kubernetes/audit__ 目录下是否有审计日志生成。
 若有，则表示 K8s 审计日志成功开启。
 
 ```shell
 ls /var/log/kubernetes/audit
 ```
 
-若未开启，请参考[文档的开启关闭 K8s 审计日志](open-k8s-audit.md)。
+若未开启，请参考[生成 K8s 审计日志](open-k8s-audit.md)。
 
 #### 开启采集 K8s 审计日志流程
 
@@ -81,7 +84,7 @@ helm upgrade --install --create-namespace --version ${insight_version_code} --cl
 
 #### 确认开启 K8s 审计日志
 
-执行以下命令查看`/var/log/kubernetes/audit` 目录下是否有审计日志生成，若有，则表示 K8s 审计日志成功开启。
+执行以下命令查看 __/var/log/kubernetes/audit__ 目录下是否有审计日志生成，若有，则表示 K8s 审计日志成功开启。
 
 ```shell
 ls /var/log/kubernetes/audit
@@ -156,7 +159,7 @@ helm upgrade --install --create-namespace --version ${insight_version_code} --cl
 
 #### 确认开启 K8s 审计日志
 
-执行以下命令查看`/var/log/kubernetes/audit` 目录下是否有审计日志生成，若有，则表示 K8s 审计日志成功开启。
+执行以下命令查看 __/var/log/kubernetes/audit__ 目录下是否有审计日志生成，若有，则表示 K8s 审计日志成功开启。
 
 ```shell
 ls /var/log/kubernetes/audit

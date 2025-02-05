@@ -4,7 +4,7 @@ The storage system can be expanded by adding storage nodes. In HwameiStor, new s
 
 ## Steps
 
-### 1. Prepare the New Storage Node
+### 1. Prepare the new storage node
 
 Add a new node to the Kubernetes cluster or select an existing cluster node (non-HwameiStor node). The node must meet all the prerequisites mentioned in the [Prerequisites](../install/prereq.md) document. In this example, the details of the new storage node and disk are as follows:
 
@@ -47,9 +47,9 @@ NAME                 IP           ZONE      REGION    STATUS   AGE
 k8s-worker-4   10.6.182.103       default   default   Ready    8d
 ```
 
-### 2. Add the New Storage Node to the HwameiStor System
+### 2. Add the new storage node to the HwameiStor system
 
-To add a storage node, create a LocalStorageClaim resource to build a storage pool for the new storage node. By doing this, the node will be successfully added to the HwameiStor system. Follow the steps below:
+To add a storage node, create a LocalStorageClaim resource to build a StorageClass for the new storage node. By doing this, the node will be successfully added to the HwameiStor system. Follow the steps below:
 
 ```console
 $ kubectl apply -f - <<EOF
@@ -59,14 +59,15 @@ metadata:
   name: k8s-worker-4
 spec:
   nodeName: k8s-worker-4
+  owner: local-storage
   description:
-    diskType: SSD
+    diskType: SSD # It may be necessary to change to HDD or NVMe based on the actual disk conditions of the nodes.
 EOF
 ```
 
 ### 3. Post-check
 
-After completing the above steps, check the status of the new storage node and its storage pool to ensure the normal operation of the node and HwameiStor system. Follow the steps below:
+After completing the above steps, check the status of the new storage node and its StorageClass to ensure the normal operation of the node and HwameiStor system. Follow the steps below:
 
 ```shell
 kubectl get localstoragenode k8s-worker-4

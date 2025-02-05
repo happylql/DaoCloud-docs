@@ -12,9 +12,11 @@ Kubean 是一个基于 Kubespray 构建的集群生命周期管理工具。
 - 兼容性：支持多架构交付：AMD、ARM；常见的 Linux 发行版；以及基于鲲鹏构建的麒麟操作系统。
 - 可扩展性：允许使用原生 Kubespray 自定义集群。
 
-![cncf gophers](./images/cncf-gophers.png)
+![cncf gophers](https://docs.daocloud.io/daocloud-docs-images/docs/zh/docs/community/images/cncf-gophers.png)
 
-**Kubean 是一个 [CNCF](https://cncf.io/) Landscape 项目。**
+**Kubean 是一个 [CNCF](https://cncf.io/) Sandbox 项目。**
+
+## 安装
 
 安装演示如下图：
 
@@ -22,11 +24,24 @@ Kubean 是一个基于 Kubespray 构建的集群生命周期管理工具。
 
 参阅[Kubean 安装视频演示](https://asciinema.org/a/511386)
 
+## Kubernetes 版本兼容性
+
+| Kubernetes Version | Kubean v0.7.4 | Kubean v0.6.6 | Kubean v0.5.4 | Kubean v0.4.5 | Kubean v0.4.4 |
+|--------------------|----------------|----------------|----------------|----------------|----------------|
+| 1.27               | ✓              | ✓              | ✓              | ✓              | ✓              |
+| 1.26               | ✓              | ✓              | ✓              | ✓              | ✓              |
+| 1.25               | ✓              | ✓              | ✓              | ✓              | ✓              |
+| 1.24               | ✓              | ✓              | ✓              | ✓              | ✓              |
+| 1.23               | ✓              | ✓              | ✓              | ✓              | ✓              |
+| 1.22               | ✓              | ✓              | ✓              | ✓              | ✓              |
+| 1.21               | ✓              | ✓              | ✓              | ✓              | ✓              |
+| 1.20               | ✓              | ✓              | ✓              | ✓              | ✓              |
+
 [Kubean 发行版本](https://github.com/kubean-io/kubean/releases){ .md-button }
 [了解 Kubean 社区](https://github.com/kubean-io/kubean){ .md-button }
 
+![cncf logo](./images/cncf.png)
+
 <p align="center">
-<img src="https://landscape.cncf.io/images/left-logo.svg" width="300"/>&nbsp;&nbsp;<img src="https://landscape.cncf.io/images/right-logo.svg" width="350"/>
-<br/><br/>
-Kubean 位列 <a href="https://landscape.cncf.io/?selected=kubean">CNCF 云原生全景图。</a>
+Kubean 位列 <a href="https://landscape.cncf.io/?selected=kubean">CNCF 云原生全景图</a>。
 </p>

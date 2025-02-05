@@ -1,28 +1,29 @@
 ---
 hide:
-  - heel
+  - toc
 ---
 
 # Microservice management
 
-After [integrating a registry](integrate-registry.md), you can manage the microservices in the registry. Microservice management refers to viewing the microservices in the registry.
+After [integrating a registry](index.md), you can manage the microservices in the registry. Microservice management refers to viewing the microservices in the registry.
 
 !!! note
 
+    An access-based registry center only supports basic management operations. For more complex management scenarios, it is recommended to create a [hosted registry center](../hosted/index.md) to perform more advanced operations.
 
-1. Click the name of the target registry on the `In` page.
+1. Click the name of the target registry on the __In__ page.
 
-    <!--![]()screenshots-->
+    ![](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/skoala/images/service01.png)
 
-2. Click `Microservice Management` in the left navigation bar to view the list of micro-services and basic information.
+2. Click __Microservice Management__ in the left navigation bar to view the list of microservices and basic information.
 
-    On the current page, you can copy the name of the micro-service and view all micro-services in the current registry, as well as the namespace, instance, and request statistics of each micro-service.
+    On the current page, you can copy the name of the microservice and view all microservices in the current registry, as well as the namespace, instance, and request statistics of each microservice.
 
-    <!--![]()screenshots-->
+    ![](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/skoala/images/service02.png)
 
-3. Click the name of the micro-service to view the instance list, interface list, and monitoring information of the micro-service.
+3. Click the name of the microservice to view the instance list, interface list, and monitoring information of the microservice.
 
-    <!--![]()screenshots-->
+    ![](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/skoala/images/service03.png)
 
     - Instance list: Displays instance status, IP address, and service port.
 
@@ -34,7 +35,7 @@ After [integrating a registry](integrate-registry.md), you can manage the micros
 
         <!--![]()screenshots-->
 
-    - Monitoring information: Displays monitoring information about the micro-service, including the number of requests, error rate, response time, and request rate.
+    - Monitoring information: Displays monitoring information about the microservice, including the number of requests, error rate, response time, and request rate.
 
         User-defined time range is supported.
 

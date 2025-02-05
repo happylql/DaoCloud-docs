@@ -6,7 +6,7 @@ hide:
 # Microservices
 
 Microservices can refer to an architectural style that combines multiple small services to build a single application, or it can refer to the individual small services that make up the application, that is, some small and autonomous services that work together.
-The microservice architecture has the advantages of technical heterogeneity, fault isolation, agile development, independent deployment, elastic scaling, and code reusability. Therefore, more and more enterprises have begun to adopt the microservice architecture to develop applications.
+The microservice architecture has the advantages of technical heterogeneity, fault isolation, agile development, independent deployment, scaling, and code reusability. Therefore, more and more enterprises have begun to adopt the microservice architecture to develop applications.
 However, as the business continues to expand, the business logic becomes more and more complex, and the number of microservices shows a trend of explosive growth. Intricate inter-service call relationships and dependencies affect the stability and availability of the entire application, greatly increasing the cost of operation and maintenance. Therefore, microservice governance tools came into being.
 
 - Traditional microservices
@@ -16,8 +16,8 @@ However, as the business continues to expand, the business logic becomes more an
 
 - Cloud Native Microservices
 
-    Cloud-native microservices refer to the cross-technology stack microservice governance model developed based on Kubernetes, which has gradually developed into a service mesh since there was no framework.
-    This model uses cloud-native frameworks (such as Kubernetes, Istio, and Linkered), cloud-native registries (such as Kubernetes registries and Mesh registries), and cloud-native gateways (such as Nginx, Envoy, and Contour).
+    Cloud native microservices refer to the cross-technology stack microservice governance model developed based on Kubernetes, which has gradually developed into a service mesh since there was no framework.
+    This model uses cloud native frameworks (such as Kubernetes, Istio, and Linkered), cloud native registries (such as Kubernetes registries and Mesh registries), and cloud native gateways (such as Nginx, Envoy, and Contour).
 
 - Microservice framework
 

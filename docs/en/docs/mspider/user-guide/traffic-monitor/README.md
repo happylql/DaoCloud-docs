@@ -1,11 +1,14 @@
 ---
+MTPE: windsonsea
+date: 2024-07-22
 hide:
   - toc
 ---
 
 # Traffic Monitor
 
-The traffic monitor dashboard utilizes native Grafana charts from Istio. Currently, there are four main sections available:
+The traffic monitor dashboard utilizes native Grafana charts from Istio.
+Currently, there are four main sections available:
 
 - Global monitor: Provides statistics for various resources across the entire mesh.
 
@@ -22,6 +25,6 @@ The traffic monitor dashboard utilizes native Grafana charts from Istio. Current
 Additionally, a traffic topology view is available to monitor traffic from different namespaces and collection sources.
 It includes animated flow visualization, enabling easier observation of dynamic traffic patterns.
 
-![traffic topology](../images/topo03.png)
+![traffic topology](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/mspider/user-guide/images/topo03.png)
 
-For more information, please refer to the [Grafana Dashboard documentation](https://istio.io/latest/docs/tasks/observability/metrics/using-istio-dashboard/) in Istio.
+For more information, refer to the [Grafana Dashboard documentation](https://istio.io/latest/docs/tasks/observability/metrics/using-istio-dashboard/) in Istio.

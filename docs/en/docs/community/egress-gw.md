@@ -1,6 +1,11 @@
-# egressgateway
+---
+MTPE: windsonsea
+date: 2024-06-19
+---
 
-![background](./images/egress01.png)
+# Egressgateway
+
+![background](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/community/images/egress01.png)
 
 Starting with 2021, we received some feedback as follows.
 
@@ -43,7 +48,7 @@ to set up your own playground!
 
 ## Develop
 
-![develop](./images/egress02.png)
+![develop](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/community/images/egress02.png)
 
 Refer to [develop](https://github.com/spidernet-io/egressgateway/blob/main/docs/develop/dev.md).
 

@@ -1,6 +1,7 @@
 # UOS V20 (1020a) 操作系统上部署 DCE 5.0 商业版
 
-本文将介绍如何在 UOS V20(1020a) 操作系统上部署 DCE 5.0，v0.6.0 及以上支持。
+本文将介绍如何在 UOS V20(1020a) 操作系统上部署 DCE 5.0。
+安装器 v0.6.0 及更高版本支持这种部署方式。
 
 ## 前提条件
 
@@ -13,24 +14,24 @@
 1. 由于安装器依赖 python，所以需要在火种机器中先安装 `python3.6`。
 
     ```bash
-    ## 执行以下命令下载依赖
+    # 执行以下命令下载依赖
     dnf install -y --downloadonly --downloaddir=rpm/python36
 
     ## 执行以下命令开始安装
     rpm -ivh python3-pip-9.0.3-18.uelc20.01.noarch.rpm python3-setuptools-39.2.0-7.uelc20.2.noarch.rpm python36-3.6.8-2.module+uelc20+36+6174170c.x86_64.rpm
     ```
 
-2. 下载全模式离线包，可以在[下载中心](https://docs.daocloud.io/download/dce5/)下载最新版本。
+2. 下载全模式离线包，可以在[下载中心](../../download/index.md)下载最新版本。
 
-    | CPU 架构 | 版本   | 下载地址                                                                                          |
-    | -------- | ------ | ------------------------------------------------------------------------------------------------- |
-    | AMD64    | v0.6.1 | <https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/offline-v0.6.1-amd64.tar> |
+    | CPU 架构 | 版本   | 下载地址   |
+    | -------- | ----- | -------- |
+    | AMD64    | v0.17.0 | <https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/offline-v0.17.0-amd64.tar> |
 
     下载完毕后解压离线包：
 
     ```bash
-    curl -LO https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/offline-v0.6.1-amd64.tar
-    tar -xvf offline-v0.6.1-amd64.tar
+    curl -LO https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/offline-v0.17.0-amd64.tar
+    tar -xvf offline-v0.17.0-amd64.tar
     ```
 
 3. 下载 UnionTech Server V20 1020a ISO 镜像文件。
@@ -56,8 +57,8 @@
 
 5. 下载 addon 离线包，可以在[下载中心](../../download/index.md)下载最新版本（可选）
 
-6. 设置[集群配置文件 clusterConfig.yaml](../commercial/cluster-config.md)，可以在离线包 `offline/sample` 下获取该文件并按需修改。
-    参考配置为：
+6. 设置[集群配置文件 clusterConfig.yaml](../commercial/cluster-config.md)，可以在离线包 `offline/sample`
+   下获取该文件并按需修改。参考配置为：
 
     ```yaml
     apiVersion: provision.daocloud.io/v1alpha3
@@ -90,7 +91,7 @@
 7. 开始安装 DCE 5.0。
 
     ```bash
-    ./dce5-installer cluster-create -m ./sample/mainfest.yaml -c ./sample/clusterConfig.yaml
+    ./dce5-installer cluster-create -m ./sample/manifest.yaml -c ./sample/clusterConfig.yaml
     ```
 
     !!! note

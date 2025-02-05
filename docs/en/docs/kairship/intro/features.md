@@ -1,102 +1,133 @@
+---
+MTPE: windsonsea
+date: 2024-06-20
+---
+
 # Features
 
 Multicloud Management module has the following features:
 
-- Unified Management Interface: a unified interface for managing multiple multicloud instances.
-- Multiple Instances: create multiple multicloud instances that work in isolation and do not affect each other.
-- One-click Import of Clusters: add existing clusters from Container Management module into a multicloud instance, sync the latest cluster information at real time.
-- Native APIs: Supports all Kubernetes native APIs.
-- Multicloud Application Deployment: flexible deployment policies and override policies for multicloud applications.
-- Failover: deploy applications to another healthy cluster when the original cluster is failed.
-- Observability: Rich audit rules and metrics to improve observability.
-- Practical Permissions: Manage user access based on [workspaces](../../ghippo/user-guide/workspace/workspace.md).
+- **Unified Management Interface**: A unified interface for managing multiple multicloud instances.
+- **Multiple Instances**: Create multiple multicloud instances that work in isolation and do not affect each other.
+- **One-click Integration of Clusters**: Add existing clusters from Container Management module into a multicloud instance, sync the latest cluster information at real time.
+- **Native APIs**: Supports all Kubernetes native APIs.
+- **Multicloud Application Deployment**: Flexible deployment policies and override policies for multicloud applications.
+- **Application Failover**: Built-in capability to enable application failover across multiple clouds.
+- **One-Click Application Conversion**: Achieve seamless conversion of applications from DCE4 to DCE5 with just one click.
+- **Cross-Cluster Scaling**: Dynamically adjust resources across different clusters
+  based on application workload demands.
+- **Observability**: Rich audit rules and metrics to improve observability.
+- **Practical Permissions**: Manage user access based on [workspaces](../../ghippo/user-guide/workspace/workspace.md).
 
 ## Multicloud Instances
 
-- Add multicloud instances: you can create an empty multicloud instance, and add clusters later as needed.
+- **Add Multicloud Instances**: You can create an empty multicloud instance, and add clusters later as needed.
 
-- Check the instance list and search by instance name.
+- **Check the instance list and search by instance name**.
 
-    You can view all multicloud instances visible to the current user accnout, including CPU and memory usage, cluster status, versions, creation time, etc.
+    You can view all multicloud instances visible to the current user account,
+    including CPU and memory usage, cluster status, versions, creation time, etc.
 
-- One-click import: you can easily add clusters into a multicloud instance by just selecting from a list and clicking "OK".
-
-- Safe Delete: multicloud instances cannot be deleted when there are still some clusters in it. This is to avoid unintentional delete and ensure data security.
+- **Safe Delete**: Multicloud instances cannot be deleted when there are still some clusters in it.
+  This is to avoid unintentional delete and ensure data security.
 
 ## Cluster Management
 
-- Add Cluster
+- **Add Cluster**
 
-    After a multicloud instance is created, you can dynamically (no need to restart) add clusters into it and manage other resources across these clsuters. Adding a clsuter is quite easy. Just select your expected clusters from the list and then click "OK".
+    After a multicloud instance is created, you can dynamically (no need to restart) add clusters into it and manage other resources across these clusters. Adding a cluster is quite easy. Just select your expected clusters from the list and then click "OK".
 
-- View Clusters
+- **View Cluster**
 
     You can view all clusters added into a multicloud instance, and further check the details of these clusters, including providers, versions, regions, CPU/Memory usage, service IP range, status, etc.
 
-- Remove Cluster
+- **Remove Cluster**
 
     You can dynamically remove a cluster from the current multicloud instance.
 
-    Removal Verification: to ensure data security, a cluster cannot be removed when there are still resources (deployments, namespaces, secrets, etc.) deploiyed in this cluster under the current multicloud instance.
+    Removal Verification: To ensure data security, a cluster cannot be removed when there are still resources (deployments, namespaces, secrets, etc.) deployed in this cluster under the current multicloud instance.
 
-- kubectl CLI
+- **kubectl CLI**
 
-    You can use kubectl commands in the cloud shell to get the `kubeconfig` information so that users can manage the multicloud instance locally.
+    You can use kubectl commands in the cloud shell to get the __kubeconfig__ information so that users can manage the multicloud instance locally.
+
+    Support the management of multicloud instances through the web-based terminal, CloudShell.
 
 ## Multicloud Workloads
 
-- Create Multicloud Deployment
+- **Create Multicloud Deployment**
 
-    Image Creation: Create a deployment through a graphical interface and set deployment or override policies.
+    - Image Creation: Create a deployment through a graphical interface and set deployment or override policies.
+    - Override Settings: Support override configurations when creating workloads, allowing for cluster-specific configuration such as pod count, CPU, memory, and upgrade strategy. Enable override configurations for cluster-specific settings including image, deployment policy, container scripts, container storage, container logs, scheduling policy, labels, and annotations.
+    - Create by YAML: Create a workload quickly with YAML files.
+    - YAML Syntax Check: Check the syntax of these YAML files and provides prompts for incorrect syntax.
 
-    YAML Creation: Create a workload quickly with YAML files.
+- **Multicloud Workload Details**
 
-    YAML Syntax Check: Check the syntax of these YAML files and provides prompts for incorrect syntax.
+    - Basic Information: Support viewing deployment details of deployments, including pod count and active cluster information. Provide monitoring capabilities for individual pods, allowing users to navigate to Insight Pod logs and view logs for individual pods.
+    - Deployment Information: View deployment details of deployments and perform operations such as restart, pause, resume, and release for multicloud workloads.
+    - Instance List: Display pod information of workloads across multiple Kubernetes clusters in a cluster-specific manner. Enable quick navigation to the corresponding cluster's workload details page and view monitoring and log information for the corresponding pods.
+    - Service List: Segment workload service information within clusters and provide quick navigation to the corresponding cluster's workload details page. View monitoring and log information for the corresponding services.
 
-- Multicloud Workload Details
+- **Update Multicloud Workload**
 
-    You can check the all deployments created, the number of Pods deployed, active cluster information, Pod logs, service monitoring information, etc. 
+    - Visualized Update: Edit the workload through the graphical interface.
+    - YAML Update: Change configuration of the multicloud workload by editing its YAML file.
 
-- Update Multicloud Workload
+- **Delete Multicloud Workload**
 
-    Visualized Update: edit the workload through the graphical interface.
-
-    YAML Update: change configuration of the multicloud workload by editing its YAML file.
-
-- Delete Multicloud Workload
-
-    Visualized Deletion: delete multicloud workloads as well as resources therein through the graphical interface.
-
-    You can also delete it in cloudshell and terminals.
+    - Visualized Deletion: Delete multicloud workloads as well as resources therein through the graphical interface.
+    - You can also delete multicloud workloads in cloudshell and terminals.
+    - Deletion Confirmation: Remind users to perform a secondary confirmation before proceeding with the deletion.
 
 ## Resource Management
 
-- Multicloud Namespaces
+- **Multicloud Namespace**
 
-    You can create or delete a namespace in multiple clusters, and view the detailed information of these namespaces.
+    - Manage Multicloud Namespaces: Support viewing the resource list of multicloud namespaces.
+    - View Multicloud Namespace List: Provide a list to view namespace information across multiple clusters.
+    - Create Multicloud Namespace: Enable the creation of multicloud namespaces through a user-friendly interface.
 
-- Multicloud Secrets
+- **Multicloud ConfigMaps**
 
-    You can create or delete a Secret in multiple clusters, view, and update the detailed information of these Secrets.
+    - Manage Multicloud ConfigMaps: Support viewing the resource list of multicloud configmaps.
+    - Manage Multicloud Secrets: Support viewing the resource list of multicloud Secrets.
+    - Create Multicloud ConfigMaps or Secrets: Enable the creation of multicloud configmaps or secrets through a user-friendly interface or YAML, with unified display in the user interface.
+    - Delete Multicloud ConfigMaps or Secrets: Support the deletion of idle multicloud configmaps or secrets. Deletion is not allowed for configmaps or secrets that are currently in use.
 
-- Multicloud ConfigMaps
+- **Multicloud Services and Ingress**
 
-    You can create or delete a ConfigMap in multiple clusters, view, and update the detailed information of these ConfigMaps.
+    - Create Services and Ingress: Support the creation of services through a user-friendly interface or YAML, with unified display in the user interface.
+    - Delete Services and Ingress: Support the deletion of services/ingress, with corresponding prompts for those currently in use.
 
-- Multicloud Services
+## Policy Management
 
-    You can create or delete a Kubernetes Service in multiple clusters, view, and update the detailed information of these Services.
+- **Propagation Policies**
 
-## Policy Center
+    - Propagation Policy List: View the list of propagation policies associated with the current instances and their associated multicloud resources.
+    - Create Propagation Policy: Maintain and edit propagation policy information using YAML.
+    - Delete Propagation Policy: Delete idle propagation policies.
 
-- Deployment Policy
+- **Override Policies**
 
-    Deployment Policy means how to deploy a multicloud resource across clusters. For example, whether deploy a same number of replicas in each cluster, or deploy more replicas in the clusters with higher weight, or leave it automatically and dynamically scheduled according to available resources in each cluster
+    - Override Policy List: View the list of override policies associated with the current instances and their associated multicloud resources.
+    - Create Override Policy: Maintain and edit override policy information using YAML.
+    - Delete Override Policy: View the list of override policies associated with the current instances and their associated multicloud resources.
 
-    You can create or delete a deployment policy in multiple clusters, view, and update the detailed information of these policies.
+## System Settings
 
-- Override Policy
+- **Cluster Health Check**
 
-    Override Policy means you can deploy the same deployment with slight differences in each cluster, such as using different image tas, secrets, etc.
-    
-    You can create or delete a override policy in multiple clusters, view, and update the detailed information of these policies.
+    Configure the duration for marking the cluster health status as successful or failed.
+
+- **Failover**
+
+    Configure parameters to automatically migrate pod replicas from a failed cluster to other available clusters, ensuring service stability.
+
+- **CronReschedule**
+
+    Regularly check the status of pods in the cluster. If a pod remains unschedulable for a specified period, it will be automatically evicted to avoid resource waste.
+
+- **Federated HPA**
+
+    Install karmada-metrics-adapter in the instance control plane cluster to provide metrics API. This feature is disabled by default.

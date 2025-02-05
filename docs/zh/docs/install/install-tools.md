@@ -16,6 +16,7 @@
     - kubectl
     - yq
     - minio client
+    - charts-syncer
     
     安装过程中如果您的环境存在一些工具且版本低于我们定义的版本，会将对应工具进行强制更新替换。
 
@@ -24,9 +25,11 @@
 1. 下载脚本。
 
     ```bash
-    export VERSION=v0.10.0   # 安装器版本
+    export VERSION=v0.20.0   # (1)!
     curl -LO https://proxy-qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/install_prerequisite_${VERSION}.sh
     ```
+
+    1. 安装器版本
 
     为 `install_prerequisite_${VERSION}.sh` 添加可执行权限：
 
@@ -52,26 +55,27 @@
 
 离线安装意味着目标主机的网络处于离线状态，无法下载所需依赖项，所以需先在一个在线环境中制作好离线包。
 
-1. 下载脚本。
+1. 找一台能连通外网的机器，下载安装脚本。
 
     ```bash
-    export VERSION=v0.10.0
+    export VERSION=v0.20.0
     curl -LO https://proxy-qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/install_prerequisite_${VERSION}.sh
     ```
 
 2. 下载前置依赖组件离线包。
 
     ```bash
-    export VERSION=v0.10.0
+    export VERSION=v0.20.0
     curl -LO https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/prerequisite_${VERSION}_amd64.tar.gz
     ```
 
     !!! note
 
-        - 如果是 arm 架构，下载地址为：https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/prerequisite_${VERSION}_arm64.tar.gz
+        - 如果是 arm 架构，请使用下载地址：
+          <https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/prerequisite_${VERSION}_arm64.tar.gz>
         - 确保离线包与脚本在同一个目录层级
 
-3. 执行离线安装。
+3. 将下载的这些离线包上传到一台 K8s 集群控制平面节点，执行离线安装。
 
     - 对于社区版
 

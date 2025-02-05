@@ -1,4 +1,6 @@
 ---
+MTPE: windsonsea
+date: 2024-06-19
 hide:
   - toc
 ---
@@ -14,7 +16,9 @@ Kubean is a cluster lifecycle management tool built on top of Kubespray.
 
 ![cncf gophers](./images/cncf-gophers.png)
 
-**Kubean is part of the [CNCF](https://cncf.io/) Landscape projects.**
+**Kubean is part of the [CNCF](https://cncf.io/) Sandbox projects.**
+
+## Install
 
 Installation demo:
 
@@ -22,11 +26,24 @@ Installation demo:
 
 See the [Kubean installation video demo](https://asciinema.org/a/511386).
 
+## Kubernetes Compatibility
+
+| Kubernetes Version | Kubean v0.7.4 | Kubean v0.6.6 | Kubean v0.5.4 | Kubean v0.4.5 | Kubean v0.4.4 |
+|--------------------|----------------|----------------|----------------|----------------|----------------|
+| 1.27               | ✓              | ✓              | ✓              | ✓              | ✓              |
+| 1.26               | ✓              | ✓              | ✓              | ✓              | ✓              |
+| 1.25               | ✓              | ✓              | ✓              | ✓              | ✓              |
+| 1.24               | ✓              | ✓              | ✓              | ✓              | ✓              |
+| 1.23               | ✓              | ✓              | ✓              | ✓              | ✓              |
+| 1.22               | ✓              | ✓              | ✓              | ✓              | ✓              |
+| 1.21               | ✓              | ✓              | ✓              | ✓              | ✓              |
+| 1.20               | ✓              | ✓              | ✓              | ✓              | ✓              |
+
 [Kubean releases](https://github.com/kubean-io/kubean/releases){ .md-button }
 [Explore Kubean community](https://github.com/kubean-io/kubean){ .md-button }
 
+![cncf logo](./images/cncf.png)
+
 <p align="center">
-<img src="https://landscape.cncf.io/images/left-logo.svg" width="300"/>&nbsp;&nbsp;<img src="https://landscape.cncf.io/images/right-logo.svg" width="350"/>
-<br/><br/>
-Kubean is listed in the <a href="https://landscape.cncf.io/?selected=kubean">CNCF Cloud Native Landscape.</a>
+Kubean is listed in the <a href="https://landscape.cncf.io/?selected=kubean">CNCF Cloud Native Landscape</a>.
 </p>

@@ -3,38 +3,62 @@ hide:
   - toc
 ---
 
-# Create Kafka
+---
+MTPE: ModetaNiu
+Date: 2024-07-02
+---
 
-In the Kafka message queue, perform the following operations to create a Kafka instance.
+# Create Kafka Instance
 
-1. Click `New Instance` in the upper right corner.
+In the Kafka message queue, follow these steps to create a Kafka instance.
 
-    <!--screenshot-->
+1. On the Kafka message queue page, click the __Create Kafka Instance__ button in the top right corner.
 
-2. On the `Create Kafka Instance` page, after setting the basic information, click `Next`.
+    ![Create an instance](../images/instances01.png)
 
-    <!--screenshot-->
+    !!! tip
 
-3. After configuring the specifications, click `Next`.
+        When deploying for the first time, you can click **Deploy Now**.
 
-    - Version: The version number of Kafka, currently only supports Kafka 3.1.0.
-    - Number of copies: 1, 3, 5, 7 copies are supported.
-    - Resource Quota: Select the rules according to the actual situation.
-    - Storage Volume: Select the storage volume and the total amount of storage space for the Kafka instance.
+        <!--add screenshot later-->
 
-    <!--screenshot-->
+2. On the __Create Kafka Instance__ page, after setting the basic information, click __Next__.
 
-4. After setting up the service, click `Next`.
+    ![Spec settings](../images/create02.png)
 
-    - Access method: You can choose intra-cluster access or Nodeport access.
-    - Service Settings: Set the username and password for connecting to the Kafka instance.
+3. After configuring the specifications, click __Next__.
 
-    <!--screenshot-->
+    - Version: The version of Kafka, currently only supports Kafka 3.1.0.
+    - Replicas: Supports 1, 3, 5, 7 replicas.
+    - Resource Quota: Choose rules according to the actual situation.
+    - Storage Capacity: Select the storage volume and total storage space for the Kafka instance.
 
-5. Confirm that the instance configuration information is correct, and click `Confirm` to complete the creation.
+    ![Spec Settings](../images/create03.png)
 
-    <!--screenshot-->
+4. After service settings, click __Next__.
 
-6. On the instance list page, check whether the instance is successfully created. The status of the newly created instance is `Not Ready`, and it will change to `Running` after a few minutes.
+    - Service Settings:
+        - ClusterIP
+        - Nodeport
+        - LoadBalancer
+    - Access Settings:
+        - CMAK Account set-up: Username and password to connect to the Kafka instance.
+        - CMAK Resources: Replicas, CPU quota, and memory quotas.
+        - CMAK Service Configuration: Nodeport, LoadBalancer
+    - Advanced Settings: Configure as needed.
 
-    <!--screenshot-->
+    ![Service Settings](../images/create04.png)
+
+5. Confirm that the instance configuration information is correct, click __OK__ to complete the creation.
+
+    ![Settings Confirm](../images/create05.png)
+
+6. Check the instance list page to see if the instance has been created successfully. The status of the 
+   newly created instance will be __Not Ready__, and after a few minutes, this status will change to __Running__.
+
+    ![Service Settings](../images/create06.png)
+
+!!! note
+
+    In addition, DCE 5.0's Kafka provides parameter templates to simplify instance creation.
+    You can use these predefined [parameter templates](./template.md) to create instances.

@@ -22,12 +22,11 @@
     -javaagent:/jmx_prometheus_javaagent-0.17.0.jar=12345:/prometheus-jmx-config.yaml
     ```
 
-    有关 JMX 的详细说明，可参考[使用 JMX Exporter 暴露 JVM 监控指标](../../insight/quickstart/jvm-monitor/jmx-exporter.md)。
+    有关 JMX 的详细说明，可参考[使用 JMX Exporter 暴露 JVM 监控指标](../../insight/quickstart/otel/java/jvm-monitor/jmx-exporter.md)。
 
 3. 为服务创建 Kubernetes Service。重点包括以下参数：
 
     - labels 字段：固定为 `skoala.io/type: sentinel`
-
     - ports 字段：固定为 `name: jmx-metrics`，`port: 12345`，`targetPort: 12345`
 
         ```yaml

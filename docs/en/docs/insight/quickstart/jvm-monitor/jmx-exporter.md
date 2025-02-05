@@ -34,7 +34,7 @@ rules:
 
 !!! note
 
-    For more configuration items, please refer to the bottom introduction or [Prometheus official documentation](https://github.com/prometheus/jmx_exporter#configuration).
+    For more configmaps, please refer to the bottom introduction or [Prometheus official documentation](https://github.com/prometheus/jmx_exporter#configuration).
 
 Then prepare the jar package file, you can find the latest jar package download address on the Github page of [jmx_exporter](https://github.com/prometheus/jmx_exporter) and refer to the following Dockerfile:
 
@@ -69,7 +69,7 @@ RUN set -ex; \
      curl -L -O https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.17.2/jmx_prometheus_javaagent-0.17.2.jar;
 ```
 
-Build the image according to the above Dockerfile: `docker build -t my-jmx-exporter .`
+Build the image according to the above Dockerfile: __docker build -t my-jmx-exporter .__ 
 
 Add the following init container to the Java application deployment Yaml:
 

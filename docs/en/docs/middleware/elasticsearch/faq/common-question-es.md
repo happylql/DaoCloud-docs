@@ -8,7 +8,7 @@ This page will continue to count and sort out common Elasticsearch abnormal faul
 
 > Storage depends on hwameistor
 
-**error message**
+### Error message
 
 ```info
 {"type": "server", "timestamp": "2022-12-18T10:47:08,573Z", "level": "ERROR", "component": "o.e.m.f.FsHealthService", "cluster.name": " mcamel-common-es-cluster-masters", "node.name": "mcamel-common-es-cluster-masters-es-masters-0", "message": "health check of [/usr/share/elasticsearch /data/nodes/0] failed", "cluster.uuid": "afIglgTVTXmYO2qPFNvsuA", "node.id": "nZRiBCUZQymQVV1son34pA" ,
@@ -33,7 +33,7 @@ This page will continue to count and sort out common Elasticsearch abnormal faul
 "at java.lang.Thread.run(Thread.java:833) [?:?]"] }
 ```
 
-**Solution**
+### Solution
 
 1. Expansion of PVC (modified from 1Gi to 10Gi)
 
@@ -94,13 +94,13 @@ This page will continue to count and sort out common Elasticsearch abnormal faul
 
 > Phenomenon: index alias is occupied
 
-<!--screenshot-->
+![image](https://docs.daocloud.io/daocloud-docs-images/docs/middleware/elasticsearch/images/faq-es-1.png)
 
-`*-write` in this figure is an alias, such as `jaeger-span-write`, which needs to be processed
+__*-write__ in this figure is an alias, such as __jaeger-span-write__ , which needs to be processed
 
-View the alias `rollover_alias corresponding value` used in the business index template
+View the alias __rollover_alias corresponding value__ used in the business index template
 
-<!--screenshot-->
+![image](https://docs.daocloud.io/daocloud-docs-images/docs/middleware/elasticsearch/images/faq-es-2.png)
 
 Temporary processing method: enter the es pod container and run the following script:
 
@@ -128,11 +128,11 @@ curl -XPUT -u elastic:${ES_PASSWORD} -k "$ES_URL/${TEMPLATE_NAME}-000001" -H 'Co
 
 In the real situation, it is necessary to stop the writing of the data source, and then run the above method.
 
-## Error reporting `Error setting GoMAXPROCS for operator`
+## Error reporting __Error setting GoMAXPROCS for operator__
 
 **error message**
 
-<!--screenshot-->
+![image](https://docs.daocloud.io/daocloud-docs-images/docs/middleware/elasticsearch/images/faq-es-3.png)
 
 Environmental information:
 
@@ -141,15 +141,17 @@ Kind version: 0.17.0
 containerd:1.5.2
 k8s:1.21.1
 ```
+
 **Solution**
 
-updated version:
+Upgrade your version:
 
 ```info
 kind: 1.23.6
 runc version 1.1.0
 ```
-## Error `Terminating due to java.lang.OutOfMemoryError: Java heap space`
+
+## Error __Terminating due to java.lang.OutOfMemoryError: Java heap space__ 
 
 **The complete error message is as follows:**
 
@@ -179,29 +181,29 @@ kubectl edit elasticsearch mcamel-common-es-cluster-masters -n mcamel-system
 
 <!--screenshot-->
 
-## OCP environment installation `Elasticsearch` reports an error `Operation not permitted`
+## OCP environment installation __Elasticsearch__ reports an error __Operation not permitted__ 
 
 **error message**
 
-<!--screenshot-->
+![image](https://docs.daocloud.io/daocloud-docs-images/docs/middleware/elasticsearch/images/faq-es-5.png)
 
 **Solution**
 
-<!--screenshot-->
+![image](https://docs.daocloud.io/daocloud-docs-images/docs/middleware/elasticsearch/images/faq-es-6.png)
 
 ## The disk read throughput of a certain node is abnormal, and the CPU workload is very high
 
-**Exception Information**
+**Exceptions**
 
 <!--screenshot-->
 
-<!--screenshot-->
+![image](https://docs.daocloud.io/daocloud-docs-images/docs/middleware/elasticsearch/images/faq-es-8.png)
 
 **Solution**
 
 If es is on this node, the ES process can be killed and restored.
 
-## Error reporting `status:429, es_rejected_execution_exception` when data is written to `Elasticsearch`
+## Error reporting __status:429__ when data is written to __Elasticsearch__ 
 
 **The complete error message is as follows:**
 
@@ -212,7 +214,7 @@ If es is on this node, the ES process can be killed and restored.
 
 **Solution**
 
-- Method 1: The reason for the 429 error is that the writing concurrency of `Elasticsearch` is too large, and `Elasticsearch` is too late to deal with it. You can properly reduce the writing concurrency and control the amount of writing.
+- Method 1: The reason for the 429 error is that the writing concurrency of __Elasticsearch__ is too large, and __Elasticsearch__ is too late to deal with it. You can properly reduce the writing concurrency and control the amount of writing.
 
 - Method 2: If resources permit, the queue size can be appropriately increased
 
@@ -220,7 +222,7 @@ If es is on this node, the ES process can be killed and restored.
      nodeSets:
        - config:
            node.store.allow_mmap: false
-           thread_pool.write.queue_size: 1000 #Increase/increase the value of this parameter
+           thread_pool.write.queue_size: 1000 # Increase/increase the value of this parameter
      ```
 
 Method 1 and method 2 can be used together.

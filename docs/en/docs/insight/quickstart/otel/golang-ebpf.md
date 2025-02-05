@@ -1,3 +1,8 @@
+---
+MTPE: windsonsea
+Date: 2024-10-16
+---
+
 # Enhance Go apps with OTel auto-instrumentation
 
 If you don't want to manually change the application code, you can try This page's eBPF-based automatic enhancement method.
@@ -15,7 +20,7 @@ Make sure Insight Agent is ready. If not, see [Install insight-agent to collect 
 
 Install under the Insight-system namespace, skip this step if it has already been installed.
 
-Note: This CR currently only supports the injection of environment variables (including service name, link reporting address, etc.) required to connect to Insight, and will support the injection of Golang probes in the future.
+Note: This CR currently only supports the injection of environment variables (including service name and trace address) required to connect to Insight, and will support the injection of Golang probes in the future.
 
 ```bash
 kubectl apply -f - <<EOF
@@ -56,13 +61,13 @@ EOF
 
 - Add environment variable annotations
 
-    There is only one such annotation, which is used to add OpenTelemetry-related environment variables, such as link reporting address, cluster id where the container is located, namespace, etc.:
+    There is only one such annotation, which is used to add OpenTelemetry-related environment variables, such as link reporting address, cluster id where the container is located, and namespace:
 
-    ```bash
+    ```console
     instrumentation.opentelemetry.io/inject-sdk: "insight-system/insight-opentelemetry-autoinstrumentation"
     ```
 
-    The value is divided into two parts by `/`, the first value `insight-system` is the namespace of the CR installed in the second step, and the second value `insight-opentelemetry-autoinstrumentation` is the name of the CR.
+    The value is divided into two parts by __/__ , the first value __insight-system__ is the namespace of the CR installed in the second step, and the second value __insight-opentelemetry-autoinstrumentation__ is the name of the CR.
 
 - Add golang ebpf probe container
 
@@ -132,8 +137,8 @@ EOF
 
     1. Used to add environment variables related to OpenTelemetry.
     2. Assuming this is your Golang application.
-    3. Note that it should be consistent with the content of the `command` mentioned above:
-       `/usr/local/bin/emojivoto-voting-svc`.
+    3. Note that it should be consistent with the content of the __command__ mentioned above:
+       __/usr/local/bin/emojivoto-voting-svc__ .
 
 The final generated Yaml content is as follows:
 

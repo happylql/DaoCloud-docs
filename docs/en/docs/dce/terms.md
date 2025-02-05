@@ -7,7 +7,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 - Abstraction
 
     In the context of computing, an abstraction is a representation that
-    hides specifics from a consumer of [services](../kpanda/user-guide/services-routes/create-services.md)
+    hides specifics from a consumer of [services](../kpanda/user-guide/network/create-services.md)
     (a consumer being a computer program or human),
     making a system more generic and thus easily understood.
     A good example is your laptop's operating system (OS).
@@ -93,9 +93,9 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
     that triggers graceful pod termination.
 
     You can request eviction by calling the Eviction API directly, or programmatically using a client of
-    the API server, like the `kubectl drain` command. This creates an `Eviction` object, which causes the API server to terminate the Pod.
+    the API server, like the __kubectl drain__ command. This creates an __Eviction__ object, which causes the API server to terminate the Pod.
 
-    API-initiated evictions respect your configured `PodDisruptionBudgets` and `terminationGracePeriodSeconds`.
+    API-initiated evictions respect your configured __PodDisruptionBudgets__ and __terminationGracePeriodSeconds__ .
 
 - API Group
 
@@ -105,7 +105,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
     API Groups can be enabled or disabled by changing the configuration of the API server.
     You can also disable or enable paths to specific resources.
     API groups make it easier to extend the K8s API.
-    The API group is specified at the REST path and in the `apiVersion` field of the serialized object.
+    The API group is specified at the REST path and in the __apiVersion__ field of the serialized object.
 
 - API Gateway
 
@@ -213,7 +213,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
 - Blue Green Deployment
 
-    Blue-green deployment is a strategy for updating running computer systems with minimal downtime.
+    Blue-green deployment is a policy for updating running computer systems with minimal downtime.
     The operator maintains two environments, dubbed “blue” and “green”.
     One serves production traffic (the version all users are currently using), whilst the other is updated.
     Once testing has concluded on the non-active (green) environment,
@@ -229,12 +229,12 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
     In this instance, both need to be changed at the same time.
     If this was done on the production system, customers would notice downtime.
 
-    Blue-green deployment is an appropriate strategy for non-cloud native software that needs to be updated with minimal downtime.
+    Blue-green deployment is an appropriate policy for non-cloud native software that needs to be updated with minimal downtime.
     However, its use is normally a "smell" that legacy software needs to be re-engineered so that components can be updated individually.
 
 - Canary Deployment
 
-    Canary deployments is a deployment strategy that starts with two environments:
+    Canary deployments is a deployment policy that starts with two environments:
     one with live traffic and the other containing the updated code without live traffic.
     The traffic is gradually moved from the original version of the application to the updated version.
     It can start by moving 1% of live traffic, then 10%, 25%, and so on,
@@ -247,12 +247,12 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
     If odorless harmful gases were present, the bird would die, and the miners knew they had to evacuate quickly.
     Similarly, if something goes wrong with the updated code, live traffic is "evacuated" back to the original version.
 
-    No matter how thorough the testing strategy, there are always some bugs discovered in production.
+    No matter how thorough the testing policy, there are always some bugs discovered in production.
     Shifting 100% of traffic from one version of an app to another can lead to more impactful failures.
 
     Canary deployments allow organizations to see how new software behaves in real-world use cases
     before moving significant traffic to the new version.
-    This strategy enables organizations to minimize downtime and quickly rollback in case of issues with the new deployment.
+    This policy enables organizations to minimize downtime and quickly rollback in case of issues with the new deployment.
     It also allows more in-depth production application testing without a significant impact on the overall user experience.
 
 - cAdvisor
@@ -358,7 +358,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
 - Cloud Controller Manager
 
-    The `cloud-controller-manager` is a Kubernetes control plane component that embeds cloud-specific control logic.
+    The __cloud-controller-manager__ is a Kubernetes control plane component that embeds cloud-specific control logic.
     It allows you to connect your cluster to the API of a cloud provider and separate the components that interact
     with that cloud platform from the components that interact with your cluster.
 
@@ -366,7 +366,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
     the cloud-controller-manager component enables cloud providers to release new features at a different pace than
     the Kubernetes main project.
 
-    In addition, cloud-native apps are specifically designed to take advantage of innovations in cloud computing.
+    In addition, cloud native apps are specifically designed to take advantage of innovations in cloud computing.
     These applications integrate easily with their respective cloud architectures, taking advantage of the cloud's
     resources and scaling capabilities. Cloud native applications today include apps that run in a cloud provider's
     datacenter and on cloud native platforms on-premise.
@@ -376,7 +376,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
     Cloud native security seeks to ensure the same standards as traditional security models while adapting to
     the particulars of cloud native environments, namely rapid code changes and highly ephemeral infrastructure.
 
-- Cloud-Native Apps
+- Cloud Native Apps
 
     Cloud native applications are specifically designed to take advantage of innovations in cloud computing.
     These applications integrate easily with their respective cloud architectures,
@@ -398,7 +398,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
     enabling users to detect and address issues before they escalate.
     Combined with robust automation, they allow engineers to make high-impact changes frequently and predictably with minimal toil.
 
-- Cloud-Native Security
+- Cloud Native Security
 
     Cloud native security is an approach that builds security into cloud native applications.
     It ensures that security is part of the entire application lifecycle from development to production.
@@ -421,7 +421,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
     Instead of slowing change a cloud native security model embraces it
     by frequently updated vulnerable components or ensuring infrastructure is regularly replaced.
 
-- Cloud-Native Tech
+- Cloud Native Tech
 
     Cloud native technologies, also referred to as the cloud native stack,
     are the technologies used to build cloud native applications.
@@ -494,7 +494,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 - CNCF, Cloud Native Computing Foundation
 
     A non-profit organization under the Linux Foundation, established in December 2015, dedicated to cultivating
-    and maintaining a vendor-neutral open-source ecosystem to promote cloud-native technology and popularize cloud-native applications.
+    and maintaining a vendor-neutral open-source ecosystem to promote cloud native technology and popularize cloud native applications.
 
 - CNI, Container network interface
 
@@ -614,7 +614,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
     Because users only buy the resources they need (scheduling capabilities, load balancing, etc.),
     they save money and increase efficiency.
     Containers create consistent environments to rapidly develop and
-    deliver cloud-native applications that can run anywhere.
+    deliver cloud native applications that can run anywhere.
 
     Without CaaS, software development teams need to deploy, manage, and monitor
     the underlying infrastructure that containers run on.
@@ -709,7 +709,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
 - Contour
 
-    Contour is deployed as a control node and serves as the control plane for the microservice gateway,
+    Contour is deployed as a controller node and serves as the control plane for the microservice gateway,
     providing convenient gateway configuration, dynamic configuration updates, and multicluster deployment
     capabilities. Contour also provides the HTTPProxy CRD to enhance the core configuration capabilities of
     Kubernetes Ingress. It is recommended to deploy Contour in multiple replicas to ensure the stability of production services.
@@ -745,7 +745,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
 - [CronJob](../kpanda/user-guide/workloads/create-cronjob.md)
 
-    CronJob manages tasks that run periodically. Similar to a line of command in a crontab file, the CronJob object uses the [cron](https://en.wikipedia.org/wiki/Cron) format to set the schedule.
+    CronJob manages jobs that run periodically. Similar to a line of command in a crontab file, the CronJob object uses the [cron](https://en.wikipedia.org/wiki/Cron) format to set the schedule.
 
 - CSI, Container Storage Interface
 
@@ -808,7 +808,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 - Data ID
 
     Data ID refers to the ID of a configuration set in Nacos, a platform for dynamic service discovery and
-    configuration management. A configuration set is a collection of configuration items, typically represented
+    configuration management. A configuration set is a collection of ConfigMaps, typically represented
     as a configuration file, that includes various system configurations.
 
 - Data Plane
@@ -881,7 +881,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 - Destination
 
     The destination service is the remote upstream service that Envoy interacts with on behalf of a source service workload.
-    These upstream services can have multiple service versions, and Envoy selects the corresponding version based on routing.
+    These upstream services can have multiple service versions, and Envoy selects the proper version based on routing.
 
 - Destination Rule
 
@@ -891,7 +891,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
 - Diagnosis
 
-    Diagnosis mode is used to debug Contour and supports attaching corresponding startup parameters when Contour starts.
+    Diagnosis mode is used to debug Contour and supports attaching proper startup parameters when Contour starts.
 
 - Disruption
 
@@ -1050,7 +1050,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
     Events should be treated as informative, best-effort, supplementary data.
 
-    In Kubernetes, an auditing mechanism generates a different category of Event records (API group `audit.k8s.io`).
+    In Kubernetes, an auditing mechanism generates a different category of Event records (API group __audit.k8s.io__ ).
 
 - Event-Driven Architecture
 
@@ -1108,11 +1108,11 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
 - Finalizer
 
-    `Finalizer` is a key with a namespace that tells Kubernetes to completely delete a resource marked for deletion only after specific conditions are met. Finalizers remind controllers to clean up resources owned by the deleted object. When you tell Kubernetes to delete an object with a Finalizer, the Kubernetes API marks the object to be deleted by populating `.metadata.deletionTimestamp` and returns a `202` status code (HTTP "Accepted") to put it in read-only mode. At this point, the control plane or other components take the action defined by the Finalizer, and the target object remains in the Terminating state. After these actions are completed, the controller deletes the Finalizer associated with the target object. When the `metadata.finalizers` field is empty, Kubernetes considers the deletion complete and deletes the object. You can use Finalizer to control the garbage collection of resources. For example, you can define a Finalizer to clean up related resources or infrastructure before deleting the target resource.
+    __Finalizer__ is a key with a namespace that tells Kubernetes to completely delete a resource marked for deletion only after specific conditions are met. Finalizers remind controllers to clean up resources owned by the deleted object. When you tell Kubernetes to delete an object with a Finalizer, the Kubernetes API marks the object to be deleted by populating __ .metadata.deletionTimestamp__ and returns a __202__ status code (HTTP "Accepted") to put it in read-only mode. At this point, the control plane or other components take the action defined by the Finalizer, and the target object remains in the Terminating state. After these actions are completed, the controller deletes the Finalizer associated with the target object. When the __metadata.finalizers__ field is empty, Kubernetes considers the deletion complete and deletes the object. You can use Finalizer to control the garbage collection of resources. For example, you can define a Finalizer to clean up related resources or infrastructure before deleting the target resource.
 
 - Folder
 
-    In DCE, `Folder` is a [hierarchical concept](../ghippo/user-guide/workspace/folders.md) that corresponds to different departments, and each level can contain one or more workspaces to meet the branch division of various departments within the enterprise.
+    In DCE, __Folder__ is a [hierarchical concept](../ghippo/user-guide/workspace/folders.md) that corresponds to different departments, and each level can contain one or more workspaces to meet the branch division of various departments within the enterprise.
 
 ### G
 
@@ -1187,11 +1187,11 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
 - Histogram
 
-    A histogram samples observation results (usually data such as request duration or response size) and statistically aggregates them into configurable buckets. There are several ways to generate a histogram (assuming the metric is `<basename>`):
+    A histogram samples observation results (usually data such as request duration or response size) and statistically aggregates them into configurable buckets. There are several ways to generate a histogram (assuming the metric is __<basename>__ ):
 
-    - Count by bucket, equivalent to `<basename>_bucket{le="<upper inclusive bound>"}`
-    - Sum of sampled values, equivalent to `<basename>_sum`
-    - Total number of sampled values, equivalent to `<basename>_count`, also equivalent to counting all sampled values in a bucket `<basename>_bucket{le="+Inf"}`
+    - Count by bucket, equivalent to __<basename>_bucket{le="<upper inclusive bound>"}__ 
+    - Sum of sampled values, equivalent to __<basename>_sum__ 
+    - Total number of sampled values, equivalent to __<basename>_count__ , also equivalent to counting all sampled values in a bucket __<basename>_bucket{le="+Inf"}__ 
 
     Histogram can be understood as a bar chart, typically used for observation results such as request duration and response size. It can sample, group, and statistically aggregate observation results.
 
@@ -1258,7 +1258,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
 - IAM, Identity and access management
 
-    [IAM](../ghippo/user-guide/access-control/iam.md) stands for Identity and Access Management, which is a shorthand for user and access control in global management. An IAM Admin is the administrator with the highest level of permission in this module. Users or groups assigned as IAM Admin will have full and highest permission for user and access control.
+    [IAM](../ghippo/user-guide/access-control/iam.md) stands for Identity and Access Management, which is a shorthand for user and access control in global management. An IAM Owner is the administrator with the highest level of permission in this module. Users or groups assigned as IAM Owner will have full and highest permission for user and access control.
 
 - Image
 
@@ -1474,7 +1474,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
 - Master cluster
 
-    A master cluster is a cluster with a control plane. A mesh can have more than one master cluster for HA or low-latency use cases. A master cluster can serve as the control plane for a working cluster.
+    A master cluster is a cluster with a control plane. A mesh can have more than one master cluster for HA or low-latency use cases. A master cluster can serve as the control plane for a worker cluster.
 
 - [Metric](https://opentelemetry.io/docs/concepts/signals/metrics/)
 
@@ -1488,11 +1488,11 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
     A microservice is an architectural style that builds a single application by combining multiple small services. In a microservice engine, a microservice refers to the various small services obtained by splitting a complete application according to business features.
 
-    Microservices are a modern approach to application development using cloud-native technologies. Although modern applications like Netflix appear to be a single application, they are actually a collection of smaller services that work closely together. For example, a single page that allows you to access, search, and preview videos is likely provided by smaller services, each of which handles one aspect (such as search, authentication, and running previews in the browser). In short, microservices refer to an application architecture pattern that is typically contrasted with monolithic applications.
+    Microservices are a modern approach to application development using cloud native technologies. Although modern applications like Netflix appear to be a single application, they are actually a collection of smaller services that work closely together. For example, a single page that allows you to access, search, and preview videos is likely provided by smaller services, each of which handles one aspect (such as search, authentication, and running previews in the browser). In short, microservices refer to an application architecture pattern that is typically contrasted with monolithic applications.
 
     Microservices are a response to the challenges posed by monolithic applications. In a monolithic application, different parts of the application cannot be separately deployed or scaled. This can lead to inefficient resource utilization and high coupling between different parts of the codebase. Microservices address these issues by separating functionality into different services that can be independently deployed, updated, and scaled. This allows different teams to focus on their own small part of the application, without negatively impacting other parts of the organization.
 
-    However, microservices also come with increased operational overhead, as there are more things to deploy and track. Many cloud-native technologies aim to make microservices easier to deploy and manage.
+    However, microservices also come with increased operational overhead, as there are more things to deploy and track. Many cloud native technologies aim to make microservices easier to deploy and manage.
 
 - Microservice instance
 
@@ -1522,7 +1522,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
 - Name
 
-    A string provided by the client that identifies an object in the resource URL, such as `/api/v1/pods/some-name`.
+    A string provided by the client that identifies an object in the resource URL, such as __/api/v1/pods/some-name__ .
     At any given time, only one object of a given type can have a given name. However, if the object is deleted, a new object with the same name can be created.
 
 - [Namespace](../kpanda/user-guide/namespaces/createns.md)
@@ -1571,7 +1571,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
 - OverridePolicy
 
-    [OverridePolicy](../kairship/policy/override-policy.md) is a differentiated configuration policy that defines the differentiated configuration policy for distributing multicloud resource objects to different working clusters, such as using different images and adding different labels in different working clusters. OverridePolicy, as an independent policy API, can automatically handle cluster-related configurations, such as adding different prefixes to images based on the geographical distribution of subsets of clusters and using different StorageClasses based on your cloud provider.
+    [OverridePolicy](../kairship/policy/override.md) is a differentiated configuration policy that defines the differentiated configuration policy for distributing multicloud resource objects to different worker clusters, such as using different images and adding different labels in different worker clusters. OverridePolicy, as an independent policy API, can automatically handle cluster-related configurations, such as adding different prefixes to images based on the geographical distribution of subsets of clusters and using different StorageClasses based on your cloud provider.
 
 ### P
 
@@ -1579,7 +1579,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
     [Permissions](../ghippo/user-guide/access-control/iam.md) refer to whether a user is allowed to perform a certain operation on a certain resource. In order to reduce the threshold for use, DCE adopts the RBAC model to aggregate permissions into roles. Administrators only need to authorize roles to users, and the user will obtain a set of permissions aggregated under that role.
 
-    By default, IAM users created by administrators have no role permissions. They need to be granted roles individually or added to groups and granted roles in order to obtain corresponding role permissions. This process is called authorization. After authorization, users can operate on platform resources based on the role permissions granted to them.
+    By default, IAM users created by administrators have no role permissions. They need to be granted roles individually or added to groups and granted roles in order to obtain proper role permissions. This process is called authorization. After authorization, users can operate on platform resources based on the role permissions granted to them.
 
 - Persistent Volume Claim, PVC
 
@@ -1597,7 +1597,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
     PaaS is an external platform on which application development teams deploy and run their applications. Heroku, Cloud Foundry, and App Engine are examples of PaaS products.
 
-    To make good use of cloud-native patterns such as microservices or distributed applications, operations teams and developers need to be able to eliminate a lot of operational work, including provisioning infrastructure, handling service discovery and load balancing, and scaling applications.
+    To make good use of cloud native patterns such as microservices or distributed applications, operations teams and developers need to be able to eliminate a lot of operational work, including provisioning infrastructure, handling service discovery and load balancing, and scaling applications.
 
     PaaS provides application developers with general infrastructure tools in a fully automated way. It enables developers to understand the infrastructure and reduce their concerns about it, and to spend more time and energy writing application code. It also provides some monitoring and observability to help application teams ensure that their applications are healthy.
 
@@ -1637,7 +1637,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
     - Failed
     - Unknown
 
-    For a higher-level description of a Pod's phase, please refer to the `phase` field in the [PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#podstatus-v1-core) object.
+    For a higher-level description of a Pod's phase, refer to the __phase__ field in the [PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#podstatus-v1-core) object.
 
 - Pod Priority
 
@@ -1645,7 +1645,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
 - Pod Security Policy
 
-    Pod security policy enables fine-grained authorization for creating and updating Pods. It is a cluster-level resource that controls security-sensitive content in Pod specifications. The `PodSecurityPolicy` object defines a set of conditions and default values for related fields that Pods must satisfy at runtime. Pod security policy is implemented as an optional admission controller.
+    Pod security policy enables fine-grained authorization for creating and updating Pods. It is a cluster-level resource that controls security-sensitive content in Pod specifications. The __PodSecurityPolicy__ object defines a set of conditions and default values for related fields that Pods must satisfy at runtime. Pod security policy is implemented as an optional admission controller.
 
     PodSecurityPolicy has been deprecated since Kubernetes v1.21 and removed in v1.25. As an alternative, use [Pod Security Admission](https://kubernetes.io/docs/concepts/security/pod-security-admission/) or third-party admission plugins.
 
@@ -1671,9 +1671,9 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
 - PropagationPolicy
 
-    In Multicloud Management, [PropagationPolicy](../kairship/policy/propagation-policy.md) defines the distribution strategy for multicloud resource objects, supporting planning which workloads to deploy to which working clusters using specified clusters or labels. PropagationPolicy is an independent policy API that can define multicluster scheduling methods based on distribution requirements.
+    In Multicloud Management, [PropagationPolicy](../kairship/policy/propagation.md) defines the distribution policy for multicloud resource objects, supporting planning which workloads to deploy to which worker clusters using specified clusters or labels. PropagationPolicy is an independent policy API that can define multicluster scheduling methods based on distribution requirements.
 
-    - Supports 1:n `policy:workload`, and users do not need to repeat the scheduling constraints each time they create a multicloud application.
+    - Supports 1:n __policy:workload__ , and users do not need to repeat the scheduling constraints each time they create a multicloud application.
     - When using the default policy, users can interact directly with the Kubernetes API.
 
 - Proxy
@@ -1692,7 +1692,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
 - Reliability
 
-    From a cloud-native perspective, reliability refers to a system's ability to respond to failures. If we have a distributed system that can continue to work through infrastructure changes and individual component failures, then it is reliable. On the other hand, if it is prone to failure and requires manual intervention by operators to keep it running, then it is unreliable. The goal of cloud-native applications is to build inherently reliable systems.
+    From a cloud native perspective, reliability refers to a system's ability to respond to failures. If we have a distributed system that can continue to work through infrastructure changes and individual component failures, then it is reliable. On the other hand, if it is prone to failure and requires manual intervention by operators to keep it running, then it is unreliable. The goal of cloud native applications is to build inherently reliable systems.
 
 - ReplicaSet
 
@@ -1700,11 +1700,11 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
 - Replication Controller
 
-    The Replication Controller is an (deprecated) API object that manages multi-replica applications. It is a workload that manages multiple replica applications and ensures that a specific number of Pod instances are running. The control plane ensures that the specified number of Pods are running, even if some Pods fail, such as when you manually delete them or start too many Pods due to other errors. The ReplicationController has been deprecated. Please refer to Deployment for similar functionality.
+    The Replication Controller is an (deprecated) API object that manages multi-replica applications. It is a workload that manages multiple replica applications and ensures that a specific number of Pod instances are running. The control plane ensures that the specified number of Pods are running, even if some Pods fail, such as when you manually delete them or start too many Pods due to other errors. The ReplicationController has been deprecated. Refer to Deployment for similar functionality.
 
 - Resource
 
-    Resource refers to the specific data that completes authorization on the DCE platform through various sub-modules. Typically, a resource describes one or more objects of operation, and each sub-module has its own resources and corresponding resource definition details, such as clusters, namespaces, gateways, etc. The owner of the resource is the main account Super Admin. Super Admin has the authority to create/manage/delete resources in each sub-module. Ordinary users do not automatically have access to resource access rights without authorization from Super Admin. The workspace supports cross-sub-module authorization of user (group) access to resources.
+    Resource refers to the specific data that completes authorization on the DCE platform through various sub-modules. Typically, a resource describes one or more objects of operation, and each sub-module has its own resources and proper resource definition details, such as clusters, namespaces, gateways, etc. The owner of the resource is the main account  Admin. Admin has the authority to create/manage/delete resources in each sub-module. Ordinary users do not automatically have access to resource access rights without authorization from Admin. The workspace supports cross-sub-module authorization of user (group) access to resources.
 
 - Resource limit
 
@@ -1720,7 +1720,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
 - Resource Template
 
-    In [Multicloud Management](../kairship/intro/index.md), a template called a federated resource is used. This is a multicloud resource template based on the native K8s API, which facilitates the integration of all cloud-native tools within the K8s ecosystem. This resource template can be used to centrally manage [multicloud services](../kairship/resource/service.md), [multicloud namespaces](../kairship/resource/ns.md), [multicloud configmap](../kairship/resource/configmap.md), and [multicloud secret](../kairship/resource/secret.md).
+    In [Multicloud Management](../kairship/intro/index.md), a template called a federated resource is used. This is a multicloud resource template based on the native K8s API, which facilitates the integration of all cloud native tools within the K8s ecosystem. This resource template can be used to centrally manage [multicloud services](../kairship/resource/service.md), [multicloud namespaces](../kairship/resource/ns.md), [multicloud configmap](../kairship/resource/configmap.md), and [multicloud secret](../kairship/resource/secret.md).
 
 - Role
 
@@ -1732,7 +1732,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
     - predefined roles created by the system that users can only use and cannot modify, and
     - custom roles that users can create, update, and delete themselves.
 
-    The permissions in custom roles are maintained by the users themselves. At the same time, because global management brings together multiple sub-modules, each sub-module also has a corresponding administrator role, such as IAM Admin, which manages user and access control, i.e., managing users/groups and authorizations, Workspace Admin, which manages hierarchy and workspace permissions, and only this permission can create hierarchy, and Audit Admin, which manages audit logs.
+    The permissions in custom roles are maintained by the users themselves. At the same time, because global management brings together multiple sub-modules, each sub-module also has a proper administrator role, such as IAM Owner, which manages user and access control, i.e., managing users/groups and authorizations, Workspace Admin, which manages hierarchy and workspace permissions, and only this permission can create hierarchy, and Audit Admin, which manages audit logs.
 
 - Rolling update
 
@@ -1748,7 +1748,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
     Scalability refers to how much a system can grow. This is the ability to add capacity to do anything a system should do. For example, a Kubernetes cluster scales by adding or removing containerized applications, but this scalability depends on several factors. How many nodes it has, how many containers each node can handle, how many records and operations the control plane can support?
 
-    Scalable systems make it easier to add more capacity. There are two main scaling methods. On the one hand, horizontal scaling adds more nodes to handle increased load. In contrast, in vertical scaling, a single node is more powerful and can perform more transactions (for example, by adding more memory or CPU to a single machine). Scalable systems can easily change and meet user needs.
+    Scalable systems make it easier to add more capacity. There are two main scaling methods. On the one hand, horizontal scaling adds more nodes to handle increased workload. In contrast, in vertical scaling, a single node is more powerful and can perform more transactions (for example, by adding more memory or CPU to a single machine). Scalable systems can easily change and meet user needs.
 
 - Secret
 
@@ -1760,11 +1760,11 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
 - Security Context
 
-    The `securityContext` field defines privilege and access control settings for a Pod or container, including the runtime UID and GID.
+    The __securityContext__ field defines privilege and access control settings for a Pod or container, including the runtime UID and GID.
 
-    In a `securityContext` field, you can set the user and group to which the process belongs, permission-related settings. You can also set security policies (such as SELinux, AppArmor, seccomp).
+    In a __securityContext__ field, you can set the user and group to which the process belongs, permission-related settings. You can also set security policies (such as SELinux, AppArmor, seccomp).
 
-    The `PodSpec.securityContext` field configuration applies to all containers in a Pod.
+    The __PodSpec.securityContext__ field configuration applies to all containers in a Pod.
 
 - Selector
 
@@ -1774,7 +1774,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
 - Serverless
 
-    Serverless is a cloud-native development model that allows developers to build and run applications without
+    Serverless is a cloud native development model that allows developers to build and run applications without
     managing servers. There are still servers in Serverless, but they are abstracted away from application development.
     Cloud providers handle the daily work of configuring, maintaining, and scaling server infrastructure. Developers
     can simply package their code in containers for deployment. After deployment, the Serverless application responds
@@ -1796,7 +1796,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
 - Service
 
-    Please note that in IT, the term "service" has multiple meanings. In this definition, we will focus on the more traditional definition: services in microservices. The difference between services and microservices, if any, is subtle and different people may have different opinions. In a higher-level definition, we will treat them as the same. Please refer to the definition of microservices for more details.
+    Please note that in IT, the term "service" has multiple meanings. In this definition, we will focus on the more traditional definition: services in microservices. The difference between services and microservices, if any, is subtle and different people may have different opinions. In a higher-level definition, we will treat them as the same. Refer to the definition of microservices for more details.
 
     The set of pods targeted by a service is typically determined by a selector. If a pod is added or removed, the set of pods matched by the selector will change. The service ensures that network traffic can be directed to the current set of pods for that workload.
 
@@ -1816,7 +1816,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
     Service discovery is the process of finding the various instances that make up a service. Service discovery tools continuously track the various nodes or endpoints that make up a service.
 
-    Cloud-native architectures are dynamic and uncertain, which means they are constantly changing. Containerized applications may start and stop multiple times during their lifecycle. Each time this happens, it has a new address, and any application that wants to find it needs a tool to provide the new address information.
+    Cloud native architectures are dynamic and uncertain, which means they are constantly changing. Containerized applications may start and stop multiple times during their lifecycle. Each time this happens, it has a new address, and any application that wants to find it needs a tool to provide the new address information.
 
     Service discovery continuously tracks applications in the network so that they can find each other when needed. It provides a common place to look up and identify different services. The service discovery engine is a database-like tool used to store which services are currently available and how to find them.
 
@@ -1846,7 +1846,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
 - Service Registry
 
-    The Service Registry is an internal service registry maintained by the service mesh that contains a set of services running in the service mesh and their corresponding service endpoints. The service mesh uses the service registry to generate Envoy configurations.
+    The Service Registry is an internal service registry maintained by the service mesh that contains a set of services running in the service mesh and their proper service endpoints. The service mesh uses the service registry to generate Envoy configurations.
 
 - Self Healing
 
@@ -1878,11 +1878,11 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
 - Static Pod
 
-    a Pod managed directly by the kubelet daemon on a specific node, not visible to the API server.
+    A Pod managed directly by the kubelet daemon on a specific node, not visible to the API server.
 
 - StorageClass
 
-    This is a way for administrators to describe available storage types, with fields for `provisioner`, `parameters`, and `reclaimPolicy`.
+    This is a way for administrators to describe available storage types, with fields for __provisioner__ , __parameters__ , and __reclaimPolicy__ .
 
 - sysctl
 
@@ -1912,7 +1912,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
 - Toleration
 
-    A toleration is a core object that consists of three required attributes: key, value, and effect. Tolerations allow Pods to be scheduled on nodes or node groups with corresponding taints. Tolerations and taints work together to ensure that Pods are not scheduled on unsuitable nodes. One or more tolerations can be set on the same Pod. Tolerations indicate that it is allowed (but not necessary) to schedule Pods on nodes or node groups that contain corresponding taints.
+    A toleration is a core object that consists of three required attributes: key, value, and effect. Tolerations allow Pods to be scheduled on nodes or node groups with proper taints. Tolerations and taints work together to ensure that Pods are not scheduled on unsuitable nodes. One or more tolerations can be set on the same Pod. Tolerations indicate that it is allowed (but not necessary) to schedule Pods on nodes or node groups that contain proper taints.
 
 - Transport Layer Security
 
@@ -1933,9 +1933,9 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
 - User
 
-    A [user](../ghippo/user-guide/access-control/user.md) is the subject who initiates an operation, each user has a unique ID and is granted different roles. The IAM users created by default have no permissions and need to be added to groups, granted roles or policies to gain corresponding permissions.
+    A [user](../ghippo/user-guide/access-control/user.md) is the subject who initiates an operation, each user has a unique ID and is granted different roles. The IAM users created by default have no permissions and need to be added to groups, granted roles or policies to gain proper permissions.
 
-    Users log in to DCE with their usernames and operate platform resources and services according to the permissions granted to them. Therefore, users are the subjects of resource ownership and have corresponding permissions for the resources they own.
+    Users log in to DCE with their usernames and operate platform resources and services according to the permissions granted to them. Therefore, users are the subjects of resource ownership and have proper permissions for the resources they own.
 
     Users can modify user information, set passwords, access keys, and UI languages in the personal center.
 
@@ -1979,7 +1979,7 @@ This page lists some terms common to DCE 5.0 in alphabetical order.
 
 - Virtualization
 
-    Virtualization, in the context of cloud-native computing, refers to the process of taking a physical computer, sometimes called a server, and allowing it to run multiple isolated operating systems. These isolated operating systems and their dedicated computing resources (CPU, memory, and networking) are called virtual machines or VMs. When we talk about a virtual machine, we are talking about a software-defined computer. It looks and acts like a real computer, but shares hardware with other virtual machines. For example, you can rent a 'computer' from AWS that is actually a virtual machine.
+    Virtualization, in the context of cloud native computing, refers to the process of taking a physical computer, sometimes called a server, and allowing it to run multiple isolated operating systems. These isolated operating systems and their dedicated computing resources (CPU, memory, and networking) are called virtual machines or VMs. When we talk about a virtual machine, we are talking about a software-defined computer. It looks and acts like a real computer, but shares hardware with other virtual machines. For example, you can rent a 'computer' from AWS that is actually a virtual machine.
 
     Virtualization solves many problems, including improving the use of physical hardware by allowing more applications to run on the same physical machine while still being isolated from each other for security purposes.
 

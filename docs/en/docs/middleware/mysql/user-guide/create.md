@@ -1,32 +1,35 @@
 ---
 hide:
   - toc
+MTPE: ModetaNiu
+DATE: 2024-08-15
 ---
 
-# Create a MySQL instance
+# Create a MySQL Instance
 
 After accessing the MySQL database, follow the steps below to create a MySQL instance.
 
-1. In the instance list, click `New Instance` in the upper right corner.
+1. In the instance list, click __Create M-S Instance__ in the upper right corner.
 
-    <!--screenshot-->
+    ![New Instance](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/middleware/mysql/images/create00.png)
 
-2. On the `Create MySQL instance` page, after configuring `Basic Information`, click `Next`.
+2. On the Create M-S Instance page, after configuring __Basic Information__ , click __Next__ .
 
-    <!--screenshot-->
+    ![Basic Info](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/middleware/mysql/images/create01.png)
 
-3. After selecting the deployment type, CPU, memory and storage, etc. `Specification Configuration`, click `Next`.
+3. After selecting the __Spec Settings__ such as deployment type, CPU, memory and storage, click __Next__ .
 
-    <!--screenshot-->
+    ![Spec Settings](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/middleware/mysql/images/create02.png)
 
-4. Set `service settings` such as username and password, and use ClusterIP as the access method by default.
+4. Set __Service Settings__ such as username and password, and use ClusterIP as the access method by default.
 
-    <!--screenshot-->
+    ![Service Settings](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/middleware/mysql/images/create03.png)
 
-5. After confirming that the basic information, specification configuration, and service settings are correct, click `Confirm`.
+5. After confirming that the basic information, specification configuration, and service settings are correct, 
+   click __OK__ .
 
-    <!--screenshot-->
+    ![Confirm](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/middleware/mysql/images/create04.png)
 
-6. Return to the instance list, and the screen will prompt `Instance created successfully`.
+6. Return to the instance list, and the screen will prompt __Successfully created the instance__ .
 
-    <!--screenshot-->
+    ![Create Successfully](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/middleware/mysql/images/create05.png)

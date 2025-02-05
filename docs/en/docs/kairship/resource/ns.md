@@ -1,25 +1,28 @@
 ---
+MTPE: ModetaNiu
+DATE: 2024-07-16
 hide:
   - toc
 ---
 
-# multicloud namespace
+# Multicloud Namespace
 
-A multicloud namespace can manage workloads across clouds and across clusters. Currently, a wizard-based creation method is provided.
+A multicloud namespace can manage workloads across clouds and across clusters. Currently, wizard-based creation 
+is provided.
 
-This article takes wizard creation as an example, and follows the steps below.
+This article takes wizard creation as an example. You can follow the steps below.
 
-1. After entering a multicloud instance, in the left navigation bar, click `Resource Management` -> `Multicloud Namespace`, and click the `Create` button in the upper right corner.
+1. After entering a multicloud instance, in the left navigation bar, click __Resource Management__ -> __Multicloud Namespace__ , and click the __Create Namespace__ button in the upper right corner.
 
-    <!--screenshot-->
+    ![Create](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/kairship/images/ns01.png)
 
-2. On the `Create multicloud Namespace` page, enter a name, add a tag, and click `OK`.
+2. On the __Create Multicloud Namespace__ page, enter a name, add labels and annotations, and click __OK__ .
 
-    <!--screenshot-->
+    ![Fill](../images/namespace-en.png)
 
-3. Return to the list of multicloud namespaces, and the newly created one will be the first one by default. Click `⋮` on the right side of the list to edit the YAML and delete the namespace.
+3. Return to the list of multicloud namespaces, and the newly created one will be the first one by default. Click __┇__ on the right side of the list to edit the YAML, view events, update or delete the namespace.
 
-    <!--screenshot-->
+    ![Other operations](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/kairship/images/ns03.png)
 
     !!! note
 

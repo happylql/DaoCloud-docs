@@ -1,76 +1,81 @@
-# View canary release tasks
+---
+MTPE: FanLin
+Date: 2024-01-12
+---
 
-After creating the grayscale publishing task and associating the workload, modify the image of the workload, resource configuration, startup parameters, etc. so that when the pod restarts, the grayscale publishing task update version will be automatically triggered, and traffic scheduling will be performed according to the defined publishing rules.
+# View a Canary Delivery Job
 
-This article mainly introduces related operations involved in viewing canary release tasks, such as viewing task details, updating version, updating release task, rolling back version, etc.
+After creating a canary delivery job and associating it with a workload, modifying the workload's image, resource configuration, and startup parameters, so that the pod restarts will automatically trigger the canary delivery job to update the version and perform traffic scheduling according to the defined delivery rules.
 
-## View task details
+This article mainly introduces the related operations involved in viewing a canary delivery job, such as viewing task details, updating versions, updating delivery jobs, and rolling back versions.
 
-1. Enter the `Workbench` module, click `Grayscale Release` in the left navigation bar, and click the name of the target task.
+## Viewing details
 
-    <!--![]()screenshots-->
+1. Enter the __Workbench__ module, click __Progressive Delivery__ in the left navigation bar, click the name of the target task.
 
-2. View the grayscale publishing task details page.
+    ![Click Name](../../images/checkcanary01.png)
 
-    - `Basic Information` area: view the name, status, release type, release object and other information of the task.
+2. View the details page of the canary delivery job.
 
-    - `Grayscale progress` area: Display the execution progress of the grayscale publishing task in a visual form, so that you can intuitively understand which step the task is currently executing and the status of the execution.
+    - __Basic Information__: View the name, status, delivery mode, and delivery object of the job.
 
-    - `Version Info` area:
+    - __Progressive Delivery__: Visually displays the execution progress of the canary delivery job, and you can intuitively understand which step the task is currently executing and how the execution status is.
 
-        - Major Version: Shows the current version and canary version information.
-        - Historical version: display historical version records.
+    - __Version__:
 
-          <!--![]()screenshots-->
+        - Main Version: Displays the current version and canary version information.
+        - Historical Version: Displays the historical version records.
 
-## updated version
+          ![Details Page](../../images/checkcanary02.png)
 
-After the updated version of the object is published, the grayscale publishing task will be automatically triggered.
+## Updating versions
 
-1. Click the name of the target task, then click `Update Version` in the upper right corner.
+After the delivery object updates the version, it will automatically trigger the canary delivery job.
 
-    <!--![]()screenshots-->
+1. Click the name of the target task, then click __Update Version__ in the upper right corner.
 
-2. Set up the image released by the canary.
+    ![Details Page](../../images/checkcanary03.png)
 
-    <!--![]()screenshots-->
+2. Set the image for the canary delivery.
 
-3. After the application is successfully updated, a new grayscale publishing process will be triggered.
+    ![Image Address](../../images/checkcanary04.png)
 
-    <!--![]()screenshots-->
+3. After the application update is successful, a new canary delivery process will be triggered.
 
-## Update release task
+    ![Automatic Trigger](../../images/checkcanary05.png)
 
-By updating the release task, you can modify the traffic scheduling strategy of the grayscale release process.
+## Updating delivery jobs
 
-1. On the `Grayscale Publishing Task` details page, click `ⵗ` in the upper right corner of the page and select `Update Publishing Task`.
+By updating delivery jobs, you can modify the traffic scheduling policy of the canary delivery process.
 
-    <!--![]()screenshots-->
+1. On the __Canary Delivery Job__ details page, click __ⵗ__ in the upper right corner of the page and select __Update Delivery Job__.
 
-2. Adjust the publishing rules and click `OK`.
+    ![Details Page](../../images/checkcanary06.png)
 
-    <!--![]()screenshots-->
+2. Adjust the delivery rules and click __OK__.
 
-## rollback
+    ![Modify Delivery Rules](../../images/checkcanary07.png)
 
-It supports viewing historical versions released in the past, and you can roll back to a previous version with one click.
+## Rollback
 
-1. On the details page of the `Grayscale Publishing Task`, click the `Historical Version` tab.
+Supports viewing previously released historical versions, and you can rollback to a previous version with one click.
 
-    <!--![]()screenshots-->
+1. On the __Canary Delivery Job__ details page, click the __Historical Version__ tab.
 
-2. Select the target version and click `Rollback`.
+    ![Click Historical Version](../../images/checkcanary08.png)
 
-    <!--![]()screenshots-->
+2. Select the target version, click __Rollback__.
 
-3. After the rollback is successful, a new grayscale publishing process will be triggered.
+    ![Rollback](../../images/checkcanary09.png)
 
-    <!--![]()screenshots-->
+3. After the rollback is successful, a new canary delivery process will be triggered.
 
-## Other operating instructions
+    ![View Canary Progress](https://docs.daocloud.io/daocloud-docs-images/docs/amamba/images/checkcanary08.png)
 
-| Operation | |
+## Other operation instructions
+
+| Operation | Description |
 | --- | --- |
-| Continue Release | For ongoing or paused canary release tasks, continue release can push the canary release process to the next stage of release. |
-| Release | For the ongoing or suspended canary release task, release can push the canary release process to complete the release directly, and update the canary version to a stable version. |
-| Terminate the release | For the ongoing or suspended canary release task, terminate the release to suspend all current steps and roll back to the stable version. |
+| Continue Delivery | For canary delivery jobs that are in progress or paused, continue delivery can promote the canary delivery process to the next stage of delivery. |
+| Delivery | For canary delivery jobs that are in progress or paused, delivery can promote the canary delivery process to complete the delivery directly, updating the canary version to the stable version. |
+| Terminate Delivery | For canary delivery jobs that are in progress or paused, terminate delivery will pause all current steps and roll back to the stable version. |

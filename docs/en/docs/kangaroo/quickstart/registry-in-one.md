@@ -1,9 +1,15 @@
-# Managing External Container Registries
+---
+MTPE: ModetaNiu
+DATE: 2024-07-30
+---
 
-If you have one or more Harbor or Docker container registries, you can use the DCE 5.0 container registries for unified management. Depending on the role permissions of the operator, two methods can be used:
+# Manage External Registry
 
-- Integrated Registry (Workspace)
-- Integrated Registry (Admin)
+If you have one or more Harbor, Docker and Jfrog Artifacty container registries, you can use the DCE 5.0 container registry 
+for unified management. Depending on the role permissions of the operator, two methods can be used:
+
+- Integrated Registry (Workspace): Support Harbor, Docker and Jfrog Artifacty
+- Integrated Registry (Admin): Support Harbor and Docker
 
 ## Integrated Registry (Workspace)
 
@@ -11,14 +17,14 @@ If you are a Workspace Admin, you can use the Integrated Registry (Workspace) fe
 an existing container registry with the DCE platform for use by workspace members.
 The simple steps to perform this operation are as follows:
 
-1. Log in with the Workspace Admin role, click `Integrated Registry (Workspace)` from the left navigation bar,
-   and click the `Integrated Registry` button in the upper right corner.
+1. Log in with the Workspace Admin role, click __Integrated Registry (Workspace)__ from the left navigation bar,
+   and click the __Integrated Registry__ button in the upper right corner.
 
-    ![integrate registry](../images/relate02.png)
+    ![integrate registry](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/kangaroo/images/relate02.png)
 
-2. Fill in the form information, and click `OK`.
+2. Fill in the form information, and click __OK__.
 
-    ![fill](../images/relate03.png)
+    ![fill](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/kangaroo/images/relate03.png)
 
     !!! note
 
@@ -37,23 +43,29 @@ accessible to all namespaces on the platform.
 
 The steps are as follows:
 
-1. Log in with the Admin role, and click `Integrated Registry (Admin)` on the left navigation bar.
+1. Log in with the Admin role, and click __Integrated Registry (Admin)__ on the left navigation bar.
 
-    ![nav](../images/interg01.png)
+    ![nav](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/kangaroo/images/interg01.png)
 
-2. Click the `Integrated Registry` button in the upper right corner.
+2. Click the __Integrated Registry__ button in the upper right corner.
 
-    ![button](../images/interg02.png)
+    ![button](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/kangaroo/images/interg02.png)
 
-3. Select the registry type, fill in the integration name, registry address, username, and password, and click `OK`.
+3. Select the registry type, fill in the integration name, registry address, username, and password, and click __OK__ .
 
-    ![fill](../images/interg03.png)
+    ![fill](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/kangaroo/images/interg03.png)
 
 4. In the integrated registry list, hover the cursor over a certain registry, click the eye icon to view the overview.
 
-    ![view](../images/interg04.png)
+    ![view](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/kangaroo/images/interg04.png)
 
 5. The overview page displays the basic information and statistical information of the current registry and
    also provides a quick start at the top that is convenient for managing registry space, workspace, and creating applications.
 
-    ![overview](../images/interg05.png)
+    ![overview](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/kangaroo/images/interg05.png)
+
+    !!! note
+
+        Docker Registry does not support binding registry spaces to workspaces. If the Docker Registry is not password-protected, 
+        it is considered public. Therefore, all namespaces on the platform will be able to pull all images from it 
+        when creating applications.

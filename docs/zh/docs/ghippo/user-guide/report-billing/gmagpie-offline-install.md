@@ -1,6 +1,6 @@
 # 离线升级运营管理模块
 
-本页说明从[下载中心](../../../download/index.md)下载运营管理模块后，应该如何安装或升级。
+本页说明[下载运营管理模块](../../../download/modules/gmagpie.md)后，应该如何安装或升级。
 
 !!! info
 
@@ -20,24 +20,22 @@
 
     === "已安装 chart repo"
 
-        若当前环境已安装 chart repo，chart-syncer 也支持将 chart 导出为 tgz 文件。
-
         ```yaml title="load-image.yaml"
         source:
-          intermediateBundlesPath: gmagpie-offline # (1)
+          intermediateBundlesPath: gmagpie-offline # (1)!
         target:
-          containerRegistry: 10.16.10.111 # (2)
-          containerRepository: release.daocloud.io/gmagpie # (3)
+          containerRegistry: 10.16.10.111 # (2)!
+          containerRepository: release.daocloud.io/gmagpie # (3)!
           repo:
-            kind: HARBOR # (4)
-            url: http://10.16.10.111/chartrepo/release.daocloud.io # (5)
+            kind: HARBOR # (4)!
+            url: http://10.16.10.111/chartrepo/release.daocloud.io # (5)!
             auth:
-            username: "admin" # (6)
-            password: "Harbor12345" # (7)
+              username: "admin" # (6)!
+              password: "Harbor12345" # (7)! 
           containers:
             auth:
-              username: "admin" # (8)
-              password: "Harbor12345" # (9)
+              username: "admin" # (8)!
+              password: "Harbor12345" # (9)!
         ```
 
         1. 到执行 charts-syncer 命令的相对路径，而不是此 YAML 文件和离线包之间的相对路径
@@ -56,17 +54,17 @@
 
         ```yaml title="load-image.yaml"
         source:
-          intermediateBundlesPath: gmagpie-offline # (1)
+          intermediateBundlesPath: gmagpie-offline # (1)!
         target:
-          containerRegistry: 10.16.10.111 # (2)
-          containerRepository: release.daocloud.io/gmagpie # (3)
+          containerRegistry: 10.16.10.111 # (2)!
+          containerRepository: release.daocloud.io/gmagpie # (3)!
           repo:
             kind: LOCAL
-            path: ./local-repo # (4)
+            path: ./local-repo # (4)!
           containers:
             auth:
-              username: "admin" # (5)
-              password: "Harbor12345" # (6)
+              username: "admin" # (5)!
+              password: "Harbor12345" # (6)!
         ```
 
         1. 到执行 charts-syncer 命令的相对路径，而不是此 YAML 文件和离线包之间的相对路径
@@ -80,6 +78,12 @@
 
     ```shell
     charts-syncer sync --config load-image.yaml
+    ```
+    
+    若有 x509 认证失败，可使用参数 --insecure
+   
+    ```shell
+    charts-syncer sync --config load-image.yaml --insecure
     ```
 
 ### Docker 或 containerd 直接加载
@@ -109,7 +113,7 @@
     === "containerd"
 
         ```shell
-        ctr image import images.tar
+        ctr -n k8s.io image import images.tar
         ```
 
 !!! note
@@ -136,7 +140,6 @@
         dbname: gmagpie
         password: passowrd
         user: gmagpie
-
     ```
 
     修改为：
@@ -168,13 +171,13 @@
     1. 添加运营管理的 Helm 仓库。
 
         ```shell
-        heml repo add gmagpie http://{harbor url}/chartrepo/{project}
+        helm repo add gmagpie http://{harbor url}/chartrepo/{project}
         ```
 
     1. 更新运营管理的 Helm 仓库。
 
         ```shell
-        helm repo update gmagpie # (1)
+        helm repo update gmagpie # (1)!
         ```
 
         1. Helm 版本过低会导致失败，若失败，请尝试执行 helm update repo
@@ -200,16 +203,9 @@
         helm get values gmagpie -n gmagpie-system -o yaml > bak.yaml
         ```
 
-    1. 更新 Gmagpie CRD。
+    1. 执行 `helm upgrade` 。
 
-        ```shell
-        helm pull gmagpie/gmagpie --version 0.3.0 && tar -zxf gmagpie-0.3.0.tgz
-        kubectl apply -f gmagpie/crds
-        ```
-
-    1. 执行 `helm upgrade`。
-
-        升级前建议您覆盖 bak.yaml 中的 `global.imageRegistry` 字段为当前使用的镜像仓库地址。
+        升级前建议您覆盖 bak.yaml 中的 __global.imageRegistry__ 字段为当前使用的镜像仓库地址。
 
         ```shell
         export imageRegistry={你的镜像仓库}
@@ -233,15 +229,9 @@
         helm get values gmagpie -n gmagpie-system -o yaml > bak.yaml
         ```
 
-    1. 更新 Gmagpie CRD。
+    1. 执行 `helm upgrade` 。
 
-        ```shell
-        kubectl apply -f ./crds
-        ```
-
-    1. 执行 `helm upgrade`。
-
-        升级前建议您覆盖 bak.yaml 中的 `global.imageRegistry` 为当前使用的镜像仓库地址。
+        升级前建议您覆盖 bak.yaml 中的 __global.imageRegistry__ 为当前使用的镜像仓库地址。
 
         ```shell
         export imageRegistry={你的镜像仓库}

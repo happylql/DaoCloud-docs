@@ -12,3 +12,6 @@ __pycache__
 docs/zh/site/
 docs/en/site/
 *.docx
+ufile.log
+.env
+.obsidian/

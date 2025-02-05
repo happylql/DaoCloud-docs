@@ -3,20 +3,26 @@ hide:
   - toc
 ---
 
+---
+MTPE: ModetaNiu
+Date: 2024-07-02
+---
+
+
 # configuration parameters
 
 Kafka has a built-in parameter configuration UI interface.
 
 1. On the Message Queue page, click a name.
 
-    <!--screenshot-->
+    ![Click a name](../images/config.png)
 
-2. In the left navigation bar, click `Configuration parameters`.
+2. In the left navigation bar, click __Kafka Parameter Configuration__ .
 
-    <!--screenshot-->
+    ![Configuration](../images/config02.png)
 
-3. Click the `Edit Configuration` slider switch to easily configure various parameters of Kafka and Zookeeper.
+3. Click the __Edit__ slider switch to easily configure parameters of Zookeeper.
 
-    <!--screenshot-->
+    ![Parameters](../images/config03.png)
 
-4. Click `Save`, the parameters will take effect immediately.
+4. Click __Save__ , and the parameters will take effect immediately without restart.

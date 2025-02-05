@@ -6,7 +6,7 @@ OCP (OpenShift Container Platform) 是 Red Hat 推出的容器平台。
 
 ## SCC 安全策略设置
 
-在 Openshift 集群中，为服务网格增加命名空间的 `privileged` 用户权限，以 istio-operator、istio-system 两个命名空间为例：
+在 Openshift 集群中，为服务网格增加命名空间的 __privileged__ 用户权限，以 istio-operator、istio-system 两个命名空间为例：
 
 ```shell
 oc adm policy add-scc-to-user privileged  system:serviceaccount:istio-operator:istio-operator
@@ -66,7 +66,7 @@ spec:
           iptables -t nat -A OUTPUT -m tcp -p tcp -m owner ! --gid-owner 1337 -j REDIRECT --to-ports 15006
           iptables -t nat -D OUTPUT -m tcp -p tcp -m owner ! --gid-owner 1337 -j REDIRECT --to-ports 15006
           while true; do sleep 100d; done
-        image: release.daocloud.io/mspider/proxyv2:1.15.0    # 修改proxy的镜像地址
+        image: release.daocloud.io/mspider/proxyv2:1.15.0 # (1)!
         name: dsm-init
         resources:
           requests:
@@ -86,6 +86,8 @@ spec:
       serviceAccount: sdn
       serviceAccountName: sdn
 ```
+
+1. 修改proxy的镜像地址
 
 ### 添加参数
 

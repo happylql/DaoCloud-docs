@@ -2,11 +2,11 @@
 
 此 YAML 文件包含了 DCE 5.0 所有模块信息，主要分为基础设施模块、产品功能模块。
 
-升级操作请参考文档 [升级 DCE5.0](../upgrade.md)。
+升级操作请参考文档 [升级 DCE 5.0](../upgrade.md)。
 
-## manifest 示例
+## Manifest 示例
 
-以下是一个 ClusterConfig 文件示例。
+以下是一个 Manifest 文件示例。
 
 ```yaml title="manifest.yaml"
 apiVersion: manifest.daocloud.io/v1alpha1
@@ -91,7 +91,7 @@ components:
     variables:
   mspider:
     enable: true
-    helmVersion: v0.17.0-rc2
+    helmVersion: v0.18.0-rc2
     variables:
   mcamel-rabbitmq:
     enable: true
@@ -172,7 +172,11 @@ components:
 | components.jenkins              | 应用工作台的流水线引擎组件        |
 | components.skoala               | 微服务引擎                        |
 | components.mspider              | 服务网格                          |
-| components.mcamel-*             | 中间件，包含了ES、Kafka、MinIO 等 |
+| components.mcamel-*             | 中间件，包含了 ES、Kafka、MinIO 等 |
 | components.kangaroo             | 镜像仓库                          |
 | components.gmagpie              | 报表                              |
 | components.dowl                 | 集群安全                          |
+| components.kant                 | 边缘计算                          |
+| components.virtnest             | 虚拟机                            |
+| components.kolm                 | olm 管理                          |
+| components.baize                | AI Lab                          |

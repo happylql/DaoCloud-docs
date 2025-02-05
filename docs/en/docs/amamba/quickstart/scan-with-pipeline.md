@@ -1,192 +1,80 @@
-# Use pipeline to implement code scanning
+---
+MTPE: FanLin
+Date: 2024-01-18
+---
 
-The source code in the code warehouse is the original form of software, and its security flaws are the direct root cause of software vulnerabilities.
-Therefore, finding security flaws in source code through code scanning analysis is an important method to reduce potential software vulnerabilities.
+# Implement Code Scanning with Pipelines
 
-For example, SonarQube is an automatic code review tool for detecting bugs in project code, improving test coverage, and more.
-It can be integrated with existing workflows in a project for continuous code reviews between project branches and pull requests.
+The source code in the code repository, as the original form of software, its security flaws are the direct root cause of software vulnerabilities. Therefore, discovering security flaws in the source code through code scanning analysis is an important method to reduce potential vulnerabilities in software.
 
-This page will introduce how to integrate SonarQube in the pipeline to achieve code scanning capabilities.
+For example, SonarQube is an automatic code review tool used to detect bugs in project code and improve test coverage. It can be integrated with existing workflows in the project for continuous code checks between project branches and pull requests.
 
-## Deploy SonarQube
+This article will introduce how to integrate SonarQube into the pipeline to implement code scanning capabilities.
 
-If you already have a SonarQube environment, you can skip this step, but you need to ensure that the current cluster can access the SonarQube server.
+## Integrate SonarQube by workspace
 
-1. Install SonarQube via Helm.
+Please ensure that you have a SonarQube environment and that it is network-connected with the current environment without any problems.
 
-    ```bash
-    helm repo add sonarqube <https://SonarSource.github.io/helm-chart-sonarqube>
-    helm repo update
-    kubectl create namespace sonarqube
-    helm upgrade --install -n sonarqube sonarqube sonarqube/sonarqube  --create-namespace --set service.type=NodePort
-    ```
+1. Enter the __Toolchain Integration__ page, click the __Toolchain Integration__ button.
 
-2. Check that the Pod STATUS under the corresponding namespace is Running, indicating that SonarQube is installed successfully.
+    ![Toolchain Integration](../images/scanp01.png)
 
-    ```none
-    kubectl get po
-    NAME                     READY   STATUS    RESTARTS   AGE
-    sonarqube-postgresql-0   1/1     Running   0          3h59m
-    sonarqube-sonarqube-0    1/1     Running   0          3h59m
-    ```
+2. Refer to the following instructions to configure the relevant parameters:
 
-3. View the access address of the SonarQube console. Usually the access address is `http://<Node IP>:<NodePort>`, and the account and password are `admin/admin`.
+    - Tools: Choose a toolchain type for integration.
+    - Integration Name: The name of the integrated tool, must not be duplicated.
+    - SonarQube Address: The address that can access the toolchain, starting with a domain name or IP address that starts with http://, https://.
+    - Token: Generate an administrator token (Token) in SonarQube, the operation path is: __My Account__ -> __Profile__ -> __Security__ -> __Generate__ -> __Copy__
 
-    ```bash
-    export NODE_PORT=$(kubectl get --namespace amamba-system -o jsonpath="{.spec.ports[0].nodePort}" services sonarqube-sonarqube)
-    export NODE_IP=$(kubectl get nodes --namespace amamba-system -o jsonpath="{.items[0].status.addresses[0].address}")
-    echo http://$NODE_IP:$NODE_PORT
-    ```
+    ![Configure Parameters](../images/scanp02.png)
 
-4. Generate an administrator token (Token) in SonarQube, the operation path is: `My Account` -> `Profile` -> `Security` -> `Generate` -> `Copy`
+3. Click __OK__ to return to the toolchain list page after successful integration.
 
-    <!--![]()screenshots-->
+## Creating a pipeline
 
-    <!--![]()screenshots-->
+1. On the pipeline page, click __Create Pipeline__.
 
-    <!--![]()screenshots-->
+    ![Create Pipeline](../images/scanp03.png)
 
-5. Add the SonarQube address to Jenkins, please ensure that it can communicate with each other, the operation path:
+2. Choose __Create a custom pipelines__.
 
-     1. The operation path is `Manage Jenkins` -> `Configure System` -> `SonarQube servers` -> `Add SonarQube`
+    ![Custom Pipelines](../images/scanp04.png)
 
-     2. In the pop-up dialog box, enter `Server URL` and `Server authentication token` (that is, the SonarQube address, which is the previously obtained SonarQube address + administrator token).
+3. Enter a name, use the other default values, and click __OK__.
 
-     3. Click `Save` to complete the operation.
+    ![Confirm Creation](../images/scanp05.png)
 
-    <!--![]()screenshots-->
+## Editing pipeline
 
-    <!--![]()screenshots-->
+1. Click a pipeline to enter its details page, and click __Edit Pipeline__ in the upper right corner.
 
-    <!--![]()screenshots-->
+    ![Edit Pipeline](../images/scanp06.png)
 
-    !!! note
+2. Configure global settings:
 
-        How do I access the Jenkins Dashboard for an Workbench deployment?
-        
-         - Go to Container Management -> Global Service Cluster -> Stateless Load, find the load amamba-jenkins under amamba-system, and expose the service through NodePort.
-         - The default username and password are admin/Admin01
+    ![Global Settings](../images/scanp07.png)
 
-6. Create a SonarQube Token for the new project, the operation path is `Create new project` -> `Set Up` -> `Generate` -> `Continue`.
+3. Define stage one __git clone__ in the graphical interface as follows:
 
-    <!--![]()screenshots-->
+    ![Git Clone](../images/scanp08.png)
 
-    <!--![]()screenshots-->
+4. Define stage two __SonarQube analysis__ in the graphical interface as follows:
 
-## Create pipeline
+   - SonarQube Instance: Select the SonaQube instance integrated in the above steps.
+   - Code Language: Since different code languages correspond to different SonaQube scan commands, if the language is Java, please select Maven, otherwise select others. In this example, we choose others.
+   - Project: Define the project to be scanned in SonarQube
+   - Scan Files: The directory address of the file in the code repository that needs to be scanned
 
-1. On the Pipeline page, click `Create Pipeline`.
+    ![SonarQube Analysis](../images/scanp09.png)
 
-    <!--![]()screenshots-->
+    ![Edit Stage](../images/scanp10.png)
 
-2. Select `Custom Creation`.
+5. Save and immediately run the pipeline, and wait for the pipeline to run successfully.
 
-    <!--![]()screenshots-->
+## Viewing code scanning results
 
-3. Enter a name, others can use the default value, click `OK`.
+1. After the pipeline runs successfully, click __Code Quality Check__ on the pipeline details page.
 
-    <!--![]()screenshots-->
+    ![Code Quality Check](../images/scanp11.png)
 
-## Edit Jenkinsfile
-
-1. Click a pipeline to enter its details page, click `...` -> `Edit Jenkinsfile` in the upper right corner.
-
-    <!--![]()screenshots-->
-
-    <!--![]()screenshots-->
-
-2. Copy and paste the following YAML code into jenkinsfile.
-
-    ```yaml
-    pipeline {
-    agent {
-        node {
-        label 'go'
-        }
-        
-    }
-    stages {
-        stage('git clone') {
-        steps {
-            git(credentialsId: 'mabing-gitlab', branch: 'master', url: 'https://gitlab.daocloud.cn/bing.ma/jenkins-sonarqube-demo.git')
-        }
-        }
-        
-        stage('unit test') {
-        steps {
-            container('go') {
-                sh 'go test -json > test-report.out'
-                sh 'go test -coverprofile=coverage.out'
-            }
-        }
-        }
-        
-        stage("SonarQube analysis") {
-        steps {
-            container('go') {
-            withSonarQubeEnv('demo-dev-sonarqube') {
-                sh 'sonar-scanner -Dsonar.projectKey=golang-demo -Dsonar.sources=. -Dsonar.host.url=http://10.6.182.101:32313 -Dsonar.login=4b337cbbafd89ae9bca46a746cddab4c993d2a7a'
-            }
-            }
-        }
-        }
-        
-        stage("Quality Gate") {
-        steps {
-            container('go') {
-            timeout(time: 1, unit: 'HOURS') {
-                waitForQualityGate abortPipeline: false // false means pipeline will continue even if sonarQube QUALITY GATE failed
-            }
-            }
-        }
-        }
-        
-        stage('build & push') {
-        steps {
-            container('go') {
-            withCredentials([usernamePassword(credentialsId:'docker-credential',passwordVariable:'PASS',usernameVariable:'USER')]) {
-                sh 'go build -o simple-http-server main/main.go'
-                sh 'docker build -f Dockerfile . -t $registry/$project/$name:latest'
-                sh 'docker login $registry -u $USER -p $PASS'
-                sh 'docker push $registry/$project/$name:latest'
-            }
-            
-            }
-            
-        }
-        }
-        
-        stage('deply'){
-        steps {
-            container('go'){
-            withCredentials([kubeconfigFile(credentialsId: 'kubeconfig-credential', variable: 'KUBECONFIG')]) {
-                sh 'kubectl apply -f deploy.yaml'
-            }
-            }
-        }
-        
-        }
-        
-    }
-    parameters {
-        string(name: 'registry', defaultValue: 'release-ci.daocloud.io', description: '')
-        string(name: 'project', defaultValue: 'demo', description: '')
-        string(name: 'name', defaultValue: 'http-hello', description: '')
-    }
-    }
-    ```
-
-    !!! note
-
-        In the above code,
-        
-         - waitForQualityGate abortPipeline: false, indicating that the pipeline can continue even if it fails the gate quality check. If true, give up
-         - For the shell statement under withSonarQubeEnv, it can be copied from SonarQube in the previous step
-
-3. Run the pipeline immediately after saving.
-
-## Go to SonarQube to view code scanning results
-
-After waiting for the pipeline to run successfully, go to SonarQube to view the code scanning results.
-
-<!--![]()screenshots-->
+2. View the code scanning results, click __View More__ to go to the SonarQube backend to view more scanning information.

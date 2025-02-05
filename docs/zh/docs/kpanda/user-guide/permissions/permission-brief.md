@@ -6,17 +6,17 @@
 ## 集群权限
 
 集群权限基于 Kubernetes RBAC 的 ClusterRolebinding 授权，集群权限设置可让用户/用户组具备集群相关权限。
-目前的默认集群角色为 `Cluster Admin`（不具备集群的创建、删除权限）。
+目前的默认集群角色为 __Cluster Admin__ （不具备集群的创建、删除权限）。
 
-### `Cluster Admin`
+### __Cluster Admin__
 
-`Cluster Admin` 具有以下权限：
+__Cluster Admin__ 具有以下权限：
 
-1. 可管理、编辑、查看对应集群
+- 可管理、编辑、查看对应集群
 
-2. 管理、编辑、查看 命名空间下的所有工作负载及集群内所有资源
+- 管理、编辑、查看 命名空间下的所有工作负载及集群内所有资源
 
-3. 可授权用户为集群内角色 (Cluster Admin、NS Admin、NS Edit、NS View)
+- 可授权用户为集群内角色 (Cluster Admin、NS Admin、NS Editor、NS Viewer)
 
 该集群角色的 YAML 示例如下：
 
@@ -47,17 +47,15 @@ rules:
 
 ## 命名空间权限
 
-命名空间权限是基于 Kubernetes RBAC 能力的授权，可以实现不同的用户/用户组对命名空间下的资源具有不同的操作权限(包括 Kubernetes API 权限，详情可参考：[Kubernetes RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)。目前容器管理的默认角色为：NS Admin、NS Edit、NS View。
+命名空间权限是基于 Kubernetes RBAC 能力的授权，可以实现不同的用户/用户组对命名空间下的资源具有不同的操作权限(包括 Kubernetes API 权限)，详情可参考：[Kubernetes RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)。目前容器管理的默认角色为：NS Admin、NS Editor、NS Viewer。
 
-### `NS Admin`
+### __NS Admin__
 
-`NS Admin` 具有以下权限：
+__NS Admin__ 具有以下权限：
 
-1. 可查看对应命名空间
-
-2. 管理、编辑、查看 命名空间下的所有工作负载，及自定义资源
-
-3. 可授权用户为对应命名空间角色 (NS Edit、NS View)
+- 可查看对应命名空间
+- 管理、编辑、查看 命名空间下的所有工作负载，及自定义资源
+- 可授权用户为对应命名空间角色 (NS Editor、NS Viewer)
 
 该集群角色的 YAML 示例如下：
 
@@ -86,13 +84,12 @@ rules:
   - '*'    
 ```
 
-### `NS Edit`
+### __NS Editor__
 
-`NS Edit` 具有以下权限：
+__NS Editor__ 具有以下权限：
 
-1. 可查看对应有权限的命名空间
-
-2. 管理、编辑、查看 命名空间下的所有工作负载
+- 可查看对应有权限的命名空间
+- 管理、编辑、查看 命名空间下的所有工作负载
 
 ??? note "点击查看集群角色的 YAML 示例"
 
@@ -211,13 +208,12 @@ rules:
       - '*'      
     ```
 
-### `NS View`
+### __NS Viewer__
 
-`NS View` 具有以下权限：
+__NS Viewer__ 具有以下权限：
 
-1. 可查看对应命名空间
-
-2. 可查看对应命名空间下的所有工作负载，及自定义资源
+- 可查看对应命名空间
+- 可查看对应命名空间下的所有工作负载，及自定义资源
 
 ??? note "点击查看集群角色的 YAML 示例"
 
@@ -361,6 +357,6 @@ rules:
     答：全局权限仅授权为粗粒度权限，可管理所有集群的创建、编辑、删除；而对于细粒度的权限，如单个集群的管理权限，单个命名空间的管理、编辑、删除权限，需要基于 Kubernetes RBAC 的容器管理权限进行实现。
     一般权限的用户仅需要在容器管理中进行授权即可。
 
-2. 目前仅支持四个默认角色，后台自定义角色的 `RoleBinding` 以及 `ClusterRoleBinding`（Kubernetes 细粒度的 RBAC）是否也能生效？
+2. 目前仅支持四个默认角色，后台自定义角色的 __RoleBinding__ 以及 __ClusterRoleBinding__ （Kubernetes 细粒度的 RBAC）是否也能生效？
 
     答：目前自定义权限暂时无法通过图形界面进行管理，但是通过 kubectl 创建的权限规则同样能生效。

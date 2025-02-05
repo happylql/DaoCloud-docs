@@ -1,3 +1,8 @@
+---
+MTPE: windsonsea
+date: 2024-06-19
+---
+
 # KWOK (`K`ubernetes `W`ith`O`ut `K`ubelet)
 
 ![kwok](https://docs.daocloud.io/daocloud-docs-images/docs/community/images/kwok.png){ align=right }
@@ -24,4 +29,4 @@ The maintainers of this project can be reached at:
 - [mailing list](https://groups.google.com/forum/#!forum/kubernetes-sig-scheduling)
 
 [Learn about KWOK](https://github.com/kubernetes-sigs/kwok){ .md-button }
-[KWOK blog post](../blogs/230301-kwok.md){ .md-button }
+[KWOK blog post](../blogs/2023/230301-kwok.md){ .md-button }

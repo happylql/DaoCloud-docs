@@ -9,35 +9,37 @@ Microservice namespaces can be used to isolate services, configuration, and othe
 
 ## Create the microservice namespace
 
-1. Enter `Microservice Engine` -- > `Microservice Governance` -- > `Managed Registry` module, click on the name of the target registry.
+1. Enter `Microservices` -> __Traditional Microservices__ -> __Hosted Registry__ module, click the name of the target registry.
 
-    <!--![]()screenshots-->
+    ![](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/skoala/images/ns-1.png)
 
-2. Click `Microservice Namespace` in the left navigation bar, then click `Create` in the upper right corner.
-  
-    <!--![]()screenshots-->
+2. Click __Microservice Namespace__ in the left navigation bar, then click __Create__ in the upper right corner.
 
-3. Enter the ID, name, and description of the namespace and click `OK` in the lower right corner of the page.
+    ![](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/skoala/images/create-ns-1.png)
 
-    If you do not enter an ID, the system automatically generates an ID. ** The namespace ID cannot be changed after creation **
+3. Enter the ID, and name and click __OK__ in the lower right corner of the page.
 
-    <!--![]()screenshots-->
+    If you do not enter an ID, the system automatically generates an ID.
+    **The namespace ID cannot be changed after creation.**
+
+    ![](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/skoala/images/create-ns-2.png)
 
 ## Update the microservice namespace
 
-1. In the right operation bar of the corresponding namespace, click `Edit` to enter the update page.
+1. In the right operation bar of the corresponding namespace, click __Edit__ to enter the update page.
 
-    <!--![]()screenshots-->
+    ![](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/skoala/images/update-ns-1.png)
 
-2. To modify the namespace name and description, click `OK`.
-  
-    <!--![]()screenshots-->
+2. To modify the namespace name, click __OK__ .
+
+    ![](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/skoala/images/update-ns-2.png)
 
 ## Delete the microservice namespace
 
-Click `Delete` in the right operation bar of the corresponding namespace, and then click `Delete Now` in the pop-up box.
+Click __Delete__ in the right operation bar of the corresponding namespace, and then click __Delete Now__ in the pop-up box.
 
 !!! note
-  
 
-<!--![]()screenshots-->
+    Before deleting a namespace, it is necessary to clean up all the resources within that namespace. Otherwise, the namespace cannot be deleted.
+
+![](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/skoala/images/delete-ns-1.png)

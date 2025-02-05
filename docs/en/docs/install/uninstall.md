@@ -1,3 +1,10 @@
+---
+MTPE: windsonsea
+date: 2024-05-11
+hide:
+  - toc
+---
+
 # Uninstall
 
 Run the following commands in order to uninstall DCE 5.0 from your environment.

@@ -4,7 +4,8 @@
 
 !!! note
 
-    - DCE 5.0 ETCD 备份还原仅限于针对同一集群（节点数和 IP 地址没有变化）进行备份与还原。例如，备份了 A 集群 的 etcd 数据后，只能将备份数据还原到 A 集群中，不能还原到 B 集群。
+    - DCE 5.0 ETCD 备份还原仅限于针对同一集群（节点数和 IP 地址没有变化）进行备份与还原。
+      例如，备份了 A 集群 的 etcd 数据后，只能将备份数据还原到 A 集群中，不能还原到 B 集群。
     - 对于跨集群的备份与还原，建议使用[应用备份还原](../user-guide/backup/deployment.md)功能。
     - 首先创建备份策略，备份当前状态，建议参考[ETCD 备份](../user-guide/backup/etcd-backup.md)功能。
 
@@ -25,7 +26,9 @@
 
 ### 安装 etcdbrctl 工具
 
-为了实现 ETCD 数据备份还原，需要在上述任意一个 Kubernetes 节点上安装 etcdbrctl 开源工具。此工具暂时没有二进制文件，需要自行编译。编译方式请参考：<https://github.com/gardener/etcd-backup-restore/blob/master/doc/development/local_setup.md#build>。
+为了实现 ETCD 数据备份还原，需要在上述任意一个 Kubernetes 节点上安装 etcdbrctl 开源工具。
+此工具暂时没有二进制文件，需要自行编译。编译方式请参考
+[Gardener / etcd-backup-restore 本地开发文档](https://github.com/gardener/etcd-backup-restore/blob/master/docs/development/local_setup.md#build)。
 
 安装完成后用如下命令检查工具是否可用：
 
@@ -57,15 +60,17 @@ INFO[0000] Go OS/Arch: linux/amd64
 
 ### 关闭集群
 
-在备份之前，必须要先关闭集群。默认集群 `etcd` 和 `kube-apiserver` 都是以静态 Pod 的形式启动的。这里的关闭集群是指将静态 Pod manifest 文件移动到 `/etc/kubernetes/manifest` 目录外，集群就会移除对应 Pod，达到关闭服务的作用。
+在备份之前，必须要先关闭集群。默认集群 __etcd__ 和 __kube-apiserver__ 都是以静态 Pod 的形式启动的。
+这里的关闭集群是指将静态 Pod manifest 文件移动到 __/etc/kubernetes/manifest__ 目录外，集群就会移除对应 Pod，达到关闭服务的作用。
 
-1. 首先删除之前的备份数据，移除数据并非将现有 etcd 数据删除，而是指修改 etcd 数据目录的名称。等备份还原成功之后再删除此目录。这样做的目的是，如果 etcd 备份还原失败，还可以尝试还原当前集群。此步骤每个节点均需执行。
+1. 首先删除之前的备份数据，移除数据并非将现有 etcd 数据删除，而是指修改 etcd 数据目录的名称。
+   等备份还原成功之后再删除此目录。这样做的目的是，如果 etcd 备份还原失败，还可以尝试还原当前集群。此步骤每个节点均需执行。
 
     ```shell
     rm -rf /var/lib/etcd_bak
     ```
 
-2. 然后需要关闭 `kube-apiserver` 的服务，确保 etcd 的数据没有新变化。此步骤每个节点均需执行。
+2. 然后需要关闭 __kube-apiserver__ 的服务，确保 etcd 的数据没有新变化。此步骤每个节点均需执行。
 
     ```shell
     mv /etc/kubernetes/manifests/kube-apiserver.yaml /tmp/kube-apiserver.yaml
@@ -77,11 +82,11 @@ INFO[0000] Go OS/Arch: linux/amd64
     mv /etc/kubernetes/manifests/etcd.yaml /tmp/etcd.yaml
     ```
 
-4. 确保所有控制平面的 `kube-apiserver` 和 `etcd` 服务都已经关闭。
+4. 确保所有控制平面的 __kube-apiserver__ 和 __etcd__ 服务都已经关闭。
    
-5. 关闭所有的节点后，使用如下命令检查 `etcd` 集群状态。此命令在任意一个节点执行即可。
+5. 关闭所有的节点后，使用如下命令检查 __etcd__ 集群状态。此命令在任意一个节点执行即可。
 
-    > `endpoints` 的值需要替换为实际节点名称
+    > __endpoints__ 的值需要替换为实际节点名称
 
     ```shell
     etcdctl endpoint status --endpoints=controller-node-1:2379,controller-node-2:2379,controller-node-3:2379 -w table \
@@ -90,7 +95,7 @@ INFO[0000] Go OS/Arch: linux/amd64
       --key="/etc/kubernetes/ssl/apiserver-etcd-client.key"
     ```
 
-    预期输出如下，表示所有的 `etcd` 节点都被销毁：
+    预期输出如下，表示所有的 __etcd__ 节点都被销毁：
 
     ```none
     {"level":"warn","ts":"2023-03-29T17:51:50.817+0800","logger":"etcd-client","caller":"v3@v3.5.6/retry_interceptor.go:62","msg":"retrying of unary invoker failed","target":"etcd-endpoints://0xc0001ba000/controller-node-1:2379","attempt":0,"error":"rpc error: code = DeadlineExceeded desc = latest balancer error: last connection error: connection error: desc = \"transport: Error while dialing dial tcp 10.5.14.31:2379: connect: connection refused\""}
@@ -114,9 +119,9 @@ INFO[0000] Go OS/Arch: linux/amd64
     使用 etcdbrctl 还原数据之前，执行如下命令将连接 S3 的认证信息设置为环境变量：
 
     ```shell
-    export ECS_ENDPOINT=http://10.6.212.13:9000 # (1)
-    export ECS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE # (2)
-    export ECS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY # (3)
+    export ECS_ENDPOINT=http://10.6.212.13:9000 # (1)!
+    export ECS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE # (2)!
+    export ECS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY # (3)!
     ```
 
     1. S3 存储的访问点
@@ -150,7 +155,6 @@ INFO[0000] Go OS/Arch: linux/amd64
     {"level":"info","ts":1680011221.2511616,"caller":"mvcc/kvstore.go:380","msg":"restored last compact revision","meta-bucket-name":"meta","meta-bucket-name-key":"finishedCompactRev","restored-compact-revision":110327}
     {"level":"info","ts":1680011221.3045986,"caller":"membership/cluster.go:392","msg":"added member","cluster-id":"66638454b9dd7b8a","local-member-id":"0","added-peer-id":"123c2503a378fc46","added-peer-peer-urls":["https://10.6.212.10:2380"]}
     INFO[0001] Starting embedded etcd server...              actor=restorer
-
     ....
 
     {"level":"info","ts":"2023-03-28T13:47:02.922Z","caller":"embed/etcd.go:565","msg":"stopped serving peer traffic","address":"127.0.0.1:37161"}
@@ -169,13 +173,13 @@ INFO[0000] Go OS/Arch: linux/amd64
 
 3. 以下命令在节点 01 上执行，为了恢复节点 01 的 etcd 服务。
 
-    首先将 etcd 静态 Pod 的 manifest 文件移动到 `/etc/kubernetes/manifests` 目录下，kubelet 将会重启 etcd：
+    首先将 etcd 静态 Pod 的 manifest 文件移动到 __/etc/kubernetes/manifests__ 目录下，kubelet 将会重启 etcd：
 
     ```shell
     mv /tmp/etcd.yaml /etc/kubernetes/manifests/etcd.yaml
     ```
 
-    然后等待 etcd 服务启动完成以后，检查 etcd 的状态，etcd 相关证书默认目录：`/etc/kubernetes/ssl`。如果集群证书存放在其他位置，请指定对应路径。
+    然后等待 etcd 服务启动完成以后，检查 etcd 的状态，etcd 相关证书默认目录： __/etc/kubernetes/ssl__ 。如果集群证书存放在其他位置，请指定对应路径。
 
     - 检查 etcd 集群列表:
 

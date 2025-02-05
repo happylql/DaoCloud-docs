@@ -1,23 +1,29 @@
 ---
+MTPE: windsonsea
 date: 2023-07-07
+hide:
+  - navigation
 ---
 
 # DCE 5.0 Enterprise with Installer v0.9.0
 
-This page allows you to download the offline installation package and verification files for DCE 5.0 Enterprise.
+This page allows you to download the offline package and checksum files for DCE 5.0 Enterprise.
+
+[Return to Download Index](../index.md#download-enterprise-package){ .md-button }
+[Legacy Packages](./dce5-installer-history.md){ .md-button }
 
 ## Download
 
-| Filename                      | Version | Architecture | File Size | Download                                                                                                                               | Last Updated |
-| ----------------------------- | --------| -------------| ----------| -------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| offline-v0.9.0-amd64.tar      | v0.9.0  | AMD64        | 19.01 GB   | [:arrow_down: Download](https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/offline-v0.9.0-amd64.tar)                  | 2023-07-07   |
-| offline-v0.9.0-arm64.tar      | v0.9.0  | ARM64        | 17.37 GB   | [:arrow_down: Download](https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/offline-v0.9.0-arm64.tar)                  | 2023-07-07   |
+| Filename | Version | Architecture | Size | Download | Date |
+| -------- | ------- | ------------ | --------- | -------- | ----------- |
+| offline-v0.9.0-amd64.tar | v0.9.0 | AMD 64 | 19.01 GB | [:arrow_down: Download](https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/offline-v0.9.0-amd64.tar) | 2023-07-07 |
+| offline-v0.9.0-arm64.tar | v0.9.0 | <font color="green">ARM 64</font> | 17.37 GB | [:arrow_down: Download](https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/offline-v0.9.0-arm64.tar) | 2023-07-07 |
 
 ## Verification
 
-Navigate to the directory where the offline installation package is downloaded.
+Navigate to the directory where the offline package is downloaded.
 
-=== "AMD64"
+=== "AMD 64"
 
     Run the following command to verify the package:
 
@@ -31,7 +37,7 @@ Navigate to the directory where the offline installation package is downloaded.
     offline-v0.9.0-amd64.tar: OK
     ```
 
-=== "ARM64"
+=== "<font color="green">ARM 64</font>"
 
     Run the following command to verify the package:
 
@@ -47,9 +53,9 @@ Navigate to the directory where the offline installation package is downloaded.
 
 ## Installation
 
-After successfully verifying the offline package,
+After the offline package has been successfully verifyd,
 
-=== "AMD64"
+=== "AMD 64"
 
     Run the following command to extract the tar file:
 
@@ -57,7 +63,7 @@ After successfully verifying the offline package,
     tar -zxvf offline-v0.9.0-amd64.tar
     ```
 
-=== "ARM64"
+=== "<font color="green">ARM 64</font>"
 
     Run the following command to extract the tar file:
 
@@ -65,31 +71,31 @@ After successfully verifying the offline package,
     tar -zxvf offline-v0.9.0-arm64.tar
     ```
 
-- For installation instructions, please refer to [Enterprise Package Installation Process](../../install/commercial/start-install.md).
+- For installation instructions, refer to [DCE 5.0 Enterprise Installation Process](../../install/commercial/start-install.md).
 - After successful installation, please contact us for authorization: email info@daocloud.io or call 400 002 6898.
 
 ## Modules
 
 DCE 5.0 Enterprise includes the following modules that can be used on-demand to meet various application scenarios:
 
-| Module                | Description                                                                 | Latest Release                                                |
-| --------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| Global Management     | Responsible for user access control, permissions, enterprise spaces, etc.    | [0.18.1](../../ghippo/intro/release-notes.md#0181)    |
-| Container Management  | Manages clusters, nodes, workloads, Helm applications, CRDs, namespaces, etc.| [0.19.0](../../kpanda/intro/release-notes.md#0190)    |
-| Insight         | Provides rich dashboards, scene monitoring, data queries, alerts, etc.       | [0.18.2](../../insight/intro/releasenote.md#0182)     |
-| Application Workplace | Container-based DevOps application platform, supporting Jenkins, Tekton, GitOps, and more pipeline jobs. | [0.18.1](../../amamba/intro/release-notes.md#0181)      |
-| MultiCloud Management | Centralized management of multi-cloud, hybrid cloud, cross-cloud resources for application orchestration, with multi-cloud disaster recovery and fault recovery capabilities. | [0.10.3](../../kairship/intro/release-notes.md#0103)   |
-| Microservice Engine   | Provides governance capabilities such as service registration and discovery, service governance, configuration management, and microservice gateway  |
-| Service Mesh          | Next-generation service mesh built on Istio open-source technology for cloud-native applications. | [v0.17.0](../../mspider/intro/release-notes.md#v0170)    |
-| Middleware Elasticsearch | Currently the preferred full-text search engine.                                      | [0.9.0](../../middleware/elasticsearch/release-notes.md#090) |
-| Middleware Kafka        | Distributed message queue service based on the open-source software Kafka.            | [0.7.0](../../middleware/kafka/release-notes.md#070)          |
-| Middleware MinIO        | A popular lightweight, open-source object storage solution.                            | [0.7.0](../../middleware/minio/release-notes.md#070)          |
-| Middleware MySQL        | The most widely used open-source relational database.                                  | [0.10.0](../../middleware/mysql/release-notes.md#0100)           |
-| Middleware RabbitMQ     | Open-source message broker software that implements the Advanced Message Queuing Protocol (AMQP). | [0.12.0](../../middleware/rabbitmq/release-notes.md#0120)        |
-| Middleware Redis        | An in-memory database caching service.                                                | [0.9.0](../../middleware/redis/release-notes.md#090)           |
-| Container Registry       | Used to store images for K8s, DevOps, and container application development.            | [0.9.1](../../dce/dce-rn/20230630.md)                            |
-| Network                | Supports various CNI combinations for different Linux kernels.                        | [0.8.0](../../dce/dce-rn/20230630.md)                            |
-| Storage                | Provides unified data storage services, supporting file, object, block, and local storage, easily integrates with storage vendors' solutions. | [v0.10.4](../../dce/dce-rn/20230630.md)                            |
+| Modules | Description | Versions |
+| ------- | ----------- | -------- |
+| Global Management | Responsible for user access control, permissions, enterprise spaces, etc. | [0.18.1](../../ghippo/intro/release-notes.md#v0181) |
+| Container Management | Manages clusters, nodes, workloads, Helm applications, CRDs, namespaces, etc.| [0.19.0](../../kpanda/intro/release-notes.md#v0190) |
+| Insight | Provides rich dashboards, scene monitoring, data queries, alerts, etc. | [0.18.2](../../insight/intro/release-notes.md#v0180) |
+| Workbench | Container-based DevOps application platform, supporting Jenkins, Tekton, GitOps, and more pipeline jobs. | [0.18.1](../../amamba/intro/release-notes.md#v0181) |
+| MultiCloud Management | Centralized management of multicloud, hybrid cloud, cross-cloud resources for application orchestration, with multicloud disaster recovery and fault recovery capabilities. | [0.10.3](../../kairship/intro/release-notes.md#v0103) |
+| Microservice Engine | Provides governance capabilities such as service registration and discovery, service governance, configuration management, and microservice gateway |
+| Service Mesh | Next-generation service mesh built on Istio open-source technology for cloud native applications. | [v0.17.0](../../mspider/intro/release-notes.md#v0170) |
+| Middleware Elasticsearch | Currently the preferred full-text search engine. | [0.9.0](../../middleware/elasticsearch/release-notes.md#v090) |
+| Middleware Kafka | Distributed message queue service based on the open-source software Kafka. | [0.7.0](../../middleware/kafka/release-notes.md#v070) |
+| Middleware MinIO | A popular lightweight, open-source object storage solution. | [0.7.0](../../middleware/minio/release-notes.md#v070) |
+| Middleware MySQL | The most widely used open-source relational database. | [0.10.0](../../middleware/mysql/release-notes.md#v0100) |
+| Middleware RabbitMQ | Open-source message broker software that implements the Advanced Message Queuing Protocol (AMQP). | [0.12.0](../../middleware/rabbitmq/release-notes.md#v0123) |
+| Middleware Redis | An in-memory database caching service. | [0.9.0](../../middleware/redis/release-notes.md#v090) |
+| Container Registry | Used to store images for K8s, DevOps, and container application development. | [0.9.1](../../kangaroo/intro/release-notes.md#v090) |
+| Network | Supports various CNI combinations for different Linux kernels. | [0.8.0](../../network/intro/release-notes.md#v080) |
+| Storage | Provides unified data storage services, supporting file, object, block, and local storage, easily integrates with storage vendors' solutions. | [v0.10.4](../../storage/hwameistor/release-notes.md#v0103) |
 
 ## More
 

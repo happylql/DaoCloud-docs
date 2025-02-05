@@ -21,7 +21,7 @@ enable-l7-proxy: false
 kube-proxy-replacement: strict
 ```
 
-使用 Kubean 安装 Cilium 时，可以通过 “cilium_config_extra_vars” 进行配置。参阅 [Egress Gateway 文档](https://docs.cilium.io/en/stable/gettingstarted/egress-gateway/)。
+使用 Kubean 安装 Cilium 时，可以通过 “cilium_config_extra_vars” 进行配置。参阅 [Egress Gateway 文档](https://docs.cilium.io/en/stable/network/egress-gateway/)。
 
 ## Cluster Mesh
 
@@ -117,21 +117,21 @@ etcdctl get --prefix cilium/state/nodes/v1
 etcdctl get --prefix cilium/state/services/v1/<clusterName>/<NS>
 ```
 
-请参阅 [Cluster Mesh 文档](https://docs.cilium.io/en/stable/gettingstarted/clustermesh/clustermesh/)。
+请参阅 [Cluster Mesh 文档](https://docs.cilium.io/en/stable/network/clustermesh/clustermesh/#gs-clustermesh)。
 
 ## Service Mesh
 
 当前 Cilium 并不支持直接通过修改某些参数来直接开启 Service Mesh。
 只支持通过 Cilium CLI 或 Helm 来开启。所以使用 Kubean 或 Kubespray 安装的集群，无法通过配置参数的方式来启用该功能。
 
-请参阅 [Service Mesh 文档](https://docs.cilium.io/en/stable/gettingstarted/servicemesh/ingress/)。
+请参阅 [Service Mesh 文档](https://docs.cilium.io/en/stable/network/servicemesh/ingress/)。
 
 ## 带宽管理
 
 当 Kubespray <= v2.20.0 时，只能使用 “cilium_config_extra_vars” 方式将 “enable-bandwidth-manager” 变量设置为 true 来开启。
 之后的版本可通过 "cilium_enable_bandwidth_manager" 直接开启。
 
-请参阅 [Bandwidth Manager 文档](https://docs.cilium.io/en/stable/gettingstarted/bandwidth-manager/)。
+请参阅 [Bandwidth Manager 文档](https://docs.cilium.io/en/stable/network/kubernetes/bandwidth-manager/)。
 
 ## 替换 kube-proxy
 
@@ -191,7 +191,7 @@ Kubespray 支持使用参数 “cilium_kube_proxy_replacement” 启用该功能
 
 针对外部流量。必须运行在路由模式下，可以保留源 IP。
 当流量到达 LB 或者 NodePort 的节点时，转给后端 EP 时不做 SNAT，应答流量也不再经过 LB 或者流量进来的节点，而是直接返回给客户端。
-所以这需要 Pod 能够与外部路由联通，Cilium 不能使用隧道模式。因此，流量返回时就少了一跳，起到了加速的作用，而且保留了源 IP。
+所以这需要 Pod 能够与外部路由连通，Cilium 不能使用隧道模式。因此，流量返回时就少了一跳，起到了加速的作用，而且保留了源 IP。
 
 由于一个 Pod 可以被多个 SVC 使用，所以返回的 SVC IP 及端口信息需告知 EP。
 Cilium 将此信息编码在 Cilium 特定的 IPv4 选项或 IPv6 目标选项扩展报头中，代价是 MTU 值变小。
@@ -235,7 +235,7 @@ $ethtool -i eth0 | grep driver
 driver: vmxnet3     # 网卡驱动
 ```
 
-当前支持的驱动列表可查阅[LoadBalancer & NodePort XDP Acceleration](https://docs.cilium.io/en/stable/gettingstarted/kubeproxy-free/#loadbalancer-nodeport-xdp-acceleration)。
+当前支持的驱动列表可查阅[LoadBalancer & NodePort XDP Acceleration](https://docs.cilium.io/en/stable/network/kubernetes/kubeproxy-free/#loadbalancer-nodeport-xdp-acceleration)。
 
 ### 在 Pod 命名空间中绕过 Socket LoadBalancer
 
@@ -282,4 +282,4 @@ Cilium 1.11 版本后，已经将邻居发现的库删除，完全依赖于 Linu
 
 Cilium 默认不允许外部访问 ClusterIP SVC。可以通过 bpf.lbExternalClusterIP=true 启用。但需要自行打通相关的路由。
 
-更多内容请参阅[替换 kube-proxy 高级配置](https://docs.cilium.io/en/stable/gettingstarted/kubeproxy-free/)。
+更多内容请参阅[替换 kube-proxy 高级配置](https://docs.cilium.io/en/stable/network/kubernetes/kubeproxy-free/#kubeproxy-free)。

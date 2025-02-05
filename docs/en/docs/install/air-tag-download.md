@@ -1,27 +1,31 @@
-# One-click Download of All Offline Packages
+---
+MTPE: windsonsea
+date: 2024-03-07
+---
+
+# Download All Offline Packages with One-Click
 
 This page provides a script to easily download all the offline packages required for installing DCE 5.0.
 
-## Download the Script
+## Download Script
 
 ```bash
-export VERSION= v0.8.0
+export VERSION=v0.17.0
 curl -LO https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/download_packages_${VERSION}.sh
 chmod +x download_packages_${VERSION}.sh
 ```
 
-## Run the Script
+## Run Script
 
 ```bash
-./download_packages_${VERSION}.sh ${DISTRO} ${INSTALLER_VERSION} ${ARCH}
+./download_packages_${VERSION}.sh ${DISTRO} ${VERSION} ${ARCH}
 ```
 
-Parameter explanation:
+**Parameters:**
 
 | Parameter | Default Value | Valid Values |
 | ---- | ---- | ---- |
 | VERSION | Current script version | Only supports v0.8.0 currently |
-| INSTALLER_VERSION | Specify the version of DCE 5.0 to download | Any valid release version of DCE 5.0 |
 | DISTRO | `centos7` | `centos7` `kylinv10` `redhat8` `ubuntu2004` |
 | ARCH | `amd64` | `amd64` `arm64` |
 

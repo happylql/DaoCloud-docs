@@ -1,10 +1,15 @@
+---
+MTPE: windsonsea
+date: 2024-09-09
+---
+
 # Offline Install in a Standard Kubernetes Cluster
 
 This page will guide you to install DCE Community package offline in a standard Kubernetes cluster, which is recommended in the production environment.
 
-Click [Online Install DCE Community](../../../videos/install.md) to watch a video demo for online install.
-
 ## Preparation
+
+- Prepare a machine with internet access.
 
 - Prepare a Kubernetes cluster. For resources required, see [Cluster Resources for Installing DCE Community](../resources.md).
 
@@ -23,21 +28,20 @@ Click [Online Install DCE Community](../../../videos/install.md) to watch a vide
 
 ## Download and install
 
-1. Download and decompress the offline package of DCE Community on the controller node of your kubernetes cluster, or download and decompress the offline package from [Download Center](../../../download/index.md).
+1. Find a machine with internet access and run the command below to download and extract the
+   offline package (or download it from the [download center](../../../download/index.md)):
 
-    Take VERSION=0.10.0 as an example
+    Take VERSION=v0.24.0 as an example.
 
     ```bash
-    export VERSION=v0.10.0
+    export VERSION=v0.24.0
     wget https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/offline-community-$VERSION-amd64.tar
     tar -xvf offline-community-$VERSION-amd64.tar
     ```
 
-2. Customize `clusterConfig.yaml`
+1. Upload the extracted files to the K8s control plane node (Controller Node) and configure `clusterConfig.yaml` on that node.
 
-    - If Console is exposed via NodePort (recommended only for PoC use cases), skip this step.
-
-    - In non-public cloud environment (virtual/physical machine), please enable load balancer (metallb) to avoid NodePort instability caused by node IP changes. Plan your network carefully and set up 2 necessary VIPs. Here is an example of `clusterConfig.yaml`:
+    - For non-public cloud environments (VMs or physical machines), enable load balancing (Metallb) to avoid instability caused by NodePort due to changing node IPs. Carefully plan your network and set up 2 necessary VIPs. Here is a sample configuration:
 
         ```yaml title="clusterConfig.yaml"
         apiVersion: provision.daocloud.io/v1alpha3
@@ -47,15 +51,19 @@ Click [Online Install DCE Community](../../../videos/install.md) to watch a vide
             type: metallb
             istioGatewayVip: 10.6.229.10/32
             insightVip: 10.6.229.11/32
-          fullPackagePath: absolute-path-of-the-offline-directory # path for decompressed offline package
-          imagesAndCharts: # image registry
-            type: external
-            externalImageRepo: your-external-registry # image registry address, must be http or https
+          fullPackagePath: absolute-path-of-the-offline-directory # (1)!
+          imagesAndCharts: # (2)!
+            type: external 
+            externalImageRepo: your-external-registry # (3)!
             # externalImageRepoUsername: admin
             # externalImageRepoPassword: Harbor123456
-         ```
+        ```
 
-     - If it is a public cloud environment that already has a Kubernetes load balancer, set `clusterConfig.yaml` as follows:
+        1. Path after extracting the offline package
+        2. Container registry
+        3. Container registry address, must be http or https
+
+    - For public cloud environments that provide Kubernetes load balancing through a pre-configured Cloud Controller Manager, use the following sample configuration:
 
         ```yaml title="clusterConfig.yaml"
         apiVersion: provision.daocloud.io/v1alpha3
@@ -63,15 +71,19 @@ Click [Online Install DCE Community](../../../videos/install.md) to watch a vide
         spec:
           loadBalancer:
             type: cloudLB
-          fullPackagePath: absolute-path-of-the-offline-directory # path for decompressed offline package
-          imagesAndCharts: # image registry
+          fullPackagePath: absolute-path-of-the-offline-directory # (1)!
+          imagesAndCharts: # (2)!
             type: external
-            externalImageRepo: your-external-registry # image registry address, must be http or https
+            externalImageRepo: your-external-registry # (3)!
             # externalImageRepoUsername: admin
             # externalImageRepoPassword: Harbor123456
         ```
 
-     - If Console is exposed via NodePort (recommended only for PoC use cases), set `clusterConfig.yaml` as follows:
+        1. Path after extracting the offline package
+        2. Container registry
+        3. Container registry address, must be http or https
+
+    - If using NodePort to expose the console (only recommended for PoC), use the following sample configuration:
 
         ```yaml title="clusterConfig.yaml"
         apiVersion: provision.daocloud.io/v1alpha3
@@ -79,15 +91,19 @@ Click [Online Install DCE Community](../../../videos/install.md) to watch a vide
         spec:
           loadBalancer:
             type: NodePort
-          fullPackagePath: absolute-path-of-the-offline-directory # path for decompressed offline package
-          imagesAndCharts: # image registry
-            type: external
-            externalImageRepo: your-external-registry # image registry address, must be http or https
+          fullPackagePath: absolute-path-of-the-offline-directory # (1)!
+          imagesAndCharts: # (2)!
+            type: external 
+            externalImageRepo: your-external-registry # (3)!
             # externalImageRepoUsername: admin
             # externalImageRepoPassword: Harbor123456
-         ```
+        ```
 
-3. Install DCE 5.0.
+        1. Path after extracting the offline package
+        2. Container registry
+        3. Container registry address, must be http or https
+
+1. Install DCE 5.0.
 
     ```shell
     ./dce5-installer install-app -c clusterConfig.yaml
@@ -95,14 +111,13 @@ Click [Online Install DCE Community](../../../videos/install.md) to watch a vide
 
     !!! note
 
-        - Parameter `-p` specifies the offline directory to decompress the offline package.
-        - For `clusterConfig.yaml` file settings, refer to [Online Installation](online.md#_2).
+        - For `clusterConfig.yaml` file settings, refer to [the previous step](#download-and-install).
         - `-z` minimal install
         - `-c` specifies the cluster configuration file. You don't need to specify `-c` when using NodePort to expose the console.
         - `-d` enable debug mode
         - `--serial` specifies that all installation tasks are executed serially
 
-4. After the installation is complete, the command line will prompt that the installation is successful. Congratulations!
+1. After the installation is complete, the command line will prompt that the installation is successful. Congratulations!
     
     Now you can use the **default account and password (admin/changeme)** to explore the new DCE 5.0 through the URL prompted on the screen!
 
@@ -110,6 +125,8 @@ Click [Online Install DCE Community](../../../videos/install.md) to watch a vide
 
     !!! success
 
-        Please write down the prompted URL for your next visit.
+        It's recommended to write down the prompted URL for your next visit.
 
-5. Before fully explore the features of DCE 5.0, you need to apply for a license. The Community package is provided for free. All you need to do is to [apply for a free license](../../../dce/license0.md).
+1. Before fully explore the features of DCE 5.0, you need to apply for a license.
+   The Community package is provided for free. All you need to do is to
+   [apply for a free license](../../../dce/license0.md).

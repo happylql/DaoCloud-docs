@@ -1,3 +1,8 @@
+---
+MTPE: windsonsea
+date: 2024-06-19
+---
+
 # FedState
 
 FedState refers to the Federation Stateful Service, which is mainly designed to
@@ -12,7 +17,7 @@ so that they can work normally and provide some advanced operation and maintenan
 
 ## Architecture
 
-![architecture](./images/structure.png)
+![architecture](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/community/images/structure.png)
 
 FedState consists of the following components:
 
@@ -28,5 +33,5 @@ FedState consists of the following components:
 
 ## References
 
-- Blog: [Cloud Native Federation Middleware - FedState](../blogs/230605-fedstate.md)
+- Blog: [Cloud Native Federation Middleware - FedState](../blogs/2023/230605-fedstate.md)
 - Repo url: https://github.com/fedstate/fedstate

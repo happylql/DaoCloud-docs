@@ -1,3 +1,9 @@
+---
+MTPE: windsonsea
+hide:
+  - toc
+---
+
 # DaoCloud Ecosystem
 
 !!! info
@@ -14,17 +20,13 @@
 
     [:octicons-arrow-right-24: Learn more](./cloudtty.md)
 
--   :simple-wikipedia:{ .lg .middle } __Clusterpedia__ :simple-cncf: Listed in CNCF Sandbox and Landscape
+-   :simple-wikipedia:{ .lg .middle } __Clusterpedia__ :simple-cncf: Listed in CNCF Sandbox
 
     ---
 
     Kubernetes multi-cluster resource one-stop encyclopedia, deployed in production by **China Mobile** and others
 
     [:octicons-arrow-right-24: Learn more](./clusterpedia.md)
-
-</div>
-
-<div class="grid cards" markdown>
 
 -   :simple-amazonapigateway:{ .lg .middle } __egressgateway__
 
@@ -45,10 +47,6 @@
 
     [:octicons-arrow-right-24: Learn more](./fast.md)
 
-</div>
-
-<div class="grid cards" markdown>
-
 -   :fontawesome-brands-trade-federation:{ .lg .middle } __FedState__
 
     ---
@@ -65,17 +63,21 @@
 
     [:octicons-arrow-right-24: Learn more](./ferry.md)
 
-</div>
-
-<div class="grid cards" markdown>
-
--   :material-storage-tank:{ .lg .middle } __HwameiStor__ :simple-cncf: Listed in CNCF Sandbox and Landscape
+-   :material-storage-tank:{ .lg .middle } __HwameiStor__ :simple-cncf: Listed in CNCF Sandbox
 
     ---
 
     Highly available local storage solution that is faster, stronger, and more reliable.
 
     [:octicons-arrow-right-24: Learn more](./hwameistor.md)
+
+-   :simple-kasasmart:{ .lg .middle } __KasmCloud__
+
+    ---
+
+    Managing and Running Actors, Providers, and Links in Kubernetes.
+
+    [:octicons-arrow-right-24: Learn more](./kasmcloud.md)
 
 -   :material-doctor:{ .lg .middle } __kdoctor__
 
@@ -85,10 +87,6 @@
 
     [:octicons-arrow-right-24: Learn more](./kdoctor.md)
 
-</div>
-
-<div class="grid cards" markdown>
-
 -   :simple-kubernetes:{ .lg .middle } __KLTS__
 
     ---
@@ -97,17 +95,21 @@
 
     [:octicons-arrow-right-24: Learn more](./klts.md)
 
--   :peanuts:{ .lg .middle } __Kubean__ :simple-cncf: Listed in CNCF Landscape
+-   :material-tune:{ .lg .middle } __kube-node-tuning__
 
     ---
 
-    A full life cycle management tool for containerized clusters that is applying for Sandbox.
+    kube-node-tuning is aimed at kernel tuning by kubernetes.
+
+    [:octicons-arrow-right-24: Learn more](./kube-node-tuning.md)
+
+-   :peanuts:{ .lg .middle } __Kubean__ :simple-cncf: Listed in CNCF Sandbox
+
+    ---
+
+    A lifecycle management tool for containerized clusters.
 
     [:octicons-arrow-right-24: Learn more](./kubean.md)
-
-</div>
-
-<div class="grid cards" markdown>
 
 -   :material-forest:{ .lg .middle } __KWOK__ :simple-cncf: One of the K8s-sigs projects
 
@@ -117,17 +119,13 @@
 
     [:octicons-arrow-right-24: Learn more](./kwok.md)
 
--   :fontawesome-solid-bridge:{ .lg .middle } __Merbridge__ :simple-cncf: Listed in CNCF Sandbox and Landscape
+-   :fontawesome-solid-bridge:{ .lg .middle } __Merbridge__ :simple-cncf: Listed in CNCF Sandbox
 
     ---
 
     Use eBPF to accelerate your service mesh, just like using a wormhole to shuttle in the network world.
 
     [:octicons-arrow-right-24: Learn more](./merbridge.md)
-
-</div>
-
-<div class="grid cards" markdown>
 
 -   :material-debug-step-over:{ .lg .middle } __miragedebug__
 
@@ -137,17 +135,13 @@
 
     [:octicons-arrow-right-24: Learn more](./miragedebug.md)
 
--   :spider:{ .lg .middle } __Spiderpool__  :simple-cncf: Listed in CNCF Landscape
+-   :material-tape-drive:{ .lg .middle } __Piraeus__ :simple-cncf: Listed in CNCF Sandbox
 
     ---
 
-    Cloud native network IPAM automation software, recommended as a plug-in for Underlay CNI.
+    a high performance, highly-available, simple, secure, and cloud agnostic storage solution for Kubernetes.
 
-    [:octicons-arrow-right-24: Learn more](./spiderpool.md)
-
-</div>
-
-<div class="grid cards" markdown>
+    [:octicons-arrow-right-24: Learn more](./piraeus.md)
 
 -   :speedboat:{ .lg .middle } __Public Mirror Acceleration__
 
@@ -157,7 +151,27 @@
 
     [:octicons-arrow-right-24: Learn more](./mirror.md)
 
+-   :spider:{ .lg .middle } __Spiderpool__  :simple-cncf: Listed in CNCF Sandbox
+
+    ---
+
+    An underlay and RDMA network solution for Kubernetes with bare metal, virtual machines, and public clouds.
+
+    [:octicons-arrow-right-24: Learn more](./spiderpool.md)
+
+-   :simple-iconify:{ .lg .middle } __DaoCloud Icons Library__
+
+    ---
+
+    Here is a collection of commonly used open source icons from DaoCloud company.
+
+    [:octicons-arrow-right-24: Learn More](./icons/index.md)
+
 </div>
+
+*[DCE]: An abbreviation for DaoCloud Enterprise, a next-generation AI computing platform
+*[Landscape]: A comprehensive map that showcases various projects and tools in the cloud native ecosystem
+*[Sandbox]: An incubation platform for cloud native projects provided by CNCF
 
 !!! success
 
@@ -167,10 +181,10 @@
 
     **Think Different, Think Open Source!**
 
+![cncf logo](./images/cncf.png)
+
 <p align="center">
-<img src="https://landscape.cncf.io/images/left-logo.svg" width="150"/>&nbsp;&nbsp;<img src="https://landscape.cncf.io/images/right-logo.svg" width="200"/>
-<br/><br/>
-[Clusterpedia](./clusterpedia.md), [HwameiStor](./hwameistor.md) and [Merbridge](./merbridge.md) have been listed in <a href="https://www.cncf.io/projects/clusterpedia/">CNCF Sandbox</a>.
+Clusterpedia, HwameiStor, Merbridge, Spiderpool, and Kubean have been selected for the <a href="https://www.cncf.io/sandbox-projects/">CNCF Sandbox</a>.
 </p>
 
 [Download DCE 5.0](../download/index.md){ .md-button .md-button--primary }

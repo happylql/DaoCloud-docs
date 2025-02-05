@@ -10,7 +10,7 @@ site_description: >-
   DaoCloud Enterprise 5.0 下一代容器化平台集大成者，引领云原生浪潮，推动数字化转型。
 
 # copyright
-copyright: Copyright &copy; 2016 - 2023 DaoCloud
+copyright: Copyright &copy; 2016 - 2024 DaoCloud
 
 # Repository
 repo_name: DaoCloud/DaoCloud-docs
@@ -18,8 +18,8 @@ repo_name: DaoCloud/DaoCloud-docs
 repo_url: https://github.com/DaoCloud/DaoCloud-docs
 edit_uri: edit/main/docs/zh/docs/
 
-use_directory_urls: false # disbale https://www.mkdocs.org/user-guide/configuration/#use_directory_urls
-strict: true # enable strict mode, https://www.mkdocs.org/user-guide/configuration/#strict
+use_directory_urls: false # disable https://www.mkdocs.org/user-guide/configuration/#use_directory_urls
+strict: false # enable strict mode, https://www.mkdocs.org/user-guide/configuration/#strict
 
 # Configuration
 theme:
@@ -31,7 +31,6 @@ theme:
   include_search_page: false
   search_index_only: true
   include_homepage_in_sidebar: false
-  
 
   # Static files
   static_templates:
@@ -55,6 +54,7 @@ theme:
     - search.share
     - toc.follow
     - navigation.path
+    - navigation.footer
     # - toc.integrate
 
   palette:
@@ -89,25 +89,38 @@ theme:
 # Plugins
 plugins:
   - search:
-      separator: '[\\s\\u200b\\-]'
+      jieba_dict: dict.txt.small
+      jieba_dict_user: dict.txt.daocloud
+      lang:
+        - zh
+        - en
+  - git-revision-date-localized:
+      enable_creation_date: false
+
+  - git-committers:
+      repository: DaoCloud/DaoCloud-docs
+      branch: main
+      enabled: true
+
+  # - git-authors:
+  #     enabled: true
+
   - swagger-ui-tag
-  # - mermaid2
+  #   - mermaid2
 
-  # - with-pdf:
-  #     cover: true
-  #     # back_cover: true
-  #     # cover_title: DaoCloud
-  #     # enabled_if_env: ENABLE_PDF_EXPORT
-  #     verbose: false
+  #   - with-pdf:
+  #       cover: true
+  #       # back_cover: true
+  #       # cover_title: DaoCloud
+  #       # enabled_if_env: ENABLE_PDF_EXPORT
+  #       verbose: false
 
-
-
-  - minify:
-      minify_html: true
-      minify_js: true
-      minify_css: true
-      htmlmin_opts:
-        remove_comments: true
+  #  - minify:
+  #      minify_html: true
+  #      minify_js: true
+  #      minify_css: true
+  #      htmlmin_opts:
+  #        remove_comments: true
 
   - redirects:
       redirect_maps:
@@ -127,18 +140,18 @@ plugins:
         "blog.md": "blogs/index.md"
         "ghippo.md": "ghippo/intro/index.md"
         "video.md": "videos/index.md"
+        "baize.md": "baize/intro/index.md"
 
-
-  - git-revision-date: #每页底部显示文档最后更新日期，安装 pip install mkdocs-git-revision-date-plugin
-      enabled_if_env: "CI"
-  - git-revision-date-localized: #每个页面底部添加本地化更新和创建日期，安装 pip install mkdocs-git-revision-date-localized-plugin
-      timezone: Asia/Shanghai
-      type: timeago #日期格式，有效值为 date、datetime、iso_date、iso_datetimetimeago
-      fallback_to_build_date: true #默认 false，启用则回退到 mkdocs build 执行的时间
-      enable_creation_date: true #最后更新日期旁边显示与页面关联的文件的创建日期
-      exclude:
-        - index.md
-      enabled: !ENV [ENABLED_GIT_REVISION_DATE, true]
+  # - git-revision-date: #每页底部显示文档最后更新日期，安装 pip install mkdocs-git-revision-date-plugin
+  #     enabled_if_env: "CI"
+  # - git-revision-date-localized: #每个页面底部添加本地化更新和创建日期，安装 pip install mkdocs-git-revision-date-localized-plugin
+  #     timezone: Asia/Shanghai
+  #     type: timeago #日期格式，有效值为 date、datetime、iso_date、iso_datetimetimeago
+  #     fallback_to_build_date: true #默认 false，启用则回退到 mkdocs build 执行的时间
+  #     enable_creation_date: true #最后更新日期旁边显示与页面关联的文件的创建日期
+  #     exclude:
+  #       - index.md
+  #     enabled: !ENV [ENABLED_GIT_REVISION_DATE, true]
 
   # auto desgin nav in dirs
   # - awesome-pages:
@@ -148,15 +161,14 @@ plugins:
   # - tags:
   #     tags_file: stylesheets/tags.md
 
-  # with mkdocs-git-authors-plugin
-  # - git-authors
-
-  # - print-site
-
 # Customization
 extra:
   homepage: /
-  
+
+  analytics:
+    provider: google
+    property: G-WDCH551J9C
+
   # comments
   comments:
     enabled: true
@@ -207,8 +219,8 @@ markdown_extensions:
   - pymdownx.caret
   - pymdownx.details
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite

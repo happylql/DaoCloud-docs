@@ -8,7 +8,7 @@ hide:
 服务网格是基于 Istio 开源技术构建的面向云原生应用的下一代服务网格。
 
 服务网格是一种具备高性能、高易用性的全托管服务网格产品，通过提供完整的非侵入式的微服务治理方案，能够统一治理多云多集群的复杂环境，
-以基础设施的方式为用户提供服务流量治理、安全性治理、服务流量监控、以及传统微服务（SpringCloud、Dubbo）接入。
+以基础设施的方式为用户提供服务流量治理、安全性治理、服务流量监控以及传统微服务（SpringCloud、Dubbo）功能。
 
 DCE 5.0 的服务网格兼容社区原生 Istio 开源服务网格，提供原生 Istio 接入管理能力。在较高的层次上，服务网格有助于降低服务治理的复杂性，减轻开发运维团队的压力。
 
@@ -29,11 +29,11 @@ DCE 5.0 服务网格相比其他产品具备以下优势：
     结合一站式治理系统；提供实时的、可视化的微服务流量管理；
     支持无侵入智能流量治理，应用无需任何改造，即可进行动态的智能路由和弹性流量管理。
 
-    - 权重、内容、TCP/IP 等路由规则。
-    - HTTP 会话保持，满足业务处理持续性诉求。
-    - 限流、离群检测，实现服务间链路稳定、可靠。
-    - 网络长连接管理降低资源损耗，提升网络吞吐量。
-    - 服务安全认证：认证、鉴权、审计等，提供服务安全保障基石。
+  - 权重、内容、TCP/IP 等路由规则。
+  - HTTP 会话保持，满足业务处理持续性诉求。
+  - 限流、离群检测，实现服务间链路稳定、可靠。
+  - 网络长连接管理降低资源损耗，提升网络吞吐量。
+  - 服务安全认证：认证、鉴权、审计等，提供服务安全保障基石。
 
 - 图形化应用全景拓扑，流量治理可视化
 
@@ -47,11 +47,11 @@ DCE 5.0 服务网格相比其他产品具备以下优势：
 
 - 多云多集群、多基础设施
 
-    提供免运维的托管控制面，提供多云多集群的全局统一的服务治理、安全和服务运行监控能力，还提供对容器和虚拟机（VM） 等多种基础设施的统一服务发现和管理。
+    提供免运维的托管控制面，提供多云多集群的全局统一的服务治理、安全和服务运行监控能力，还提供对容器和虚拟机（VM）等多种基础设施的统一服务发现和管理。
 
 - 协议扩展
 
-    扩展 Dubbo 协议的支持。
+    支持 Dubbo 协议。
 
 - 传统 SDK 集成
 
@@ -89,14 +89,16 @@ flowchart TD
     inject -.-> sidecar[边车管理]
     inject -.-> watch[流量监控]
     inject -.-> gateway[网格网关]
+    inject -.-> config[网格配置]
     inject -.-> upgrade[版本升级]
     
 
     service -.-> entry[服务条目<br>一键修复]
     traffic -.-> virtual[虚拟服务<br>目标规则<br>网关规则]
     security -.-> peer[对等身份认证<br>请求身份认证<br>授权策略]
-    sidecar -.-> sidecarm[命名空间边车管理<br>工作负载边车管理<br>边车流量透传]
+    sidecar -.-> sidecarm[命名空间边车<br>工作负载边车<br>边车流量透传]
     watch -.-> watch2[流量监控<br>流量拓扑]
+    config -.-> intercon[多云互联<br>Istio资源<br>TLS密钥]
     upgrade -.-> upgrade1[Istio 升级<br>边车升级]
 
     classDef plain fill:#ddd,stroke:#fff,stroke-width:1px,color:#000;
@@ -104,7 +106,7 @@ flowchart TD
     classDef cluster fill:#fff,stroke:#bbb,stroke-width:1px,color:#326ce5;
 
     class mesh plain
-    class install,service,gateway,traffic,watch,upgrade,security,entry,virtual,peer,cluster,sidecar,sidecarm,watch2,managed,private,external,namespace,workload,upgrade1 cluster
+    class install,service,gateway,traffic,watch,upgrade,security,entry,virtual,peer,cluster,sidecar,sidecarm,watch2,managed,private,external,namespace,workload,upgrade1,config,intercon cluster
 
     click install "https://docs.daocloud.io/mspider/install/install/"
     click managed "https://docs.daocloud.io/mspider/user-guide/service-mesh/"
@@ -126,7 +128,26 @@ flowchart TD
     click sidecar "https://docs.daocloud.io/mspider/user-guide/sidecar-management/ns-sidecar/"
     click sidecarm "https://docs.daocloud.io/mspider/user-guide/sidecar-management/passthrough/"
     click watch2 "https://docs.daocloud.io/mspider/user-guide/traffic-monitor/conn-topo/"
+    click intercon "https://docs.daocloud.io/mspider/user-guide/multicluster/cluster-interconnect/"
 ```
+
+## 常见问题和故障案例
+
+- [服务网格常见问题](./faq.md)
+- [创建网格时找不到所属集群](./cannot-find-cluster.md)
+- [创建网格时一直处于“创建中”，最终创建失败](./always-in-creating.md)
+- [创建的网格异常，但无法删除网格](./failed-to-delete.md)
+- [托管网格纳管集群失败](./failed-to-add-cluster.md)
+- [托管网格纳管集群时 istio-ingressgateway 异常](./hosted-mesh-errors.md)
+- [网格空间无法正常解绑](./mesh-space-cannot-unbind.md)
+- [DCE 4.0 接入问题追踪](./dce4.0-issues.md)
+- [命名空间边车配置与工作负载边车冲突](./sidecar.md)
+- [托管网格多云互联异常](./cluster-interconnect.md)
+- [边车占用大量内存](./sidecar-memory-err.md)
+- [创建网格时，集群列表存在未知集群](./cluster-already-exist.md)
+- [托管网格 APIServer 证书过期处理办法](./hosted-apiserver-cert-expiration.md)
+- [服务网格中常见的 503 报错](./503-issue.md)
+- [如何使集群中监听 localhost 的应用被其它 Pod 访问](./localhost-by-pod.md)
 
 [下载 DCE 5.0](../../download/index.md){ .md-button .md-button--primary }
 [安装 DCE 5.0](../../install/index.md){ .md-button .md-button--primary }

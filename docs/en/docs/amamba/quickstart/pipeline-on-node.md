@@ -1,80 +1,85 @@
-# run the pipeline on the specified node
+---
+MTPE: FanLin
+Date: 2024-01-18
+---
 
-This article describes how to run the customer's pipeline tasks on the specified nodes in Workbench.
+# Run Pipelines on Specified Nodes
 
-## Modify the configuration file jenkins-casc-config
+This article describes how to run the pipeline tasks on the specified nodes in Workbench.
 
-1. Go to the `Container Management` module and enter the details page of the target cluster, such as the `kpanda-global-cluster` cluster.
+## Modify jenkins-casc-config
 
-     <!--![]()screenshots-->
+1. Go to the __Container Management__ module and enter the details page of the target cluster, such as the __kpanda-global-cluster__ .
 
-2. Click `Configuration and Keys`->`Configuration Items` in the left navigation.
+    ![Cluster Details](../images/pipeline-node01.png)
 
-     <!--![]()screenshots-->
+2. Click __ConfigMaps & Secrets__ -> __ConfigMaps__ in the left navigation.
 
-3. Search `jenkins-casc-config`, select `Edit YAML` from the list.
+    ![ConfigMaps](../images/pipeline-node02.png)
 
-     <!--![]()screenshots-->
+3. Search for __jenkins-casc-config__ , choose __Edit YAML__ in the list.
 
-4. Add `nodeSelector: "ci=base"` for a specific Agent under `jenkins.cloud.kubernetes.templates` in the YAML configuration item `jenkins.yaml`, and click `OK` to save the changes.
+    ![Edit YAML](../images/pipeline-node03.png)
 
-     <!--![]()screenshots-->
+4. Add __nodeSelector: "ci=base"__ for a specific Agent under __jenkins.cloud.kubernetes.templates__ in __jenkins.yaml__ , and click __OK__ to save the changes.
 
-## Select the specified node to add a label
+    ![Add Selector](../images/pipeline-node04.png)
 
-1. Enter the `Container Management` module, on the `kpanda-global-cluster` cluster details page, click `Node Management` on the left navigation.
+## Add labels to the specified nodes
 
-     <!--![]()screenshots-->
+1. Enter the __Container Management__ module, on the __kpanda-global-cluster__ details page, click __Nodes__ on the left navigation.
 
-2. Select the target worker node (for example, demo-dev-worker-03), and click `Modify Label`.
+    ![Node Management](../images/pipeline-node05.png)
 
-     <!--![]()screenshots-->
+2. Select the target worker node (for example, demo-dev-worker8), and click __Edit Labels__ .
 
-3. Add the `ci=base` tag and click `OK` to save the changes.
+    ![Edit Labels](../images/pipeline-node06.png)
 
-     <!--![]()screenshots-->
+3. Add the __ci=base__ label and click __OK__ to save the changes.
 
-## Visit Jenkins Dashbord, reload configuration
+    ![Add Labels](../images/pipeline-node07.png)
+
+## Access Jenkins dashboard and reload configuration
 
 First of all, it is necessary to expose the access address of Jenkins Dashbord through NodePort (other exposure methods are exposed according to the actual business situation).
 
-1. Enter `Container Management` module, on the `kpanda-global-cluster` cluster page, click `Container Network` -> `Service` in the left navigation bar.
+1. Enter __Container Management__ module, on the __kpanda-global-cluster__ page, click __Container Network__ -> __Services__ in the left navigation bar.
 
-     <!--![]()screenshots-->
+    ![Services](../images/pipeline-node08.png)
 
-2. Search `amamba-jenkins` and select `Update` from the list.
+2. Search __amamba-jenkins__ and choose __Update__ from the list.
 
-     <!--![]()screenshots-->
+    ![Update Jenkins](../images/pipeline-node09.png)
 
-3. Change the access type to NodePort, and the node port selection will be automatically generated.
+3. Change the access type to __NodePort__ , and the node port selection will be automatically generated.
 
-     <!--![]()screenshots-->
+    ![Change Access Type](../images/pipeline-node10.png)
 
-4. Click OK, then return to the details page and click the link to access the Jenkins Dashboard.
+4. Click __OK__ , then return to the details page and click the link to access the Jenkins Dashboard.
 
-     <!--![]()screenshots-->
+    ![Access Jenkins Dashboard](../images/pipeline-node11.png)
 
-5. Enter the account/password (the default is `admin/Admin01`) to enter the Jenkins Dashboard page.
+5. Enter the account/password (the default is __admin/Admin01__ ) to enter the Jenkins Dashboard page.
 
-     <!--![]()screenshots-->
+    ![Login](../images/pipeline-node12.png)
 
-6. Select `Manage Jenkins` in the left navigation bar.
+6. Choose __Manage Jenkins__ in the left navigation bar.
 
-     <!--![]()screenshots-->
+    ![Manage Jenkins](https://docs.daocloud.io/daocloud-docs-images/docs/amamba/images/pipeline-node13.png)
 
-7. Click `Configuration as Code`.
+7. Click __Configuration as Code__ .
 
-     <!--![]()screenshots-->
+    ![Config as code](https://docs.daocloud.io/daocloud-docs-images/docs/amamba/images/pipeline-node14.png)
 
-8. Click `Reload existing configuration` in `Configuration as Code`. If there is no prompt on the current page after clicking, it means that the configuration loading takes effect.
+8. Click __Reload existing configuration__ in __Configuration as Code__ . If there is no prompt on the current page after clicking, it means that the configuration loading takes effect.
 
-     <!--![]()screenshots-->
+    ![Reload](https://docs.daocloud.io/daocloud-docs-images/docs/amamba/images/pipeline-node15.png)
 
-## Run the pipeline and check if it is on the specified node
+## Run pipelines and verify nodes
 
-1. Create a pipeline job in `Workbench`, and edit `Jenkinsfile` as follows:
+1. Create a pipeline job in __Workbench__ , and edit __Jenkinsfile__ as follows:
 
-    ```bash        
+    ```groovy        
     pipeline {
       agent {
         node {
@@ -102,8 +107,8 @@ First of all, it is necessary to expose the access address of Jenkins Dashbord t
 
         It should be noted that the agent part needs to select label as base. Because the specified node is only set for the base in the configuration file, if it needs to be set for other agents. Repeat the above operation.
 
-1. Click `Execute Now` for the pipeline, and go to `Container Management` to view the running node of the Pod that executes the task.
+1. Click __Run Now__ for the pipeline, and go to __Container Management__ to view the running node of the Pod that executes the task.
 
-     <!--![]()screenshots-->
+    ![Check Pods](../images/pipeline-node16.png)
 
-2. You can see that the Pod executing the pipeline task is running on the expected `demo-dev-worker-03` node.
+1. You can see that the Pod executing the pipeline task is running on the expected __demo-dev-worker8__ node.

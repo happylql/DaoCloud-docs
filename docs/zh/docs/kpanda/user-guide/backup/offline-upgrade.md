@@ -1,16 +1,16 @@
 # 离线升级备份恢复模块
 
-本页说明从[下载中心](../../../download/index.md)下载备份恢复模块后，应该如何安装或升级。
+本页说明[下载备份恢复模块](../../../download/modules/kcoral.md)后，应该如何安装或升级。
 
 !!! info
 
-    下述命令或脚本内出现的 `kcoral` 字样是备份恢复模块的内部开发代号。
+    下述命令或脚本内出现的 __kcoral__ 字样是备份恢复模块的内部开发代号。
 
 ## 从下载的安装包中加载镜像
 
 您可以根据下面两种方式之一加载镜像，当环境中存在镜像仓库时，建议选择 chart-syncer 同步镜像到镜像仓库，该方法更加高效便捷。
 
-#### 方式一：使用 chart-syncer 同步镜像
+### 方式一：使用 chart-syncer 同步镜像
 
 使用 chart-syncer 可以将您下载的安装包中的 chart 及其依赖的镜像包上传至安装器部署 DCE 时使用的镜像仓库和 helm 仓库。
 
@@ -21,27 +21,38 @@
     !!! note  
 
         该 YAML 文件中的各项参数均为必填项。
+
     === "已添加 Helm repo"
 
         若当前环境已安装 chart repo，chart-syncer 也支持将 chart 导出为 tgz 文件。
 
         ```yaml title="load-image.yaml"
         source:
-          intermediateBundlesPath: kcoral # 节点上执行 load-image.yaml 文件的路径。
+          intermediateBundlesPath: kcoral # (1)!
         target:
-          containerRegistry: 10.16.10.111 # 镜像仓库地址
-          containerRepository: release.daocloud.io/kcoral # 镜像仓库路径
+          containerRegistry: 10.16.10.111 # (2)!
+          containerRepository: release.daocloud.io/kcoral # (3)!
           repo:
-            kind: HARBOR # Helm Chart 仓库类别
-            url: http://10.16.10.111/chartrepo/release.daocloud.io # Helm 仓库地址
+            kind: HARBOR # (4)!
+            url: http://10.16.10.111/chartrepo/release.daocloud.io # (5)!
             auth:
-            username: "admin" # 镜像仓库用户名
-            password: "Harbor12345" # 镜像仓库密码
+              username: "admin" # (6)!
+              password: "Harbor12345" # (7)!
           containers:
             auth:
-              username: "admin" # Helm 仓库用户名
-              password: "Harbor12345" # Helm 仓库密码
+              username: "admin" # (8)!
+              password: "Harbor12345" # (9)!
         ```
+
+        1. 使用 chart-syncer 之后 .tar.gz 包所在的路径
+        2. 镜像仓库地址
+        3. 镜像仓库路径
+        4. Helm Chart 仓库类别
+        5. Helm 仓库地址
+        6. 镜像仓库用户名
+        7. 镜像仓库密码
+        8. Helm 仓库用户名
+        9. Helm 仓库密码
 
     === "未添加 Helm repo"
 
@@ -49,18 +60,25 @@
 
         ```yaml title="load-image.yaml"
         source:
-          intermediateBundlesPath: kcoral # 节点上执行 load-image.yaml 文件的路径。
+          intermediateBundlesPath: kcoral # (1)!
         target:
-          containerRegistry: 10.16.10.111 # 镜像仓库 url
-          containerRepository: release.daocloud.io/kcoral # 镜像仓库路径
+          containerRegistry: 10.16.10.111 # (2)!
+          containerRepository: release.daocloud.io/kcoral # (3)!
           repo:
             kind: LOCAL
-            path: ./local-repo # chart 本地路径
+            path: ./local-repo # (4)!
           containers:
             auth:
-              username: "admin" # 镜像仓库用户名
-              password: "Harbor12345" # 镜像仓库密码
+              username: "admin" # (5)!
+              password: "Harbor12345" # (6)!
         ```
+
+        1. 使用 chart-syncer 之后 .tar.gz 包所在的路径
+        2. 镜像仓库 url
+        3. 镜像仓库路径
+        4. chart 本地路径
+        5. 镜像仓库用户名
+        6. 镜像仓库密码
 
 1. 执行同步镜像命令。
 
@@ -68,11 +86,21 @@
     charts-syncer sync --config load-image.yaml
     ```
 
-#### 方式二：使用 Docker 或 containerd 加载镜像
+### 方式二：使用 Docker 或 containerd 加载镜像
 
 解压并加载镜像文件。
 
-1. 解压 tar 压缩包。
+1. 解压第一层压缩包。
+
+    ```shell
+    tar xvf kcoral.amd64.tar
+    ```
+
+    解压成功后会得到 1 个新的压缩包：
+
+    - kcoral.bundle.tar
+
+2. 解压新的压缩包。
 
     ```shell
     tar xvf kcoral.bundle.tar
@@ -84,7 +112,7 @@
     - images.tar
     - original-chart
 
-2. 从本地加载镜像到 Docker 或 containerd。
+3. 从本地加载镜像到 Docker 或 containerd。
 
     === "Docker"
 
@@ -95,7 +123,7 @@
     === "containerd"
 
         ```shell
-        ctr image import images.tar
+        ctr -n k8s.io image import images.tar
         ```
 
 !!! note
@@ -124,7 +152,7 @@
     1. 添加备份恢复的 helm 仓库。
 
         ```shell
-        heml repo add kcoral http://{harbor url}/chartrepo/{project}
+        helm repo add kcoral http://{harbor url}/chartrepo/{project}
         ```
 
     1. 更新备份恢复的 helm 仓库。
@@ -154,14 +182,7 @@
         helm get values kcoral -n kcoral-system -o yaml > bak.yaml
         ```
 
-    1. 更新 kcoral crds
-
-        ```shell
-        helm pull kcoral/kcoral --version 0.5.0 && tar -zxf kcoral-0.5.0.tgz
-        kubectl apply -f kcoral/crds
-        ```
-
-    1. 执行 `helm upgrade`。
+    2. 执行 `helm upgrade` 。
 
         升级前建议您覆盖 bak.yaml 中的 `global.imageRegistry` 字段为当前使用的镜像仓库地址。
 
@@ -184,16 +205,10 @@
         在升级备份恢复版本之前，建议您执行如下命令，备份老版本的 `--set` 参数。
 
         ```shell
-        helm get values kcoral -n k pan da-system -o yaml > bak.yaml
+        helm get values kcoral -n kcoral-system -o yaml > bak.yaml
         ```
 
-    1. 更新 kcoral crds
-
-        ```shell
-        kubectl apply -f ./crds
-        ```
-
-    1. 执行 `helm upgrade`。
+    2. 执行 `helm upgrade` 。
 
         升级前建议您覆盖 bak.yaml 中的 `global.imageRegistry` 为当前使用的镜像仓库地址。
 

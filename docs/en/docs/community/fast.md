@@ -1,3 +1,8 @@
+---
+MTPE: windsonsea
+date: 2024-06-19
+---
+
 # Fast
 
 Fast is a Kubernetes CNI based on [eBPF](https://ebpf.io) implementation.
@@ -8,7 +13,7 @@ At present, the following two capabilities have been realized:
 
 ## Architecture
 
-![fast](./images/fast.png)
+![fast](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/community/images/fast.png)
 
 Components:
 

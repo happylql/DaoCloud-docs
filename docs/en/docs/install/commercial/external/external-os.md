@@ -1,4 +1,9 @@
-# Using External Service to Store OS Repo Resources
+---
+MTPE: windsonsea
+date: 2024-05-11
+---
+
+# Use External Service to Store OS Repo Resources
 
 This document describes how to use a third-party storage service for OS repo resources and specify it during the installer installation. There are two supported types: S3-compatible services (such as MinIO) and non-S3-compatible services (such as Nginx).
 
@@ -43,11 +48,11 @@ The following content assumes that CentOS 7.9 x86_64 is used as the cluster node
 
 1. Ensure that an available Nginx service exists with login and file writing permissions on the node where the service is located.
 
-2. Download/copy the ISO operating system image file and osPackage offline package to the node where the Nginx service is located. Also, copy the ISO import script from the ignition node to the node where the Nginx service is located.
+2. Download/copy the ISO operating system image file and osPackage offline package to the node where the Nginx service is located. Also, copy the ISO import script from the bootstrap node to the node where the Nginx service is located.
 
     !!! note
 
-        The ISO import script is located in the [offline package](../start-install.md/#_2) at the path `./offline/offline-iso/import_iso.sh`.
+        The ISO import script is located in the [offline package](../start-install.md#offline-image-package-required) at the path `./offline/offline-iso/import_iso.sh`.
 
 3. Determine the path to import:
 

@@ -1,16 +1,20 @@
-# 什么是虚拟机容器 (Virtnest)
+---
+hide:
+  - toc
+---
 
-Virtnest 是一款强大的工具，通过容器镜像创建虚拟机（VM）。它能够在 Kubernetes 集群中快速部署和管理虚拟机，
-并提供无缝控制虚拟机的启动、关机、配置等操作。
+# 什么是虚拟机 (Virtnest)
+
+虚拟机（Virtnest）基于 KubeVirt 技术将虚拟机作为云原生应用进行管理，与容器无缝地衔接在一起，使用户能够轻松地部署虚拟机应用，享受与容器应用一致的丝滑体验。
 
 以下是使用 Virtnest 的大致步骤：
 
-1. 构建所需的虚拟机容器镜像。
-1. 将镜像推送到 Docker Registry 或其他镜像仓库中。
-1. 使用镜像创建虚拟机实例。
-1. 通过 VNC 或其他 Web 控制台方式访问虚拟机。
-1. 查看虚拟机列表以及每个虚拟机的详细信息。
-1. 执行虚拟机的创建、快照、关机、启动、SSH 访问、数据迁移等操作。
+1. 在集群内[安装 virtnest-agent 组件](../install/virtnest-agent.md)。
+2. [构建所需的虚拟机镜像](../vm-image/index.md)，将镜像推送到 Docker Registry 或其他镜像仓库中。
+3. [使用镜像创建虚拟机](../quickstart/index.md)或[使用 YAML 创建虚拟机](../quickstart/index.md#yaml)。
+4. 通过 VNC/console 方式[访问虚拟机](../quickstart/nodeport.md)。
+5. 查看虚拟机列表以及每个虚拟机的详细信息。
+6. 根据需要执行开启/关机、重启、克隆、[快照](../vm/snapshot.md)、恢复快照、[实时迁移](../vm/live-migration.md)等操作。
 
 ## Virtnest 的优势
 
@@ -31,3 +35,7 @@ Virtnest 是一款强大的工具，通过容器镜像创建虚拟机（VM）。
 
 借助 Virtnest，用户能够充分发挥 k8s 集群的潜力，高效管理虚拟化基础设施。
 我们致力于不断优化和完善 Virtnest 的容器化功能，为用户提供更好的虚拟机管理体验。
+
+!!! note
+
+    虚拟机 Virtnest 是 DCE 5.0 商业版（标准版、高级版和白金版）专用的特性。

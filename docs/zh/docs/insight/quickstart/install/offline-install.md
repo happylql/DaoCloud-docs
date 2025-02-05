@@ -1,54 +1,101 @@
 # 离线升级可观测性模块
 
-本页说明从[下载中心](../../../download/index.md)下载可观测性模块后，应该如何安装或升级。
+本页说明[下载可观测性模块](../../../download/modules/insight.md)后，应该如何安装或升级。
 
 !!! info
 
-    下述命令或脚本内出现的 `insight` 字样是可观测性模块的内部开发代号。
+    下述命令或脚本内出现的 __insight__ 字样是可观测性模块的内部开发代号。
+
+## 解压下载的包得到bundle包
+
+```shell
+tar -xvf insight_v0.25.3_amd64.tar
+```
+
+解压后可得到 insight 和 insight-agent 对应 2 个 bundle.tar 包
+
+```shell
+$ ll insight_v0.25.3_amd64
+总用量 2899996
+-rw-r--r-- 1 root root 2367463936 4月   2 18:36 insight_0.25.3.bundle.tar
+-rw-r--r-- 1 root root  602125824 4月   2 18:35 insight-agent_0.25.3.bundle.tar
+```
 
 ## 从安装包中加载镜像
 
 您可以根据下面两种方式之一加载镜像，当环境中存在镜像仓库时，建议选择 chart-syncer 同步镜像到镜像仓库，该方法更加高效便捷。
+需注意，charts-syncer 版本需大于等于 [v0.0.22](https://github.com/DaoCloud/charts-syncer/releases/tag/v0.0.22)。
 
 ### chart-syncer 同步镜像到镜像仓库
 
 1. 创建 load-image.yaml
 
-    !!! note  
+    !!! note
 
         该 YAML 文件中的各项参数均为必填项。您需要一个私有的镜像仓库，并修改相关配置。
 
-    === "已安装 chart repo"
+    === "已安装 HARBOR chart repo"
 
-        若当前环境已安装 chart repo，chart-syncer 也支持将 chart 导出为 tgz 文件。
+        若当前环境已安装 HARBOR chart repo，chart-syncer 也支持将 chart 导出为 tgz 文件。
 
         ```yaml title="load-image.yaml"
         source:
-          intermediateBundlesPath: insight-offline # (1)
+          intermediateBundlesPath: insight-offline # (1)!
         target:
-          containerRegistry: 10.16.10.111 # (2)
-          containerRepository: release.daocloud.io/insight # (3)
+          containerPrefixRegistry: 10.16.10.111 # (2)!
+          appendOriginRegistry: true
           repo:
-            kind: HARBOR # (4)
-            url: http://10.16.10.111/chartrepo/release.daocloud.io # (5)
+            kind: HARBOR # (3)!
+            url: http://10.16.10.111/chartrepo/release.daocloud.io # (4)!
             auth:
-            username: "admin" # (6)
-            password: "Harbor12345" # (7)
+              username: "admin" # (5)!
+              password: "Harbor12345" # (6)!
           containers:
             auth:
-              username: "admin" # (8)
-              password: "Harbor12345" # (9)
+              username: "admin" # (7)!
+              password: "Harbor12345" # (8)!
         ```
 
-        1. 到执行 charts-syncer 命令的相对路径，而不是此 YAML 文件和离线包之间的相对路径
+        1. 到执行 charts-syncer 命令的相对路径，而不是此 YAML 文件和离线bundle包之间的相对路径
         2. 需更改为你的镜像仓库 url
-        3. 需更改为你的镜像仓库
-        4. 也可以是任何其他支持的 Helm Chart 仓库类别
-        5. 需更改为 chart repo url
-        6. 你的镜像仓库用户名
-        7. 你的镜像仓库密码
-        8. 你的镜像仓库用户名
-        9. 你的镜像仓库密码
+        3. 也可以是任何其他支持的 Helm Chart 仓库类别
+        4. 需更改为 chart repo project url
+        5. 你的镜像仓库用户名
+        6. 你的镜像仓库密码
+        7. 你的镜像仓库用户名
+        8. 你的镜像仓库密码
+
+    === "已安装 CHARTMUSEUM chart repo"
+
+        若当前环境已安装 CHARTMUSEUM chart repo，chart-syncer 也支持将 chart 导出为 tgz 文件。
+        当charts-syncer同步成功后，再次同步则会提示 `There are no charts out of sync!。可通过`/api/charts/insight` 接口查看已有版本号来确定是否同步成功。
+
+        ```yaml title="load-image.yaml"
+        source:
+          intermediateBundlesPath: insight-offline # (1)!
+        target:
+          containerPrefixRegistry: 10.16.10.111 # (2)!
+          appendOriginRegistry: true
+          repo:
+            kind: CHARTMUSEUM # (3)!
+            url: http://10.16.10.111 # (4)!
+            auth:
+              username: "rootuser" # (5)!
+              password: "rootpass123" # (6)!
+          containers:
+            auth:
+              username: "rootuser" # (7)!
+              password: "rootpass123" # (8)!
+        ```
+
+        1. 到执行 charts-syncer 命令的相对路径，而不是此 YAML 文件和离线 bundle 包之间的相对路径
+        2. 需更改为你的镜像仓库 url
+        3. 也可以是任何其他支持的 Helm Chart 仓库类别
+        4. 需更改为 chart repo url
+        5. 你的镜像仓库用户名, 如果 chartmuseum 没有开启登录验证，就不需要填写 auth
+        6. 你的镜像仓库密码
+        7. 你的镜像仓库用户名
+        8. 你的镜像仓库密码
 
     === "未安装 chart repo"
 
@@ -56,30 +103,28 @@
 
         ```yaml title="load-image.yaml"
         source:
-          intermediateBundlesPath: insight-offline # (1)
+          intermediateBundlesPath: insight-offline # (1)!
         target:
-          containerRegistry: 10.16.10.111 # (2)
-          containerRepository: release.daocloud.io/insight # (3)
+          containerPrefixRegistry: 10.16.10.111 # (2)!
           repo:
             kind: LOCAL
-            path: ./local-repo # (4)
+            path: ./local-repo # (3)!
           containers:
             auth:
-              username: "admin" # (5)
-              password: "Harbor12345" # (6)
+              username: "admin" # (4)!
+              password: "Harbor12345" # (5)!
         ```
 
         1. 到执行 charts-syncer 命令的相对路径，而不是此 YAML 文件和离线包之间的相对路径
         2. 需更改为你的镜像仓库 url
-        3. 需更改为你的镜像仓库
-        4. chart 本地路径
-        5. 你的镜像仓库用户名
-        6. 你的镜像仓库密码
+        3. chart 本地路径
+        4. 你的镜像仓库用户名
+        5. 你的镜像仓库密码
 
 1. 执行同步镜像命令。
 
     ```shell
-    charts-syncer sync --config load-image.yaml
+    charts-syncer sync --config load-image.yaml --insecure
     ```
 
 ### Docker 或 containerd 直接加载
@@ -89,7 +134,7 @@
 1. 解压 tar 压缩包。
 
     ```shell
-    tar xvf insight.bundle.tar
+    tar -xvf insight_0.25.3.bundle.tar
     ```
 
     解压成功后会得到 3 个文件：
@@ -109,7 +154,7 @@
     === "containerd"
 
         ```shell
-        ctr image import images.tar
+        ctr -n k8s.io image import images.tar
         ```
 
 !!! note
@@ -119,11 +164,12 @@
 
 ## 升级
 
-有两种升级方式。您可以根据前置操作，选择对应的升级方案：
+推荐以下两种升级方式。您可以根据前置操作，选择对应的升级方案。升级前，请关注[升级注意事项](./upgrade-note.md)。
+需要注意的是，如果通过 **Helm 应用** 升级，则需在 **Helm 仓库** 中进行同步仓库后再升级。
 
 === "通过 helm repo 升级"
 
-    1. 检查全局管理 helm 仓库是否存在。
+    1. 检查 Insight helm 仓库是否存在。
 
         ```shell
         helm repo list | grep insight
@@ -135,21 +181,21 @@
         Error: no repositories to show
         ```
 
-    1. 添加全局管理的 helm 仓库。
+    1. 添加 Insight的 helm 仓库。
 
         ```shell
-        heml repo add insight http://{harbor url}/chartrepo/{project}
+        helm repo add insight http://{harbor url}/chartrepo/{project} --insecure-skip-tls-verify
         ```
 
-    1. 更新全局管理的 helm 仓库。
+    1. 更新 Insight 的 helm 仓库。
 
         ```shell
-        helm repo update insight # (1)
+        helm repo update insight # (1)!
         ```
 
         1. helm 版本过低会导致失败，若失败，请尝试执行 helm update repo
 
-    1. 选择您想安装的全局管理版本（建议安装最新版本）。
+    1. 选择您想安装的 Insight 版本（建议安装最新版本）。
 
         ```shell
         helm search repo insight/insight --versions
@@ -159,34 +205,27 @@
         ```none
         [root@master ~]# helm search repo insight/insight --versions
         NAME                   CHART VERSION  APP VERSION  DESCRIPTION
-        insight/insight  0.13.1          v0.13.1       A Helm chart for Insight
-        insight/insight-agent  0.13.1          v0.13.1       A Helm chart for Insight Agent
+        insight/insight        0.25.3          0.25.3       A Helm chart for Insight
+        insight/insight-agent  0.25.3          0.25.3       A Helm chart for Insight Agent
         ...
         ```
 
     1. 备份 `--set` 参数。
 
-        在升级全局管理版本之前，建议您执行如下命令，备份老版本的 `--set` 参数。
+        在升级 Insight 版本之前，建议您执行如下命令，备份老版本的 `--set` 参数。
 
         ```shell
         helm get values insight -n insight-system -o yaml > insight.yaml
         helm get values insight-agent -n insight-system -o yaml > insight-agent.yaml
         ```
 
-    1. 执行 `helm upgrade`。
-
-        升级前建议您覆盖 insight.yaml 和 insight-agent.yaml 中的 `global.imageRegistry` 字段为当前使用的镜像仓库地址。
-
-        ```shell
-        export imageRegistry={你的镜像仓库}
-        ```
+    1. 执行 `helm upgrade` 。需要注意的是，如果备份的 values.yaml 文件中固定了 tag，则建议删除 tag 字段再进行版本升级。
 
         ```shell
         helm upgrade insight insight/insight \
           -n insight-system \
           -f ./insight.yaml \
-          --set global.imageRegistry=$imageRegistry \
-          --version 0.13.1
+          --version 0.25.3
         ```
 
         以及
@@ -195,15 +234,14 @@
         helm upgrade insight-agent insight/insight-agent \
           -n insight-system \
           -f ./insight-agent.yaml \
-          --set global.imageRegistry=$imageRegistry \
-          --version 0.13.1
+          --version 0.25.3
         ```
 
 === "通过 chart 包升级"
 
     1. 备份 `--set` 参数。
 
-        在升级全局管理版本之前，建议您执行如下命令，备份老版本的 `--set` 参数。
+        在升级 Insight 版本之前，建议您执行如下命令，备份老版本的 `--set` 参数。
 
         ```shell
         helm get values insight -n insight-system -o yaml > insight.yaml
@@ -211,7 +249,7 @@
 
     1. 执行 `helm upgrade`。
 
-        升级前建议您覆盖 bak.yaml 中的 `global.imageRegistry` 为当前使用的镜像仓库地址。
+        升级前建议您覆盖 bak.yaml 中的 __global.imageRegistry__ 为当前使用的镜像仓库地址。
 
         ```shell
         export imageRegistry={你的镜像仓库}

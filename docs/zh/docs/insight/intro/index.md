@@ -10,21 +10,35 @@ hide:
 
 可观测模块实现了指标、日志、链路的统一采集，支持对指标、日志进行多维度的告警并提供简洁明了的可视化管理界面。
 
-主要功能如下：
+## 模块指引
 
-- 提供容器、服务、节点和集群等多维度的监控
-- 支持查询 CPU、内存、存储、网络等监控指标
-- 集成 Grafana，提供精选的开源仪表盘
-- 支持集群工作负载日志，系统日志和 Kubernetes 事件的采集和查询
-- 支持单条日志的上下文查询
-- 以集群为维度生成服务拓扑，查看服务间调用关系
-- 侵入式链路采集，支持查询服务的实时 RPS、错误率、时延等关键指标
-- 提供开源的聚合链路查询
-- 提供开箱即用的告警规则
-- 支持自定义指标、日志等告警
-- 支持灵活的配置告警级别、阈值、通知对象等
-- 提供邮箱、企业微信、钉钉、Webhook 等多种通知方式
-- 持久化存储指标、日志、链路数据
+<div class="grid cards" markdown>
+
+- :material-server:{ .lg .middle } __安装与升级__
+
+    ---
+
+    可观测性模块包含 Insight 和 Insight Agent，后者需要部署在被观测的 Kubernetes 上。
+
+    - 部署[资源规划](../quickstart/res-plan/index.md)
+    - Insight Agent [安装](../quickstart/install/install-agent.md) 与[升级](../quickstart/install/offline-install.md)
+    - Insihgt Agent 安装在 [DCE 4](../quickstart/other/install-agentindce.md) 或 [OpenShift](../quickstart/other/install-agent-on-ocp.md)
+    - [大规模日志部署调整](../best-practice/insight-kafka.md)
+    - 升级[注意事项](../quickstart/install/upgrade-note.md)
+
+- ::material-auto-fix:{ .lg .middle } __开始观测__
+
+    ---
+
+    使用 OpenTelemetry 技术对您的应用程序进行观测。
+
+    - 了解 [OpenTelemetry](../quickstart/otel/otel.md)，向 Insight [发送观测数据](../quickstart/otel/send_tracing_to_insight.md)
+    - 使用[无侵入](../quickstart/otel/operator.md)方式增强应用
+    - 针对 [Java 应用观测](../quickstart/otel/java/index.md)
+    - 针对 [Golang 应用观测](../quickstart/otel/golang/golang.md)
+    - [其他观测技术集成](../best-practice/sw-to-otel.md)
+
+</div>
 
 ## 基本概念
 
@@ -39,7 +53,7 @@ hide:
 | 6    | 服务发现   | Service Discovery | 一个用于 Kubernetes 环境的服务发现配置，用于批量且自动地接入 Kubernetes 上的监控点 |
 | 7    | Exporter   | Exporter          | 一个能够提供指标的服务，往往被理解为监控对象                 |
 | 8    | 告警规则   | Rule              | 一个返回值是布尔值的 PromQL 表达式，它描述了指标或自定义指标是否处于阈值范围中，如果不满足将产生一条告警事件 |
-| 9    | 告警消息   | Event             | 告警规则被触发时的记录信息，记录了告警规则、触发时间、当前系统状态；同时将触发相应的动作，例如发送邮件 |
+| 9    | 告警消息   | Alert             | 告警规则被触发时的记录信息，记录了告警规则、触发时间、当前系统状态；同时将触发相应的动作，例如发送邮件 |
 | 10   | 通知       | Notification      | 由系统通过邮件等渠道发送给用户的告警事件信息                 |
 | 11   | PromQL     | PromQL            | Prometheus 系统所支持的查询语句                              |
 

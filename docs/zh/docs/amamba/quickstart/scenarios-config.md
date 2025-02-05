@@ -1,8 +1,10 @@
 # Jenkins 场景配置
 
-Jenkins 分为 master 和 agent。master 主要用于存储配置，插件和协调，agent 和 master 之间通过 agent 这个 Pod 里的 jnlp 容器通信。流水线的工作都在 agent 上，是资源消耗大户。
+Jenkins 分为 master 和 agent。master 主要用于存储配置，插件和协调，agent 和 master 之间通过
+agent 这个 Pod 里的 jnlp 容器通信。流水线的工作都在 agent 上，是资源消耗大户。
 
-本文推荐的配置是基于客户并行运行的所有流水线时不会导致整个集群资源崩溃，尤其是 jenkins master 不会出现被驱逐等异常情况。能够并行多少条流水线主要取决于实际 agent 的资源消耗和 K8s 集群资源的大小。
+本文推荐的配置是基于客户并行运行的所有流水线时不会导致整个集群资源崩溃，尤其是 jenkins master
+不会出现被驱逐等异常情况。能够并行多少条流水线主要取决于实际 agent 的资源消耗和 K8s 集群资源的大小。
 
 ## 场景 1：并行 50 条流水线
 
@@ -39,7 +41,7 @@ resources:
 
 ### agent 配置
 
-> 请参照实际的流水线消耗资源设置，因为主要的资源消耗都是来自 agent。
+请参照实际的流水线消耗资源设置，因为主要的资源消耗都是来自 agent。
 
 ```yaml
 resources:
@@ -86,7 +88,7 @@ resources:
 
 ### agent 配置
 
-> 参照场景 1 的 agent 配置
+参照[场景 1](#agent) 的 agent 配置
 
 ## 场景 3：并行 200 条流水线
 
@@ -123,9 +125,11 @@ resources:
 
 ### agent 配置
 
-> 参照场景 1 的 agent 配置
+参照[场景 1](#agent) 的 agent 配置。
 
-### 注意事项
-- 当jenkins pod因为OOM重启时，建议加大master的内存。为了保证Qos，建议master的内存和cpu的request和limit保持一致。
-- 当流水线模块接口调用存在超时情况时，建议加大master的CPU。
-- 当master 内存配置超过`4G`时，建议修改`JavaOpts`中的`-XX:+UseConcMarkSweepGC`为`-XX:+UseG1GC`。
+!!! note
+
+    - 当 Jenkins Pod 因为 OOM 重启时，建议加大 Master 的内存
+      为了保证 QoS，建议 Master 的内存和 cpu 的 request 和 limit 保持一致
+    - 当流水线模块接口调用存在超时情况时，建议加大 Master 的 CPU
+    - 当 Master 内存配置超过 __4G__ 时，建议修改 __JavaOpts__ 中的 __-XX:+UseConcMarkSweepGC__ 为 __-XX:+UseG1GC__

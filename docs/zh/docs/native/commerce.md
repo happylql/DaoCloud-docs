@@ -4,6 +4,10 @@
 
 ### A
 
+- [AppViewX 推出 KUBE+ ——为确保 Kubernetes 环境安全而构建的证书生命周期管理方案](https://appviewx.com/blogs/introducing-appviewx-kube-a-certificate-lifecycle-management-solution-built-to-secure-your-kubernetes-environments/)
+
+    AppViewX KUBE+ 提供了统一的可视化界面用于控制和管理证书。具体功能包括：自动发现所有 SSL/TLS 证书、维护最新的证书清单、提供对证书元数据的可见性、端到端证书生命周期自动化、强大的策略和合规引擎、广泛的本地集成等。
+
 - [Aqua 云原生安全平台引入基于 eBPF 技术的零日漏洞检测工具 Lightning Enforcer](https://blog.aquasec.com/combat-zero-day-threats-with-aquas-ebpf-lightning-enforcer)
 
     Aqua Lightning Enforcer 利用漂移和基于行为的自动化检测方法，检测零日漏洞等未知威胁，并提供事件管理、可疑行为告警以及开箱即用的 CNDR（云本地检测和响应）。
@@ -39,6 +43,10 @@
 - [AWS 推出本地集群，用于在混合云服务 Outposts 上本地运行 EKS 集群](https://aws.amazon.com/about-aws/whats-new/2022/09/amazon-eks-outposts-local-clusters/)
 
     本地集群减少了因云端网络中断而导致的应用停机风险。在此期间，应用程序仍然可用，并且可以执行集群操作。当连接到云时，EKS 管理 Outposts 上 K8s 控制平面的可用性。本地集群运行的 Kubernetes 与云上 EKS 功能相同，支持自动部署最新的安全补丁。
+
+- [Azure Kubernetes 发行版 AKS 9 月更新](https://azure.microsoft.com/en-us/updates/?query=AKS)
+
+    更新内容：新增 Vertical Pod 自动伸缩（VPA）附加组件、新增镜像清理器、新增节点操作系统补丁功能、 网关负载均衡器现已支持 IPv6、支持 Kubernetes 1.28、支持 Azure Functions 中的 Dapr 扩展、Azure 容器存储更新（支持在 26 个区域部署、支持卷大小调整、克隆、支持更多磁盘类型）。
 
 - [Azure 推出容器应用程序网关预览版](https://azure.microsoft.com/en-us/updates/public-preview-application-gateway-for-containers/)
 
@@ -99,6 +107,18 @@
 - [Azure 发布 AKS 舰队管理器（公开预览版）](https://mp.weixin.qq.com/s/YVUuFQLKe8DGADenZCKsyw)
 
     Azure Kubernetes 舰队管理器将多个群集地视为单个集群来管理。用户可通过创建一个 Fleet 资源来管理多个集群。用户可将现有 AKS 集群当作成员集群，加入到舰队中，然后用这些集群的元数据，编排多个集群场景，如 Kubernetes 资源传播和多集群负载均衡。
+
+- [阿里云容器服务 ACK 产品 10 月更新](https://mp.weixin.qq.com/s/9hrm67Y2e8iGGHjhSwWCow)
+
+    更新内容：支持服务网格场景 Sidecar 加速、支持操作系统内核层的容器监控可观测能力、新增 OpenAPI 支持单独发起集群检查、备份中心组件migrate-controller支持 arm64 架构。
+
+- [阿里云容器计算服务 ACS 正式发布](https://mp.weixin.qq.com/s/KRyMjqGebXH4Mx0D0sWbyw)
+
+    容器计算服务 ACS 将容器与资源一体化，用户无需关注底层节点和集群。提供灵活的 Pod 配置模式，支持 1:1~1:8 资源配比；同时，还提供了秒级弹性能力，以应对流量波动；支持算力调配资源复用，让资源在用户负载和云产品负载中灵活调配；除了原生支持网络服务器、微服务应用、Web 应用等通用业务负载外，还支持大数据计算、AI 计算等任务类负载，以及中间件、数据库等实时性能敏感类业务。
+
+- [阿里云微服务引擎 MSE 8 月产品更新](https://mp.weixin.qq.com/s/odXdOMFiBvbpq09xhLrcZA)
+
+    更新内容：云原生网关支持为路由配置JT认证，并对指定的消费者进行鉴权；支持将线上流量复制到指定服务；MSEIngress 支持路由级别的 Sentinel全局限流和并发控制；支持同一 Service 下多 Deployment 的灰度发布；应用相关监控数据支持 1 天内的监控回放；基于 KruiseRollout 实现全链路灰度发布能力。
 
 - [阿里云应用实时监控服务 ARMS 7 月产品更新](https://mp.weixin.qq.com/s/NyRu3zNJwSfnV8Pc4tJBrQ)
 
@@ -193,6 +213,10 @@
 
     [Alpaquita Cloud Native Platform](https://bell-sw.com/cloud-native-platform/) 利用适用于 Java 的 Linux 发行版、JVM 优化、多用途框架和原生镜像技术，提供了一个专为在容器中运行的 Java 应用而优化的运行时环境。该平台特性：云成本降低 20%，使用更小的 Pod，所需节点的数量减少；零迁移成本，不需要重构；效率提升 50%，实现低延迟、低成本、快启动。
 
+- [Buoyant 推出服务网格项目 Linkerd 的企业版](https://buoyant.io/newsroom/announcing-linkerd-enterprise-the-first-enterprise-focused-distribution-of-the-popular-linkerd-service-mesh-project)
+
+    Linkerd 企业版在开源项目 Linkerd 的基础上，增加了一些仅适用于企业的功能，包括零信任和 FIPS 140-2 合规性、成本感知负载均衡器、生命周期自动化等。
+
 - [博云容器中间件 BMM v2.1 更新发布](https://mp.weixin.qq.com/s/opPpG0g3wcJV3on133ZSeg)
 
     更新内容：新增 RabbitMQ 及生命周期管理能力、首页新增中间件概览、支持存储扩容可视化、支持版本升级可视化、支持中间件操作审计、支持事件查询与告警。
@@ -231,6 +255,10 @@
 
     更新内容：提供基于 Sigstore 的无密钥签名模式、增加一个开箱即用的安全策略库、支持用户通过其 Gitlab 账号登录、支持 CloudEvents、支持细粒度的 Kubernetes 工作负载对象的策略、增强大规模集群用户的稳定性。
 
+- [Chkk 推出 SaaS 平台 Kubernetes Availability Platform，旨在降低云原生应用的可用性风险](https://www.chkk.io/blog/chkk-launches-the-kubernetes-availability-platform)
+
+    Kubernetes Availability Platform 专为在 Kubernetes 上运行关键任务应用程序的组织而设计。目的在于降低可用性风险，预防故障和以外中断，实现安全高效地运行 Kubernetes。该产品不仅能识别风险并对风险进行优先排序，还能为用户提供预先验证的升级计划，将数周的准备工作缩短到数天，并安全地修复这些风险。
+
 - [Cisco 发布全栈观测平台 FSO](https://newsroom.cisco.com/c/r/newsroom/en/us/a/y2023/m06/cisco-launches-full-stack-observability-platform.html)
 
     FSO 能够将来自应用、网络、基础设施、安全、云、可持续性和业务的数据汇集在一起，提供上下文和预测性的观测能力。FSO 利用 OpenTelemetry 来统一收集指标、事件、日志和跟踪，重点关注云原生应用的可观测性。其提供成本可观测性，提供对 Kubernetes 工作负载资源的优化措施，支持生成基于应用的业务风险评分等。
@@ -242,6 +270,10 @@
     Velero 用户可以订阅 CloudCasa 服务，并将其现有设置编入目录，以便在几分钟内进行集中管理。
 
 ### D, E
+
+- [D2iQ K8s 平台 D2iQ Kubernetes Platform v2.6 发布](https://docs.d2iq.com/dkp/2.6/dkp-2-6-0-features-and-enhancements)
+
+    更新内容：支持容器运行时 Podman、支持车 Kubernetes 1.26.6、支持遥测功能、新增自然语言 AI 助手 DKP AI Navigator、支持设置 DKP 工作负载和应用的优先级、支持边缘计算环境中网络受限集群的可观测性和监控。
 
 - [D2iQ 推出自然语言 AI 助手 DKP AI Navigator，用于简化 Kubernetes 管理](https://d2iq.com/press-release/dkp-ai-navigator)
 
@@ -276,6 +308,10 @@
 
     Cloud Security Management 将云安全态势管理、云工作负载安全、警报、事件管理和报告等功能集中在一个平台上，开发和安全团队能够借此识别错误配置、检测威胁并确保云原生应用的安全。
 
+- [Docker 推出自家生成式 AI 工具 Docker AI](https://www.docker.com/press-release/announces-ai-boosting-developer-productivity-through-automated-guidance/)
+
+    Docker AI 已经接受了来自数百万个 Dockerfile、compose 文件及错误日志中 Docker 专有数据的训练。Docker AI 将被直接集成至开发者的工作流程当中，以便在发生错误时提供帮助。它将显示开发环境中潜在的修复选项，允许开发者在提交变更之前测试修复效果。
+
 - [Docker 发布技术预览版 WebAssembly 工具](https://www.docker.com/blog/docker-wasm-technical-preview/)
 
     现在，Docker 允许用户使用容器和 Wasm 工件构建云原生应用，将 Wasm 视为 Linux 容器的补充性技术。
@@ -297,6 +333,10 @@
 
     Davis AI 因果分析引擎为 Kubernetes 性能问题及其对业务连续性的影响提供根因分析。具体功能：自动化根因分析、支持实时跟踪 Kubernetes 的编排流程、将性能问题与 Pod 驱逐联系起来、支持根据工作负载部署清单的变化来识别与错误配置有关的性能下降问题的原因。
 
+- [EMQX 云原生分布式物联网接入平台 EMQX Enterprise 5.2 发布](https://mp.weixin.qq.com/s/iT9eo-MHBWi5KhMqoTnUaA)
+
+    新增可拖拽的可视化 Flow 设计器，用于快速创建、测试和部署数据集成；新增独立的 Webhook 页面，简化配置流程；集成全托管实时流数据处理服务 Amazon Kinesis； 集成完全托管型实时数据引入服务 Azure Event Hubs；集成 开源云原生分布式流数据平台 HStream；集成开源分布式云原生时序数据库 GreptimeDB；集成 OpenTelemetry 指标。
+
 - [Ermetic 云原生应用保护平台支持 Kubernetes 安全态势管理](https://ermetic.com/news/ermetic-adds-kubernetes-security-posture-management-to-cloud-native-application-protection-platform/)
 
     Ermetic 云原生应用保护平台的 Kubernetes 安全姿势管理功能支持自动发现和修复 Kubernetes 集群中的错误配置、合规性违规以及风险或过度特权。
@@ -313,6 +353,10 @@
 - [Fairwinds 的 Kubernetes 治理和安全平台 Fairwinds Insights 十一月更新](https://www.fairwinds.com/blog/fairwinds-insights-release-notes-10.2-10.6-spotlight-on-workload-cost-allocation)
 
     更新内容：增加工作负载成本分配功能，允许查看一组工作负载的历史成本；优化成本页面，细化 Kubernetes 集群成本的分类；支持查看成本随时间变化的动态。
+
+- [Fermyon 推出 Serverless AI 方案 Serverless AI](https://www.fermyon.com/blog/introducing-fermyon-serverless-ai)
+
+    Fermyon 在其平台中引入了一个 Serverless 框架 Serverless AI，用于调用人工智能模型。并且通过利用 Civo 提供的 GPU 计算服务，以降低访问构建和运行这些 AI 模型所需 GPU 的成本，并将冷启动时间降低至 50 毫秒。
 
 - [Finout 推出无代理 Kubernetes 成本治理套件](https://www.businesswire.com/news/home/20230413005018/en/Finout-Announces-Agentless-Cost-Governance-Suite-for-Kubernetes)
 
@@ -343,6 +387,10 @@
 - [Gloo Gateway 云原生 API 网关支持 GraphQL](https://www.solo.io/blog/announcing-graphql-for-gloo-gateway/)
 
     GraphQL for Gloo Gateway 无缝地将 GraphQL API 添加到 Gloo Gateway 中。用户可以借此对 API 进行联合 GraphQL 查询，而不需要为 GraphQL 建立额外的服务器以及解析器和解析器模式库；所有策略和请求都可以在 Envoy Proxy 过滤器中进行管理；同时支持声明式配置，与 CI/CD 和 GitOps 工作流完全兼容。
+
+- [Google Cloud 推出 GKE 企业版 GKE Enterprise](https://cloud.google.com/blog/products/containers-kubernetes/whats-new-with-gke-at-google-cloud-next)
+
+    GKE Enterprise 将 GKE 和 Anthos 的精华整合到一个集成、直观的容器平台中。其支持多集群工作负载 (fleet)；具有可管理的安全功能，包括高级工作负载漏洞监测、治理和策略控制以及可管理的服务网格；支持混合云和多云。此外，GKE Enterprise 还将软件部署时间缩短了 70% 多。
 
 - [Google Cloud GKE 引入 Network Function Optimizer，助力电信运营商采用云原生网络功能](https://cloud.google.com/blog/topics/telecommunications/network-function-optimizer-for-gke-and-gdc-edge)
 
@@ -403,6 +451,10 @@
 
     Harness GitOps-as-a-Service 基于 Argo CD 构建，集成 OPA，支持审计跟踪，提供细粒度的 RBAC，支持不同部署的统一单点登录，支持声明式设置，提供集中的 GitOps 控制中心用于管理和查看多个环境中的部署情况，支持与已有的 Argo CD 实例集成。
 
+- [华为云容器服务 CCE 发布新一代云原生可观测平台](https://mp.weixin.qq.com/s/oK4otkzskwD55TBwpy7fMQ)
+
+    云原生可观测平台聚焦四大能力：支持一键启用监控中心能力，并提供从容器视角的一站式可视化监控，支持集群、节点、工作负载、Pod 等多种维度的监控视图；增加告警中心能力，提供容器告警基于模板的一键配置能力；集成 LTS 日志服务能力，推出云原生日志中心；提供健康中心能力，发现集群故障与潜在风险并给出修复建议。
+
 - [华为云云容器引擎 CCE Turbo 2023 上半年产品更新](https://mp.weixin.qq.com/s/7cEh_383i3sxz7aCgRqPNA)
 
     更新内容：支持 Kubernetes 1.25 版本；新增网络优先级控制、CPU 多核负载均衡隔离、CPU burst 能力；提供一键式原地无损自动升级；支持多容器共享 GPU；支持同节点池多系列、规格实例混合管理；支持节点 OS 批量自动更新升级。
@@ -410,6 +462,10 @@
 - [华为云发布分布式云原生产品——容器 CCE Turbo 和分布式云原生 UCS (Ubiquitous Cloud Native Service)](https://mp.weixin.qq.com/s/Bm_kFuyK3uLaSb4AvcYdmA)
 
     CCE Turbo 可通过计算、网络、调度全方位加速，实现极致弹性，如帮助客户以 3000 pod/min 的弹性轻松应对业务流量洪峰；UCS 提供跨云、跨地域的云原生应用管理，实现一致体验。
+
+- [火山引擎容器服务 VKE 第三季度产品更新](https://mp.weixin.qq.com/s/YTeVFW4myz26LALQ4AyCPA)
+
+    更新内容：新增云原生批量计算套件、VPC-CNI 集群支持 NetworkPolicy、新增 rdma-device-plugin 组件、新增集群巡检及故障诊断工具、支持 NUMA 拓扑感知调度、提供镜像懒加载 Nydus 监控看板、支持 GPU Xid 信息输出到日志文件、支持 Kubernetes 1.26 版本。
 
 - [火山引擎云原生 PaaS 平台 veStack 敏捷版第二季度产品更新](https://mp.weixin.qq.com/s/t_38mWzGurd0QrgdQg6O_A)
 
@@ -436,6 +492,14 @@
 - [骥步科技多云数据备份恢复产品 YS1000 v3.2 发布](https://mp.weixin.qq.com/s/t64iDKWOQ_wUHRLvmGw8tQ)
 
     更新内容：增加集群的 etcd 备份支持；支持创建镜像备份仓库；支持可选应用镜像源的镜像备份；支持沙箱恢复，恢复后不影响原业务；支持备份恢复任务使用钩子程序进行灵活的附属功能配置；支持基于备份恢复的数据卷同步方式；持配置容灾实例时同时配置 ingress 映射。
+
+- [京东云云原生安全平台发布](https://mp.weixin.qq.com/s/SSs3231b2wU75dKXue8Fxw)
+
+    京东云云原生安全平台包含资产清点、镜像安全、运行时安全、网络安全、集群安全、节点安全等安全服务，提供从镜像生成、存储到运行时的全生命周期云原生安全解决方案。
+
+- [Juicedata 云原生分布式文件系统 JuiceFS 企业版 5.0 发布](https://mp.weixin.qq.com/s/bL69_Q9yeoQYnpVJ9Q2p8Q)
+
+    更新内容：提升缓存可观测性、支持主动清除缓存、支持异构的缓存集群、支持自动故障感知、提供多种缓存淘汰策略、支持共享块设备做数据持久化、为对象存储中已有数据提供加速访问、将分块格式文件“转存”为对象。
 
 - [Kong 服务网格产品 Kong Mesh v2.3 发布](https://konghq.com/blog/product-releases/kong-mesh-2-3)
 
@@ -478,6 +542,10 @@
   
     更新内容包括：支持无代理工作负载扫描、支持对 AWS 上的 Linux 主机进行主机漏洞评估、支持容器镜像漏洞评估。
 
+- [Loft Labs 推出企业级虚拟大规模虚拟 Kubernetes 集群管理平台 vCluster.Pro](https://loft.sh/blog/introducing-vcluster-pro/)
+
+    vCluster.Pro 在开源项目 vCluster 的基础上，提供了集成了 CoreDNS 容器和 vCluster 同步器；支持通过隔离控制平面将控制平面与工作节点分离；提供同步补丁功能在虚拟集群和主机集群的同步过程中为 Kubernetes 资源打补丁；使用 Chainguard busybox 镜像作为基础镜像。
+
 - [Logz.io 发布 K8s 全栈观测平台 Kubernetes360](https://logz.io/blog/unified-observability-kubernetes-360/)
 
     Kubernetes360 将日志、Prometheus 指标监控和 Jaeger 支持的分布式追踪统一在一个平台中，使 DevOps 团队能够以简单、高效和可操作的方式监控应用 SLO。
@@ -487,6 +555,10 @@
     Kubeflow-chart 使用 Helm Chart 方式定制了 Kubeflow 的安装方式，只需运行一个命令，即可轻松完成 Kubeflow 及其依赖组件。Alauda MLOps 在此基础上进行了强化，支持非侵入式的可视化工作流编排开发环境、可视化分布式、多租户和配额、虚拟 GPU 以及集成 MLFlow 等。
 
 ### M
+
+- [蚂蚁集团发布新一代 AI 云原生 PaaS 平台 SOFAStack 5.0](https://mp.weixin.qq.com/s/pmTvM62OFf2DPrQxw6W5uA)
+
+    SOFAStack 5.0 引入代码大模型 CodeFuse，涵盖设计、研发、测试、运维等领域，通过人机交互助手提升日常代码研发、测试、运维过程中的效率和质量，预计将为企业产研效能提升 30%。此外，SOFAStack 还针对 Codefuse 大模型提供了多任务微调和高性能推理能力。
 
 - [Mirantis 发布轻量级 Kubernetes 发行版 k0s v1.27](https://www.mirantis.com/blog/k0s-1-27-released)
 
@@ -583,6 +655,10 @@
 
 ### Q
 
+- [青云发布分布式多租户云原生操作系统 KubeSphere 企业版 3.5.0 发布](https://mp.weixin.qq.com/s/OxqjZM3H473zLWBdAS5iNQ)
+
+    更新内容：支持邮件通知渠道配置多个通知订阅、支持在指定告警策略中新增自定义标签、支持按告警内容检索、支持按存储类型对租户存储使用数据进行分类统计、云原生数据库管理模块 DMP 中的 Redis、Kafka、OpenSearch 等组件新增预置告警功能。
+
 - [青云发布分布式多租户云原生操作系统 KubeSphere 企业版 4.0](https://mp.weixin.qq.com/s/v-n4ztqQG8p2Tt9aPfQiuA)
 
     KubeSphere 企业版 4.0 基于全新的云原生可扩展开放架构——KubeSphere LuBan 打造。KubeSphere LuBan 是一个分布式的云原生可扩展开放架构，为扩展组件提供可热插拔的微内核。4.0 具备简单轻量的系统架构，2 核 4G 即可轻松玩转；还支持集成 KubeSphere 功能组件或任何第三方业务组件，实现即插即用。
@@ -641,6 +717,14 @@
 - [Rainbond 云原生多云应用管理平台 Rainbond 企业版发布](https://mp.weixin.qq.com/s/pmCwyFbcCwXxcO0-rVM5dw)
 
     Rainbond 企业版拥有全局可观测中心，用于监视、调试和分析运行在 Kubernetes 集群和 rainbond 平台中的基础设施及应用服务。此外，还为 IT 业务系统向国产化信创环境中迁移提供了方案，支持全链路灰度发布和集群巡检，内置 WAF 防火墙和操作审计功能，支持私有化部署应用商店等。
+
+- [Red Hat OpenShift 4.14 发布](https://cloud.redhat.com/blog/red-hat-openshift-4.14-is-now-available)
+
+    更新内容：推出面向裸机红帽 OpenShift 和红帽 OpenShift 虚拟化的托管控制面板、新增密钥管理 OpenShift Shared Resource CSI Driver、支持跨命名空间共享 ConfigMap 和 Secret、为所有架构的部署提供了 24 个月的支持。
+
+- [Red Hat OpenShift GitOps 1.10 发布](https://cloud.redhat.com/blog/whats-new-in-red-hat-openshift-gitops-1.10)
+
+    支持 Argo CD 2.8，包括引入 ApplicationSet 插件生成器、删除传统配置管理插件 (CMP)、忽略资源更新等新功能；GitOps 文档将从 OpenShift 文档中的一个子部分（目前在 CI/CD 下）移至独立的部分；允许动态缩放应用程序控制器；自动安装控制台仪表盘。
 
 - [Red Hat 容器镜像仓库 Red Hat Quay v3.9.0 发布](https://cloud.redhat.com/blog/red-hat-quay-3.9-is-generally-available)
 
@@ -704,6 +788,10 @@
 
     Lightstep UQL 支持统一的“可观测性即代码”，通过单一查询语言简化从多个不同工具迁移到统一 Lightstep 平台的过程，还支持跨多个 Kubernetes 节点、服务器或 serverless 函数查询和关联指标、日志和跟踪。
 
+- [SmartX 超融合产品组合 SmartX HCI 5.1 发布](https://mp.weixin.qq.com/s/GTG3APMu_8IHeIVXS-UZjA)
+
+    除近期发布的容器管理与服务组件（ SMTX Kubernetes Service 1.0），SmartX HCI 5.1 新增跨虚拟化与容器平台的软件定义负载均衡、可观测平台等组件，并全面提升虚拟化、分布式存储、分布式防火墙、系统运维、灾备、迁移工具等组件能力。
+
 - [SmartX 携手灵雀云推出全栈云原生联合解决方案](https://mp.weixin.qq.com/s/_mhgQ3YsGdWgWCbQyuT9xA)
 
     在该方案中，SmartX 基于超融合软件 SMTX OS 为客户提供生产就绪的 IaaS 层底座，并通过 Kubernetes 构建与管理服务工具 SMTX Kubernetes Service 帮助创建并管理生产级 Kubernetes 集群。灵雀云 ACP 容器云平台帮助客户实现业务应用从开发、测试到部署、运维的全生命周期平台化管理。
@@ -752,6 +840,10 @@
 
     更新内容包括：新增边缘 K8s 集群的防篡改功能、支持边缘优化的 K8s 发行版 Palette eXtended Kubernetes Edge、简化边缘设备部署。
 
+- [StarRocks Labs 发布云原生湖仓 StarRocks 3.1](https://mp.weixin.qq.com/s/sryxFDRAP1M_ffxyUMhSEA)
+
+    更新内容：支持主键表模型及相关功能，查询和导入性能也基本与存算一体架构持平；极速数据湖分析性能提升， 并实现常用 Trino 语法的完全兼容；增加 Apache Iceberg 的读写支持、对流式数据湖 Apache Paimon 的分析支持；提升物化视图构建、刷新的稳定性，并提供更多灵活易用的创建和刷新参数、增加更多场景的 SQL 智能改写；提供了随机分桶、表达式分区、FILES 表函数等。
+
 - [StormForge 发布 Kubernetes 生产环境优化方案 Optimize Live v2.0](https://www.stormforge.io/press-releases/stormforge-launches-v2-optimize-live-kubernetes-resource-optimization/)
 
     更新内容：通过一个 helm deployment 即可调整应用的大小；使用机器学习分析工作负载使用模式，提供 CPU 和内存建议；能够自动检测 HPA 的存在；提供一系列资源使用报告；简化资源建议的部署。
@@ -763,6 +855,10 @@
 - [StormForge Kubernetes 集群性能优化方案 Optimize Live 利用机器学习优化 K8 自动扩缩容能力](https://www.stormforge.io/blog/introducing-intelligent-bi-dimensional-autoscaling/)
 
     最新版本的 Optimize Live 提供了二维自动缩放能力，HPA 和 VPA 能够协同工作，既能调整 pod 的大小，又能水平设置利用率，最大程度优化自动缩放的效率。此外，还利用机器学习分析历史资源使用情况，以找到最佳的 HPA 目标利用率。
+
+- [SUSE 企业级容器管理平台 Rancher Prime 2.0 发布](https://mp.weixin.qq.com/s/kMJ1tj_UKbT5Qpmh0o_Z_w)
+
+    更新内容：通过 UI 扩展框架，将 SUSE 和第三方工具的功能直接构建到 Rancher Prime UI；推出 Rancher Prime 应用程序集合；生成式 AI 助手；提供基于横向（集群数量）和纵向（pods 和 nods）压力测试的性能基准测试与记录。
 
 - [SUSE 推出企业级容器管理平台 Rancher Prime](https://mp.weixin.qq.com/s/iVFsSGlRd4TdJGcRKLQBuQ)
 
@@ -796,6 +892,14 @@
     该版本新特性：支持集成任意 OCI 镜像仓库，扫描其中的容器镜像；支持集成任意 Kubernetes 集群，扫描其中的工作负载配置及镜像；支持扫描第三方软件物料清单文件；支持在任意 CI/CD 流水线中集成 SEAL 的安全扫描功能；能够聚合管理全链路各个阶段的资源提供全链路安全洞察；支持自动生成多策略修复建议、漏洞优先级排序、因时制宜处理安全问题。
 
 ### T
+
+- [Tetrate 推出企业级服务网格项目 TIS（Tetrate Istio Subscription）](https://mp.weixin.qq.com/s/lwVqOlwPgtaZ8BMsvLuT1Q)
+
+    TIS 是行业内唯一基于开源 Istio 的完全上游服务网格。其基于 Tetrate Istio Distro，提供了经过验证的针对所有主要云平台的 Istio 构建版本。此外，还提供了 CVE 保护、FedRAMP 合规性，并符合美国联邦零信任架构的标准。
+
+- [Tetrate 发布企业级云原生服务网关 Tetrate Enterprise Envoy Gateway](https://mp.weixin.qq.com/s/XV7b6W3GiKbamuTabypIBQ)
+
+    Tetrate Enterprise Envoy Gateway 基于开源 Envoy Gateway 构建，支持 CVE 和升级管理，符合 FIPS 标准的政府环境构建，并支持 Envoy 的功能（如全局速率限制、OIDC 和 OAuth2 的应用程序身份验证处理）。
 
 - [Tetrate 推出针对 Amazon EKS 设计的服务网格解决方案 TSE](https://mp.weixin.qq.com/s/Q4qTLOv8kNn7lf0flHCOzg)
 
@@ -870,6 +974,10 @@
 
     TLS Protect for Kubernetes 是 Venafi 机器身份管理平台 Control Plane for Machine Identities 的一部分，
     帮助安全和平台团队在多云和多集群 Kubernetes 环境中管理云原生机器身份，如 TLS、mTLS 和 SPIFFE，增强机器身份管理的可观测性、控制和自动化。
+
+- [VMware 云原生应用程序平台 VMware Tanzu Application Service 5.0 发布](https://tanzu.vmware.com/content/blog/tanzu-application-service-5-0-release-news)
+
+    更新内容：开发人员门户通过集成的平台数据库支持数据持久化（beta）、为所有平台组件增加分布式追踪功能、新增 BOSH 命令用于改进容灾工作流、增加 OpenTelemetry 支持（beta）、完善证书轮换流程的自动化。
 
 - [VMware Kubernetes DevOps 平台 VMware Tanzu Application Platform 1.6 发布](https://tanzu.vmware.com/content/blog/tanzu-application-platform-1-6-release-news)
 

@@ -10,7 +10,7 @@ DCE 5.0 云原生网关支持支持负载均衡、超时重试、黑白名单等
 ## 前提条件
 
 - 准备一个演示服务，例如 `my-otel-demo-adservice`
-- 创建[网关](../gateway/create-gateway.md)、[域名](../gateway/domain/add-domain.md)、[API](../gateway/api/add-api.md)
+- 创建[网关](../gateway/index.md)、[域名](../gateway/domain/index.md)、[API](../gateway/api/index.md)
 - 将演示[服务接入网关](gateway01.md)
 
 ## 负载均衡
@@ -324,7 +324,7 @@ DCE 5.0 云原生网关支持支持负载均衡、超时重试、黑白名单等
 
     ![rewrite](https://docs.daocloud.io/daocloud-docs-images/docs/zh/docs/skoala/images/br-gw32.png)
 
-3. 在未开启 WebSocket 策略，点击`连接`，会显示访问失败。
+3. 在未开启 WebSocket 策略，点击 __连接__ ，会显示访问失败。
 
     ![rewrite](https://docs.daocloud.io/daocloud-docs-images/docs/zh/docs/skoala/images/br-gw33.png)
 
@@ -332,7 +332,7 @@ DCE 5.0 云原生网关支持支持负载均衡、超时重试、黑白名单等
 
     ![rewrite](https://docs.daocloud.io/daocloud-docs-images/docs/zh/docs/skoala/images/br-gw35.png)
 
-5. 再次点击`连接`，显示访问成功，说明 WebSocket 策略生效。
+5. 再次点击 __连接__ ，显示访问成功，说明 WebSocket 策略生效。
 
     ![rewrite](https://docs.daocloud.io/daocloud-docs-images/docs/zh/docs/skoala/images/br-gw34.png)
 
@@ -340,7 +340,8 @@ DCE 5.0 云原生网关支持支持负载均衡、超时重试、黑白名单等
 
 1. 启用本地限流策略。
 
-    下图设置的含义是：每分钟只能正常请求 3 次，但允许溢出访问 2 次，所以每分钟累计允许访问 5 次。超过 5 次的访问会返回 `429` 代码，并附上 `ratelimit=done` 和 `ratelimit1= done1` 的响应头。
+    下图设置的含义是：每分钟只能正常请求 3 次，但允许溢出访问 2 次，所以每分钟累计允许访问 5 次。
+    超过 5 次的访问会返回 `429` 代码，并附上 `ratelimit=done` 和 `ratelimit1= done1` 的响应头。
 
     ![rewrite](https://docs.daocloud.io/daocloud-docs-images/docs/zh/docs/skoala/images/br-gw36.png)
 
@@ -378,8 +379,10 @@ DCE 5.0 云原生网关支持支持负载均衡、超时重试、黑白名单等
 
 2. 使用测试专用接口 `/cookie-set` 设置请求时的 cookie 属性，并在响应头中携带实际生效的 cookie 属性。
 
-    网关请求时设置的 cookie 为 `Cookie{name='cookie-name', value='cookie-value', maxAge=PT-1S, domain='test.domain', path='/path', secure=false, httpOnly=false, sameSite='Lax'}`
+    网关请求时设置的 cookie 为
+    `Cookie{name='cookie-name', value='cookie-value', maxAge=PT-1S, domain='test.domain', path='/path', secure=false, httpOnly=false, sameSite='Lax'}`
 
-    而在响应头中 set-cookie 展示了实际生效的 cookie: `cookie-name=cookie-value; Secure; Domain=rewrite.domain; SameSite=Strict; Path=/rewrite/path`
+    而在响应头中 set-cookie 展示了实际生效的 cookie：
+    `cookie-name=cookie-value; Secure; Domain=rewrite.domain; SameSite=Strict; Path=/rewrite/path`
 
     ![rewrite](https://docs.daocloud.io/daocloud-docs-images/docs/zh/docs/skoala/images/br-gw43.png)

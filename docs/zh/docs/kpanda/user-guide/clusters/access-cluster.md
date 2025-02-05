@@ -7,19 +7,41 @@
 
 !!! note
   
-    访问集群时，用户应具有 [`Cluster Admin`](../permissions/permission-brief.md) 权限或更高权限。
+    访问集群时，用户应具有 [Cluster Admin](../permissions/permission-brief.md) 权限或更高权限。
 
 ## 通过 CloudShell 访问
 
-1. 在`集群列表`页选择需要通过 CloudShell 访问的集群，点击右侧的 `...` 操作图标并在下拉列表中点击`控制台`。
+1. 在 __集群列表__ 页选择需要通过 CloudShell 访问的集群，点击右侧的 __┇__ 操作图标并在下拉列表中点击 __控制台__ 。
 
     ![调用 CloudShell 控制台](https://docs.daocloud.io/daocloud-docs-images/docs/kpanda/images/access-cloudshell.png)
 
-2. 在 CloudShell 控制台执行 `kubectl get node` 命令，验证 CloudShell 与集群的连通性。如图，控制台将返回集群下的节点信息。
+2. 在 CloudShell 控制台执行 __kubectl get node__ 命令，验证 CloudShell 与集群的连通性。如图，控制台将返回集群下的节点信息。
 
     ![验证连通性](https://docs.daocloud.io/daocloud-docs-images/docs/kpanda/images/access-get-node.png)
 
 现在，您可以通过 CloudShell 来访问并管理该集群了。
+
+!!! note
+  
+    如果您想通过 CloudShell 访问 AWS 集群，须升级 kpanda 版本到 v0.29.x 以上，并手动调整 kpanda-apiserver 服务配置项，具体操作流程如下：
+
+    1. 进入 **全局服务集群** ，在 **工作负载** -> **无状态负载** 列表中，找到 kpanda-apiserver 服务；
+
+        ![kpanda-apiserver 服务](../../images/access-cluster-100.png)
+
+    1. 进入负载详情页，点击页面右上角 **┇** 并在下拉列表中点击 **更新** ；
+
+        ![更新 kpanda-apiserver 服务](../../images/access-cluster-101.png)
+
+    1. 进入向导的第 2 步 **容器配置**，找到 **生命周期** -> **启动命令** 中的参数 **--feature-gates=** ，将其修改为 **--feature-gates=UseTokenInCloudShell=true**
+
+        ![修改启动命令参数](../../images/access-cluster-102.png)
+
+    1. 修改完成后，进入 kpanda-apiserver 负载详情页，点击页面右上角 **┇** 并在下拉列表中点击 **重启** ；
+
+        ![重启 kpanda-apiserver 服务](../../images/access-cluster-103.png)
+    
+    以上操作步骤完成后，即可通过 CloudShell 访问 AWS 集群。
 
 ## 通过 kubectl 访问
 
@@ -31,17 +53,17 @@
 
 满足上述条件后，按照下方步骤从本地访问云端集群：
 
-1. 在`集群列表`页选择需要下载证书的集群，点击右侧的 `...`，并在弹出菜单中点击`证书获取`。
+1. 在 __集群列表__ 页选择需要下载证书的集群，点击右侧的 __┇__ ，并在弹出菜单中点击 __证书获取__ 。
 
     ![进入下载证书页面](https://docs.daocloud.io/daocloud-docs-images/docs/kpanda/images/access-get-cert.png)
 
-2. 选择证书有效期并点击`下载证书`。
+2. 选择证书有效期并点击 __下载证书__ 。
 
     ![下载证书](https://docs.daocloud.io/daocloud-docs-images/docs/kpanda/images/access-download-cert.png)
 
-3. 打开下载好的集群证书，将证书内容复制至本地节点的 `config` 文件。
+3. 打开下载好的集群证书，将证书内容复制至本地节点的 __config__ 文件。
 
-    kubectl 工具默认会从本地节点的 `$HOME/.kube` 目录下查找名为 `config` 的文件。该文件存储了相关集群的访问凭证，kubectl 可以凭该配置文件连接至集群。
+    kubectl 工具默认会从本地节点的 __$HOME/.kube__ 目录下查找名为 __config__ 的文件。该文件存储了相关集群的访问凭证，kubectl 可以凭该配置文件连接至集群。
 
 4. 在本地节点上执行如下命令验证集群的连通性：
 

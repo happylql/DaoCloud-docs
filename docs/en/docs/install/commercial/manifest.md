@@ -1,12 +1,17 @@
+---
+MTPE: windsonsea
+date: 2024-06-28
+---
+
 # manifest.yaml
 
 This YAML file contains information about all modules of DCE 5.0, which are mainly divided into the base configuration module and product feature modules.
 
-For upgrading instructions, please refer to the [Upgrade DCE 5.0](../upgrade.md) documentation.
+For upgrading instructions, refer to [Upgrade DCE 5.0](../upgrade.md).
 
 ## Manifest Example
 
-Here is an example of a ClusterConfig file.
+Here is an example of a manifest file.
 
 ```yaml title="manifest.yaml"
 apiVersion: manifest.daocloud.io/v1alpha1
@@ -91,7 +96,7 @@ components:
     variables:
   mspider:
     enable: true
-    helmVersion: v0.17.0-rc2
+    helmVersion: v0.18.0-rc2
     variables:
   mcamel-rabbitmq:
     enable: true
@@ -147,33 +152,37 @@ components:
 Please refer to the table below for an explanation of the key fields in this YAML file.
 It includes components related to the infrastructure and products involved in the functionality modules of the product.
 
-| Field                            | Description                                      |
-| :------------------------------- | :----------------------------------------------- |
-| infrastructures                  | DCE 5.0 product infrastructure modules           |
-| infrastructures.xxx.enable       | Whether to enable the current module, default: true |
-| infrastructures.xxx.helmVersion  | The chart package version for the current module |
-| infrastructures.hwameiStor       | HwameiStor local storage module                   |
-| infrastructures.istio            | Istio service mesh module                         |
-| infrastructures.metallb          | MetalLB load balancer module                      |
-| infrastructures.contour          | Contour ingress controller module                 |
-| infrastructures.cert-manager     | Cert Manager certificate management module        |
-| infrastructures.mysql            | Mysql database module                             |
-| infrastructures.redis            | Redis database module                             |
-| components                       | DCE 5.0 product feature modules                   |
-| components.kubean                | Cluster lifecycle management module               |
-| components.ghippo                | Global management module                          |
-| components.kpanda                | Container management module                       |
-| components.kcoral                | Application backup module                         |
-| components.kcollie               | Cluster inspection module                         |
-| components.insight               | Observability module                              |
-| components.insight-agent         | Data collection component for observability module |
-| components.ipavo                 | Dashboard module                                  |
-| components.kairship              | MultiCloud Management module                  |
-| components.amamba                | Application workspace module                      |
-| components.jenkins               | Pipeline engine component for application workspace module |
-| components.skoala                | Microservice engine module                        |
-| components.mspider               | Service mesh module                               |
-| components.mcamel-*              | Middleware modules including ES, Kafka, MinIO, etc. |
-| components.kangaroo              | Container registry module                           |
-| components.gmagpie               | Reporting module                                  |
-| components.dowl                  | Cluster security module                           |
+| Fields                          | Description                                         |
+| :------------------------------ | :-------------------------------------------------- |
+| infrastructures                 | DCE 5.0 product infrastructure modules              |
+| infrastructures.xxx.enable      | Whether to enable the current module, default: true |
+| infrastructures.xxx.helmVersion | The chart package version for the current module    |
+| infrastructures.hwameiStor      | HwameiStor local storage                            |
+| infrastructures.istio           | Istio service mesh                                  |
+| infrastructures.metallb         | MetalLB load balancer                               |
+| infrastructures.contour         | Contour ingress controller                          |
+| infrastructures.cert-manager    | Cert Manager certificate management                 |
+| infrastructures.mysql           | Mysql database                                      |
+| infrastructures.redis           | Redis database                                      |
+| components                      | DCE 5.0 product feature                             |
+| components.kubean               | Cluster lifecycle management                        |
+| components.ghippo               | Global management                                   |
+| components.kpanda               | Container management                                |
+| components.kcoral               | Application backup                                  |
+| components.kcollie              | Cluster inspection                                  |
+| components.insight              | Observability                                       |
+| components.insight-agent        | Data collection component for observability         |
+| components.ipavo                | Dashboard                                           |
+| components.kairship             | Multicloud Management                               |
+| components.amamba               | Workbench                                           |
+| components.jenkins              | Pipeline engine component for Workbench             |
+| components.skoala               | Microservice engine                                 |
+| components.mspider              | Service mesh                                        |
+| components.mcamel-\*            | Middleware including ES, Kafka, and MinIO           |
+| components.kangaroo             | Container registry                                  |
+| components.gmagpie              | Billing and reporting                               |
+| components.dowl                 | Cluster security                                    |
+| components.kant                 | Cloud Edge Collaboration                            |
+| components.virtnest             | Virtual Machine                                     |
+| components.kolm                 | OLM management                                      |
+| components.baize                | AI Lab                                  |

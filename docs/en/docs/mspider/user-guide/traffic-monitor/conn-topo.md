@@ -1,29 +1,34 @@
+---
+MTPE: windsonsea
+Date: 2024-07-22
+---
+
 # Traffic Topology
 
 DCE 5.0 Service Mesh provides a dynamic flow visualization feature called Traffic Topology.
 
-In the left navigation menu, click on `Traffic Monitoring` -> `Traffic Topology`.
-Here, you can choose the `View`, `Namespace`, `Collection source`, and `Time` to view the service topology.
+In the left navigation menu, click __Traffic Monitor__ -> __Traffic Topology__ .
+Here, you can choose the __View__ , __Namespace__ , __Collection Source__ , and __Time__ to view the service topology.
 
-![Traffic Topology](../images/topo01.png)
+![Traffic Topology](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/mspider/user-guide/images/topo01.png)
 
 ## Display Settings
 
 There are three options available:
 
 - Namespace Boundary: Displays services partitioned by namespaces.
-- Show Idle Nodes
+- Show Idle Nodes: whether to display idle nodes.
 - Enable Animation: Shows the dynamic flow direction of traffic.
 
-![Display Settings](../images/topo02.png)
+![Display Settings](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/mspider/user-guide/images/topo02.png)
 
 The service topology graph supports operations like panning and zooming.
 
 ## Legend
 
-Click on the `Legend` button in the bottom-left corner to see the meaning of the current lines, circles, and colors.
+Click the __Legend__ button in the bottom-left corner to see the meaning of the current lines, circles, and colors.
 
-![Legend](../images/topo03.png)
+![Legend](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/mspider/user-guide/images/topo03.png)
 
 Services are represented by circles, and the color of the circle indicates the health status of the service:
 
@@ -34,10 +39,10 @@ Services are represented by circles, and the color of the circle indicates the h
 
 ## Service Metrics Information
 
-Click on any service to open a sidebar that displays relevant metrics based on the protocol type:
+Click any service to open a sidebar that displays relevant metrics based on the protocol type:
 
 - HTTP Protocol: Error Rate (%), Request Rate (RPM), Average Latency (ms)
 - TCP Protocol: Connection Count, Receive Throughput (B/s), Send Throughput (B/s)
-- Governance Information: View virtual services, destination services, gateways, etc.
+- Governance Information: View virtual services, destination services, and gateways
 
-![Sidebar](../images/topo04.png)
+![Sidebar](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/mspider/user-guide/images/topo04.png)

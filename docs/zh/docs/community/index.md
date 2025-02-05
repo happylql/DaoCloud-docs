@@ -7,7 +7,7 @@ hide:
 
 !!! info
 
-    「DaoCloud 道客」开源生态启航!
+    「DaoCloud 道客」开源生态启航！这些是 DCE 5.0 相关的开源项目。
 
 <div class="grid cards" markdown>
 
@@ -19,17 +19,13 @@ hide:
 
     [:octicons-arrow-right-24: 了解更多](./cloudtty.md)
 
--   :simple-wikipedia:{ .lg .middle } __Clusterpedia__ :simple-cncf: 已入选 CNCF Sandbox 和 Landscape
+-   :simple-wikipedia:{ .lg .middle } __Clusterpedia__ :simple-cncf: 已入选 CNCF Landscape 和 Sandbox
 
     ---
 
     Kubernetes 多集群资源一站式百科全书，已入选 CNCF 沙箱孵化，**中国移动** 等已部署至生产
 
     [:octicons-arrow-right-24: 了解更多](./clusterpedia.md)
-
-</div>
-
-<div class="grid cards" markdown>
 
 -   :simple-amazonapigateway:{ .lg .middle } __egressgateway__
 
@@ -50,10 +46,6 @@ hide:
 
     [:octicons-arrow-right-24: 了解更多](./fast.md)
 
-</div>
-
-<div class="grid cards" markdown>
-
 -   :fontawesome-brands-trade-federation:{ .lg .middle } __FedState__
 
     ---
@@ -70,17 +62,21 @@ hide:
 
     [:octicons-arrow-right-24: 了解更多](./ferry.md)
 
-</div>
-
-<div class="grid cards" markdown>
-
--   :material-storage-tank:{ .lg .middle } __HwameiStor__ :simple-cncf: 已入选 CNCF Sandbox 和 Landscape
+-   :material-storage-tank:{ .lg .middle } __HwameiStor__ :simple-cncf: 已入选 CNCF Landscape 和 Sandbox
 
     ---
 
     高可用的本地存储方案，更快、更强、更可靠，已入选 CNCF 全景图和沙箱孵化
 
     [:octicons-arrow-right-24: 了解更多](./hwameistor.md)
+
+-   :simple-kasasmart:{ .lg .middle } __KasmCloud__
+
+    ---
+
+    在 Kubernetes 中管理和运行 Actor、Provider 和 Link
+
+    [:octicons-arrow-right-24: Learn more](./kasmcloud.md)
 
 -   :material-doctor:{ .lg .middle } __kdoctor__
 
@@ -90,10 +86,6 @@ hide:
 
     [:octicons-arrow-right-24: 了解更多](./kdoctor.md)
 
-</div>
-
-<div class="grid cards" markdown>
-
 -   :simple-kubernetes:{ .lg .middle } __KLTS__
 
     ---
@@ -102,17 +94,21 @@ hide:
 
     [:octicons-arrow-right-24: 了解更多](./klts.md)
 
--   :peanuts:{ .lg .middle } __Kubean__ :simple-cncf: 已入选 CNCF Landscape
+-   :material-tune:{ .lg .middle } __kube-node-tuning__
 
     ---
 
-    容器化集群的全生命周期管理工具，正在申请 Sandbox
+    kube-node-tuning 旨在通过 Kubernetes 调优内核
+
+    [:octicons-arrow-right-24: 了解更多](./kube-node-tuning.md)
+
+-   :peanuts:{ .lg .middle } __Kubean__ :simple-cncf: 已入选 CNCF Sandbox
+
+    ---
+
+    容器化集群的全生命周期管理工具，只要你有一个点火集群，就可以一生二，二生三，三生万物，成就无数集群。
 
     [:octicons-arrow-right-24: 了解更多](./kubean.md)
-
-</div>
-
-<div class="grid cards" markdown>
 
 -   :material-forest:{ .lg .middle } __KWOK__ :simple-cncf: K8s-sigs 项目之一
 
@@ -122,17 +118,13 @@ hide:
 
     [:octicons-arrow-right-24: 了解更多](./kwok.md)
 
--   :fontawesome-solid-bridge:{ .lg .middle } __Merbridge__ :simple-cncf: 已入选 CNCF Sandbox 和 Landscape
+-   :fontawesome-solid-bridge:{ .lg .middle } __Merbridge__ :simple-cncf: 已入选 CNCF Landscape 和 Sandbox
 
     ---
 
-    使用 eBPF 加速您的服务网格，就像利用虫洞在网络世界中穿梭，已入选 CNCF 全景图和 Sandbox
+    使用 eBPF 加速您的服务网格，就像利用虫洞在网络世界中穿梭，已入选 CNCF Landscape 和 Sandbox
 
     [:octicons-arrow-right-24: 了解更多](./merbridge.md)
-
-</div>
-
-<div class="grid cards" markdown>
 
 -   :material-debug-step-over:{ .lg .middle } __miragedebug__
 
@@ -142,17 +134,21 @@ hide:
 
     [:octicons-arrow-right-24: 了解更多](./miragedebug.md)
 
--   :spider:{ .lg .middle } __Spiderpool__  :simple-cncf: 已入选 CNCF Landscape
+-   :material-tape-drive:{ .lg .middle } __Piraeus__ :simple-cncf: 已入选 CNCF Landscape 和 Sandbox
 
     ---
 
-    云原生网络 IPAM 自动化管理软件，建议作为插件用于 Underlay CNI，已入选 CNCF Landscape
+    一个适用于 Kubernetes 的高性能、高可用、简单、安全且与云无关的存储解决方案
+
+    [:octicons-arrow-right-24: Learn more](./piraeus.md)
+
+-   :spider:{ .lg .middle } __Spiderpool__  :simple-cncf: 已入选 CNCF Landscape 和 Sandbox
+
+    ---
+
+    云原生网络 Underlay 和 RDMA 网络方案，已入选 CNCF Landscape 和 Sandbox
 
     [:octicons-arrow-right-24: 了解更多](./spiderpool.md)
-
-</div>
-
-<div class="grid cards" markdown>
 
 -   :speedboat:{ .lg .middle } __公开镜像加速__
 
@@ -162,7 +158,19 @@ hide:
 
     [:octicons-arrow-right-24: 了解更多](./mirror.md)
 
+-   :simple-iconify:{ .lg .middle } __DaoCloud 开源图标库__
+
+    ---
+
+    收集了 DaoCloud 公司内部常用的一些开源图标。
+
+    [:octicons-arrow-right-24: 了解更多](./icons/index.md)
+
 </div>
+
+*[DCE]: DaoCloud Enterprise 云原生操作系统的简称，新一代 AI 智算平台
+*[Sandbox]: CNCF 为初创的云原生项目提供的沙箱式孵化平台
+*[Landscape]: CNCF 全景图是一个展示云原生技术生态系统中各种项目和工具的综合性图谱
 
 !!! success
 
@@ -172,10 +180,10 @@ hide:
 
     **Think Different, Think Open Source!**
 
+![cncf logo](./images/cncf.png)
+
 <p align="center">
-<img src="https://landscape.cncf.io/images/left-logo.svg" width="150"/>&nbsp;&nbsp;<img src="https://landscape.cncf.io/images/right-logo.svg" width="200"/>
-<br/><br/>
-Clusterpedia、HwameiStor 和 Merbridge 已入选 <a href="https://www.cncf.io/projects/clusterpedia/">CNCF 沙箱</a>。
+Clusterpedia、HwameiStor、Merbridge、Spiderpool 和 Kubean 均已入选 <a href="https://www.cncf.io/sandbox-projects/">CNCF Sandbox</a>。
 </p>
 
 [下载 DCE 5.0](../download/index.md){ .md-button .md-button--primary }

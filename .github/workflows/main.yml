@@ -17,6 +17,11 @@ env:
   UCLOUD_REGION : ${{ secrets.UCLOUD_REGION }}
   UCLOUD_BUCKET : ${{ secrets.UCLOUD_BUCKET }}
   CI: 1
+  PIP_CONSTRAINT: /home/runner/work/DaoCloud-docs/DaoCloud-docs/constraints.txt
+
+concurrency:
+  group: ${{ github.workflow_ref }}
+  cancel-in-progress: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -32,12 +37,21 @@ jobs:
         with:
           fetch-depth: 0 # Required for mkdocs to be able to display pages last update info
       
-      # Clone 
+      # Clone OpenAPI docs
       - name: Checkout public repository
         uses: actions/checkout@v2
         with:
           repository: daocloud/daocloud-api-docs
           path: dao-openapi
+          fetch-depth: 0 # Required for mkdocs to be able to display pages last update info
+
+      # Clone Download docs
+      - name: Checkout public repository
+        uses: actions/checkout@v2
+        with:
+          repository: daocloud/daocloud-download-docs
+          path: daocloud-download-docs
+          fetch-depth: 0 # Required for mkdocs to be able to display pages last update info
       
       - uses: actions/setup-python@v2
 #       - uses: actions/setup-python@v4
@@ -57,19 +71,9 @@ jobs:
       # Install mkdocs-material-insiders
       - run: git clone git@github.com:DaoCloud/mkdocs-material-insiders.git mkdocs-material
       - run: pip install -e mkdocs-material
-
+      
       # Runs a single command using the runners shell
-      - run: pip install mkdocs-git-revision-date-plugin \
-              mkdocs-mermaid2-plugin \
-              mkdocs-rss-plugin \
-              mkdocs-minify-plugin \
-              mkdocs-macros-plugin \
-              mkdocs-git-revision-date-localized-plugin \
-              mkdocs-awesome-pages-plugin \
-              mkdocs-redirects \
-              mkdocs-print-site-plugin \
-              mkdocs-swagger-ui-tag \
-              pyyaml
+      - run: pip install -r requirements.txt -c $PIP_CONSTRAINT
       
       # add custom plugin with pdf support
       - run: pip install git+https://github.com/SAMZONG/mkdocs-with-pdf-support-material-v8
@@ -77,6 +81,10 @@ jobs:
       # merged openapi docs
       - run: cp -av dao-openapi/docs/openapi docs/zh/docs/
       - run: python scripts/merged_nav.py
+
+      # merged download docs
+      - run: cp -av daocloud-download-docs/docs/zh/docs/download docs/zh/docs/
+      - run: cp -av daocloud-download-docs/docs/en/docs/download docs/en/docs/
 
       # build docs
       - run: pwd

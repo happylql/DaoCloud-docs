@@ -4,53 +4,54 @@ Namespaces are an abstraction used in Kubernetes for resource isolation. A clust
 
 This page will introduce the related operations of the namespace.
 
-## create namespace
+## Create a namespace
 
 Supports easy creation of namespaces through forms, and quick creation of namespaces by writing or importing YAML files.
 
 !!! note
 
     - Before creating a namespace, you need to [Integrate a Kubernetes cluster](../clusters/integrate-cluster.md) or [Create a Kubernetes cluster](../clusters/create-cluster.md) in the container management module.
-    - The default namespace `default` is usually automatically generated after cluster initialization. But for production clusters, for ease of management, it is recommended to create other namespaces instead of using the `default` namespace directly.
+    - The default namespace __default__ is usually automatically generated after cluster initialization. But for production clusters, for ease of management, it is recommended to create other namespaces instead of using the __default__ namespace directly.
 
-### Form Creation
+### Create with form
 
-1. On the `Cluster List` page, click the name of the target cluster.
+1. On the cluster list page, click the name of the target cluster.
 
-    
+    ![Cluster Details](../images/crd01.png)
 
-2. Click `Namespace` in the left navigation bar, and then click the `Create` button on the right side of the page.
+2. Click __Namespace__ in the left navigation bar, then click the __Create__ button on the right side of the page.
 
-    
+    ![Click to Create](../images/ns01.png)
 
-3. Fill in the name of the namespace, configure the workspace and labels (optional settings), and click `OK`.
+3. Fill in the name of the namespace, configure the workspace and labels (optional), and then click __OK__.
 
     !!! info
 
-        - After a namespace is bound to a workspace, resources in the namespace will be shared with the bound workspace. For a detailed description of the workspace, please refer to [Workspace and Folder](../../../ghippo/user-guide/workspace/workspace.md).
+        - After binding a namespace to a workspace, the resources of that namespace will be shared with the bound workspace. For a detailed explanation of workspaces, refer to [Workspaces and Hierarchies](../../../ghippo/user-guide/workspace/workspace.md).
 
-        - After the namespace is created, it is still possible to bind/unbind the workspace.
+        - After the namespace is created, you can still bind/unbind the workspace.
 
-    
+    ![Fill the Form](../images/ns02.png)
 
-4. Click `OK` to complete the creation of the namespace. On the right side of the namespace list, click `⋮`, and you can select update, bind/unbind workspace, quota management, delete and other operations from the pop-up menu.
+4. Click __OK__ to complete the creation of the namespace. On the right side of the namespace list, click __┇__ to select update, bind/unbind workspace, quota management, delete, and more from the pop-up menu.
 
-    
+    ![More Operations](../images/ns03.png)
 
-### YAML creation
 
-1. On the `Cluster List` page, click the name of the target cluster.
+### Create from YAML
 
-    
+1. On the __Cluster List__ page, click the name of the target cluster.
 
-2. Click `Namespace` in the left navigation bar, and then click the `YAML Create` button on the right side of the page.
+    ![Cluster Details](../images/crd01.png)
 
-    
+2. Click __Namespace__ in the left navigation bar, then click the __YAML Create__ button on the right side of the page.
 
-3. Input or paste the prepared YAML content, or directly import an existing YAML file locally.
+    ![Click to Create](../images/ns00.png)
 
-    > After entering the YAML content, click `Download` to save the YAML file locally.
+3. Enter or paste the prepared YAML content, or directly import an existing YAML file locally.
 
-    
+    > After entering the YAML content, click __Download__ to save the YAML file locally.
 
-4. Finally, click `OK` in the lower right corner of the pop-up box.
+    ![Click to Create](../images/ns04.png)
+
+4. Finally, click __OK__ in the lower right corner of the pop-up box.

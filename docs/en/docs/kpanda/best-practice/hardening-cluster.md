@@ -1,8 +1,8 @@
 # How to Harden a Self-built Work Cluster
 
-In DCE 5.0, when using the cisbenchmark (CIS) scan on a work cluster created using the user interface, some scan items did not pass the scan. This article provides hardening instructions based on different versions of cisbenchmark.
+In DCE 5.0, when using the CIS Benchmark (CIS) scan on a work cluster created using the user interface, some scan items did not pass the scan. This article provides hardening instructions based on different versions of CIS Benchmark.
 
-## cisbenchmark 1.27
+## CIS Benchmark 1.27
 
 Scan Environment:
 
@@ -46,7 +46,7 @@ Scan Environment:
 
 #### Hardening Configuration to Pass CIS Scan
 
-To address these security scan issues, kubespray has added default values in version v2.22 to solve some of the problems. For more details, please refer to the [kubespray hardening documentation](https://github.com/kubernetes-sigs/kubespray/blob/master/docs/hardening.md).
+To address these security scan issues, kubespray has added default values in v2.22 to solve some of the problems. For more details, refer to the [kubespray hardening documentation](https://github.com/kubernetes-sigs/kubespray/blob/master/docs/hardening.md).
 
 - Add parameters by modifying the kubean var-config configuration file:
 
@@ -72,4 +72,4 @@ To address these security scan issues, kubespray has added default values in ver
     ![img](https://docs.daocloud.io/daocloud-docs-images/docs/zh/docs/kpanda/images/hardening07.png)
 
 After the scan, all scan items passed the scan (WARN and INFO are counted as PASS).
-Note that this document only applies to cisbenchmark 1.27, as cisbenchmark is continuously updated.
+Note that this document only applies to CIS Benchmark 1.27, as CIS Benchmark is continuously updated.

@@ -11,7 +11,7 @@ site_description: >-
   to easily promote and boost your digital business.
 
 # copyright
-copyright: Copyright &copy; 2016 - 2022 DaoCloud
+copyright: Copyright &copy; 2016 - 2024 DaoCloud
 
 # Repository
 repo_name: DaoCloud/DaoCloud-docs
@@ -19,8 +19,8 @@ repo_name: DaoCloud/DaoCloud-docs
 repo_url: https://github.com/DaoCloud/DaoCloud-docs
 edit_uri: edit/main/docs/en/docs/
 
-use_directory_urls: false # disbale https://www.mkdocs.org/user-guide/configuration/#use_directory_urls
-strict: true # enable strict mode, https://www.mkdocs.org/user-guide/configuration/#strict
+use_directory_urls: false # disable https://www.mkdocs.org/user-guide/configuration/#use_directory_urls
+strict: false # enable strict mode, https://www.mkdocs.org/user-guide/configuration/#strict
 
 # Configuration
 theme:
@@ -41,11 +41,12 @@ theme:
   language: "en"
   features:
     - content.code.annotate
+    - content.code.copy
     - content.tooltips
     # - navigation.indexes
     - navigation.tabs
     # - navigation.instant
-    # - navigation.prune
+    - navigation.prune
     - navigation.sections
     - navigation.tabs.sticky
     - navigation.tracking
@@ -54,6 +55,7 @@ theme:
     - search.suggest
     - search.share
     - toc.follow
+    - navigation.path
     # - toc.integrate
 
   palette:
@@ -97,22 +99,30 @@ plugins:
       minify_css: true
       htmlmin_opts:
         remove_comments: true
+
+  - git-revision-date-localized:
+      enable_creation_date: false
+
+  - git-committers:
+      repository: DaoCloud/DaoCloud-docs
+      branch: main
+      enabled: true
   
   - redirects:
       redirect_maps:
         "en/install/install-dce.md": "install/index.md"
 
-  - git-revision-date: # Display the last update date on the bottom of each page, install with 'pip install mkdocs-git-revision-date-plugin'
-      enabled_if_env: "CI"
-  - git-revision-date-localized: # Add localized creation and update dates on the bottom of each page, install with 'pip install mkdocs-git-revision-date-localized-plugin'
-      timezone: Asia/Shanghai
-      type: timeago # Date format, valid values are 'date', 'datetime', 'iso_date', 'iso_datetime' and 'timeago'
-      fallback_to_build_date: true # Default is false, enables fallback to time when mkdocs build was executed
-      enable_creation_date: true # Show the file creation date next to the last update date
+  # - git-revision-date: # Display the last update date on the bottom of each page, install with 'pip install mkdocs-git-revision-date-plugin'
+  #     enabled_if_env: "CI"
+  # - git-revision-date-localized: # Add localized creation and update dates on the bottom of each page, install with 'pip install mkdocs-git-revision-date-localized-plugin'
+  #     timezone: Asia/Shanghai
+  #     type: timeago # Date format, valid values are 'date', 'datetime', 'iso_date', 'iso_datetime' and 'timeago'
+  #     fallback_to_build_date: true # Default is false, enables fallback to time when mkdocs build was executed
+  #     enable_creation_date: true # Show the file creation date next to the last update date
 
-      exclude:
-        - index.md
-      enabled: !ENV [ENABLED_GIT_REVISION_DATE, true]
+  #     exclude:
+  #       - index.md
+  #     enabled: !ENV [ENABLED_GIT_REVISION_DATE, true]
 
   # auto desgin nav in dirs
   # - awesome-pages:
@@ -175,8 +185,8 @@ markdown_extensions:
   - pymdownx.caret
   - pymdownx.details
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
@@ -197,8 +207,7 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
-  # - pymdownx.critic
-
-  # - pymdownx.snippets:
+  - pymdownx.critic
+  - pymdownx.snippets
   #     auto_append:
   #       - includes/glossary.md

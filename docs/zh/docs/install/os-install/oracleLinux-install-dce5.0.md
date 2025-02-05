@@ -1,6 +1,7 @@
-# Oracle Linux R9/R8 U1 操作系统上部署 DCE 5.0 商业版
+# 在 Oracle Linux R9/R8 U1 上部署 DCE 5.0 商业版
 
-本文将介绍如何在 Oracle Linux R9/R8 U1 操作系统上部署 DCE 5.0，v0.8.0 及以上支持。
+本文将介绍如何在 Oracle Linux R9/R8 U1 操作系统上部署 DCE 5.0。
+安装器 v0.8.0 及更高版本支持这种部署方式。
 
 ## 前提条件
 
@@ -10,37 +11,37 @@
 
 ## 离线安装
 
-1. 下载全模式离线包，可以在[下载中心](https://docs.daocloud.io/download/dce5/)下载最新版本。
+1. 下载全模式离线包，可以在[下载中心](../../download/index.md)下载最新版本。
 
-    | CPU 架构 | 版本   | 下载地址                                                                                          |
-    | -------- | ------ | ------------------------------------------------------------------------------------------------- |
-    | AMD64    | v0.10.0 | <https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/offline-v0.10.0-amd64.tar> |
+    | CPU 架构 | 版本   | 下载地址    |
+    | -------- | ------ | -------- |
+    | AMD64    | v0.17.0 | <https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/offline-v0.17.0-amd64.tar> |
 
     下载完毕后解压离线包：
 
     ```bash
-    curl -LO https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/offline-v0.10.0-amd64.tar
-    tar -xvf offline-v0.10.0-amd64.tar
+    curl -LO https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/dce5/offline-v0.17.0-amd64.tar
+    tar -xvf offline-v0.17.0-amd64.tar
     ```
 
 2. 下载 Oracle Linux R9/R8 U1 镜像文件。
 
     ```bash
-     ## Oracle Linux R9 U1
-     curl -LO https://yum.oracle.com/ISOS/OracleLinux/OL9/u1/x86_64/OracleLinux-R9-U1-x86_64-dvd.iso
+    # Oracle Linux R9 U1
+    curl -LO https://yum.oracle.com/ISOS/OracleLinux/OL9/u1/x86_64/OracleLinux-R9-U1-x86_64-dvd.iso
 
-     ## Oracle Linux R8 U1
-     curl -LO https://yum.oracle.com/ISOS/OracleLinux/OL8/u7/x86_64/OracleLinux-R8-U7-x86_64-dvd.iso
+    # Oracle Linux R8 U1
+    curl -LO https://yum.oracle.com/ISOS/OracleLinux/OL8/u7/x86_64/OracleLinux-R8-U7-x86_64-dvd.iso
     ```
 
 3. 下载 Oracle Linux R9/R8 U1 osPackage 离线包。
 
-     ```bash
-     ## Oracle Linux R9 U1
-     curl -LO https://files.m.daocloud.io/github.com/kubean-io/kubean/releases/download/v0.7.4/os-pkgs-oracle9-v0.7.4.tar.gz
+    ```bash
+    # Oracle Linux R9 U1
+    curl -LO https://files.m.daocloud.io/github.com/kubean-io/kubean/releases/download/v0.13.9/os-pkgs-oracle9-v0.13.9.tar.gz
 
-     ## Oracle Linux R8 U1
-     curl -LO https://files.m.daocloud.io/github.com/kubean-io/kubean/releases/download/v0.7.4/os-pkgs-oracle8-v0.7.4.tar.gz
+    # Oracle Linux R8 U1
+    curl -LO https://files.m.daocloud.io/github.com/kubean-io/kubean/releases/download/v0.13.9/os-pkgs-oracle8-v0.13.9.tar.gz
     ```
 
 4. 下载 addon 离线包，可以在[下载中心](../../download/index.md)下载最新版本（可选）
@@ -87,7 +88,7 @@
 7. 开始安装 DCE 5.0。
 
     ```bash
-    ./dce5-installer cluster-create -m ./sample/mainfest.yaml -c ./sample/clusterConfig.yaml
+    ./dce5-installer cluster-create -m ./sample/manifest.yaml -c ./sample/clusterConfig.yaml
     ```
 
     !!! note

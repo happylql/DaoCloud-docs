@@ -5,12 +5,13 @@ status: new
 # 一键转换为多云工作负载
 
 借助多云编排模块，您可以将单云工作负载一键转换为多云工作负载，操作非常简单，可以极大地提高多云环境中的运维效率。
+参阅[视频教程](../../videos/use-cases.md#_2)。
 
 具体操作步骤如下：
 
-1. 点击多云实例的名称，在左侧点击`多云工作负载`，选择`立即体验`新功能。
+1. 点击多云实例的名称，在左侧点击 __多云工作负载__ ，选择 __立即转换__ 新功能。
 
-    ![工作负载](https://docs.daocloud.io/daocloud-docs-images/docs/kairship/images/promote01.png)
+    ![工作负载](https://docs.daocloud.io/daocloud-docs-images/docs/zh/docs/kairship/images/promote01.png)
 
 2. 选择需要将哪个应用转换为多云应用。
 
@@ -20,9 +21,9 @@ status: new
     - 已经转化为多云应用的资源不支持二次转换，不会出现在列表中。
     - 转换过程中，系统会自动创建对应的部署策略，纳管原来的子集群。
 
-        ![转换应用](https://docs.daocloud.io/daocloud-docs-images/docs/kairship/images/promote02.png)
+    ![转换应用](https://docs.daocloud.io/daocloud-docs-images/docs/kairship/images/promote02.png)
 
-3. 在弹框右下角点击`确定`即可完成转换。
+3. 在弹框右下角点击 __确定__ 即可完成转换。
 
     应用转化为多云应用之后，和原生的多云工作负载一样支持编辑、更新等操作。
 
@@ -38,4 +39,4 @@ status: new
 
 - 当前支持转换哪些 Kubernetes 资源？
 
-    目前仅支持主动显式地将 Deployment 转换为多云资源，如果该 Deployment 关联了对应的配置项和密钥，则用户可以自由选择是否一并将配置项和密钥也转换为多云资源。默认会一并转换。这样做的目的是，当多云化之后的工作负载被分发到其他集群时，该工作负载依赖的资源也同步存在，否则可能会导致工作负载启动异常。
+    目前支持一键将子集群的 Deployment、Service、Ingress 资源转换为多云资源。如果 Deployment 关联了对应的配置项和密钥，则用户可以自由选择是否一并将配置项和密钥也转换为多云资源。默认会一并转换。这样做的目的是，当多云化之后的工作负载被分发到其他集群时，该工作负载依赖的资源也同步存在，否则可能会导致工作负载启动异常。

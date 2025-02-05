@@ -5,7 +5,7 @@ hide:
 
 # Start Cluster Inspection
 
-After creating an inspection configuration, if the `Scheduled Inspection` configuration is enabled, inspections will be automatically executed at the specified time. If the `Scheduled Inspection` configuration is not enabled, you need to manually trigger the inspection.
+After creating an inspection configuration, if the __Scheduled Inspection__ configuration is enabled, inspections will be automatically executed at the specified time. If the __Scheduled Inspection__ configuration is not enabled, you need to manually trigger the inspection.
 
 This page explains how to manually perform a cluster inspection.
 
@@ -13,7 +13,7 @@ This page explains how to manually perform a cluster inspection.
 
 - [Integrate](../clusters/integrate-cluster.md) or [create](../clusters/create-cluster.md) a cluster in the Container Management module.
 - Create an [inspection configuration](config.md).
-- The selected cluster is in the `Running` state and the insight component has been [installed in the cluster](../../../insight/quickstart/install/install-agent.md).
+- The selected cluster is in the __Running__ state and the insight component has been [installed in the cluster](../../../insight/quickstart/install/install-agent.md).
 
 ## Steps
 
@@ -21,20 +21,20 @@ When performing an inspection, you can choose to inspect multiple clusters in ba
 
 === "Batch Inspection"
 
-    1. Click on `Cluster Inspection` in the top-level navigation bar of the Container Management module, then click on `Inspection` on the right side of the page.
+    1. Click __Cluster Inspection__ in the top-level navigation bar of the Container Management module, then click __Inspection__ on the right side of the page.
 
-        ![start](../../images/inspect04.png)
+        ![start](../images/inspection-start.png)
 
-    2. Select the clusters you want to inspect, then click `OK` at the bottom of the page.
+    2. Select the clusters you want to inspect, then click __OK__ at the bottom of the page.
 
         - If you choose to inspect multiple clusters at the same time, the system will perform inspections based on different inspection configurations for each cluster.
         - If no inspection configuration is set for a cluster, the system will use the default configuration.
 
-        ![start](../../images/inspect05.png)
+        ![start](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/kpanda/images/inspect05.png)
 
 === "Individual Inspection"
 
     1. Go to the Cluster Inspection page.
-    2. Click on the more options button (`ⵗ`) on the right of the corresponding inspection configuration, then select `Inspection` from the popup menu.
+    2. Click the more options button ( __┇__ ) on the right of the corresponding inspection configuration, then select __Inspection__ from the popup menu.
 
-        ![basic](../../images/inspect06.png)
+        ![basic](../images/inspection-start-alone.png)

@@ -1,10 +1,10 @@
 # 离线升级安全管理模块
 
-本页说明从[下载中心](../../../download/index.md)下载安全管理模块后，应该如何安装或升级。
+本页说明[下载安全管理模块](../../../download/modules/dowl.md)后，应该如何安装或升级。
 
 !!! info
 
-    下述命令或脚本内出现的 `dowl` 字样是安全管理模块的内部开发代号。
+    下述命令或脚本内出现的 __dowl__ 字样是安全管理模块的内部开发代号。
 
 ## 从下载的安装包中加载镜像
 
@@ -21,13 +21,14 @@
     !!! note  
 
         该 YAML 文件中的各项参数均为必填项。
+
     === "已添加 Helm repo"
 
         若当前环境已安装 chart repo，chart-syncer 也支持将 chart 导出为 tgz 文件。
 
         ```yaml title="load-image.yaml"
         source:
-          intermediateBundlesPath: dowl # 节点上执行 load-image.yaml 文件的路径。
+          intermediateBundlesPath: dowl # 使用 chart-syncer 之后 .tar.gz 包所在的路径
         target:
           containerRegistry: 10.16.10.111 # 镜像仓库地址
           containerRepository: release.daocloud.io/dowl # 镜像仓库路径
@@ -49,7 +50,7 @@
 
         ```yaml title="load-image.yaml"
         source:
-          intermediateBundlesPath: dowl # 节点上执行 load-image.yaml 文件的路径。
+          intermediateBundlesPath: dowl # 使用 chart-syncer 之后 .tar.gz 包所在的路径
         target:
           containerRegistry: 10.16.10.111 # 镜像仓库 url
           containerRepository: release.daocloud.io/dowl # 镜像仓库路径
@@ -72,7 +73,17 @@
 
 解压并加载镜像文件。
 
-1. 解压 tar 压缩包。
+1. 解压第一层压缩包。
+
+    ```shell
+    tar xvf dowl.amd64.tar
+    ```
+
+    解压成功后会得到 1 个新的压缩包：
+
+    - dowl.bundle.tar
+
+2. 解压新的压缩包。
 
     ```shell
     tar xvf dowl.bundle.tar
@@ -84,7 +95,7 @@
     - images.tar
     - original-chart
 
-2. 从本地加载镜像到 Docker 或 containerd。
+3. 从本地加载镜像到 Docker 或 containerd。
 
     === "Docker"
 
@@ -95,7 +106,7 @@
     === "containerd"
 
         ```shell
-        ctr image import images.tar
+        ctr -n k8s.io image import images.tar
         ```
 
 !!! note
@@ -124,7 +135,7 @@
     1. 添加安全管理的 helm 仓库。
 
         ```shell
-        heml repo add dowl http://{harbor url}/chartrepo/{project}
+        helm repo add dowl http://{harbor url}/chartrepo/{project}
         ```
 
     1. 更新安全管理的 helm 仓库。
@@ -133,7 +144,7 @@
         helm repo update dowl
         ```
 
-        1. helm 版本过低会导致失败，若失败，请尝试执行 helm update repo
+        > helm 版本过低会导致失败，若失败，请尝试执行 helm update repo
 
     1. 选择您想安装的安全管理版本（建议安装最新版本）。
 
@@ -156,14 +167,14 @@
         helm get values dowl -n dowl-system -o yaml > bak.yaml
         ```
 
-    1. 更新 dowl crds
+    1. 更新 dowl crds (需要先解压并进入 original-chart 文件)
 
         ```shell
         helm pull dowl/dowl --version 0.4.0 && tar -zxf dowl-0.4.0.tgz
         kubectl apply -f dowl/crds
         ```
 
-    1. 执行 `helm upgrade`。
+    1. 执行 `helm upgrade` 。
 
         升级前建议您覆盖 bak.yaml 中的 `global.imageRegistry` 字段为当前使用的镜像仓库地址。
 
@@ -186,16 +197,16 @@
         在升级安全管理版本之前，建议您执行如下命令，备份老版本的 `--set` 参数。
 
         ```shell
-        helm get values dowl -n k pan da-system -o yaml > bak.yaml
+        helm get values dowl -n dowl-system -o yaml > bak.yaml
         ```
 
-    1. 更新 dowl crds
+    1. 更新 dowl crds (需要先解压并进入 original-chart 文件)
 
         ```shell
         kubectl apply -f ./crds
         ```
 
-    1. 执行 `helm upgrade`。
+    1. 执行 `helm upgrade` 。
 
         升级前建议您覆盖 bak.yaml 中的 `global.imageRegistry` 为当前使用的镜像仓库地址。
 

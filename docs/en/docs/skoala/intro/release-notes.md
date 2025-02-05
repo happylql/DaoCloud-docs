@@ -1,12 +1,661 @@
-# Releases Notes
+---
+MTPE: windsonsea
+Date: 2024-07-12
+---
 
-This page lists the release notes of DME to help you learn its feature development and bug fixing progress.
+# Microservice Engine Releases Notes
+
+This page lists the release notes of Microservices to help you learn its feature development and bug fixing progress.
+
+*[skoala]: Internal development codename for DaoCloud Microservice Engine
+
+## 2024-12-31
+
+### v0.43.4
+
+- **Improved** UI and user experience
+
+## 2024-12-25
+
+### v0.43.3
+
+- **Fixed** the issue with the Nacos load balancing mode API
+- **Fixed** the display issue of global rate limiting server tags
+- **Fixed** the logging issue of the Nacos list
+
+!!! note
+
+    To support rolling updates of gateway logs and add debugging tools, the gateway runtime has been upgraded to
+    the private version v0.32.0-dcv3 (built on Envoy v1.32.0; if the rolling update function for gateway logs is not needed,
+    the community version Envoy v1.32.0 can still be used).
+
+## 2024-11-30
+
+### v0.43.2
+
+#### Features
+
+- **Added** support for custom annotations on the gateway creation page.
+- **Added** automatic log file splitting and rolling update capabilities for gateways.
+
+#### Fixes
+
+- **Fixed** an issue where resources couldn't be loaded when the username is in Chinese
+- **Fixed** an issue where default values for advanced gateway configurations were ineffective
+- **Fixed** an issue with meaningless annotations appearing when editing gateways
+
+#### Improvements
+
+- **Improved** the logic for rolling updates of gateway logs to prevent log loss (upgraded gateway runtime to private version v0.31.0-dcv2).
+- **Improved** security by disabling the /debug/pprof interface of the skoala-agent.
+- **Improved** Nacos, upgrading from version 2.4.2.1 to 2.4.3 (the stable version remains at 2.3.2).
+- **Improved** the default network connection limit for gateways to mitigate performance issues caused by low default values.
+- **Improved** the Skoala Init Helm Chart by removing the detection of Insight CRD ServiceMonitor to prevent incomplete component installations.
+- **Improved** the upgrade of the gateway control plane Contour to v1.30.1-0be3efa.
+- **Improved** the gateway runtime by upgrading to private version v0.31.0-dc to support log rolling updates (the community version Envoy v1.31.0 remains available if rolling updates are not needed).
+
+## 2024-10-31
+
+### v0.42.1
+
+#### Features
+
+- **Added** detection for the installation status of MetalLB.
+- **Added** support for custom dns-lookup-family capabilities in the gateway.
+- **Added** global rate limiting rule management.
+- **Added** support for built-in global rate limiting plugin templates.
+
+#### Fixes
+
+- **Fixed** an issue where gateway plugins could not be displayed in the interface
+- **Fixed** an issue with abnormal annotations when calling container management components
+- **Fixed** an issue where the delete operation for gateway APIs did not meet expectations
+- **Fixed** an issue with incorrect jump links in the plugin center main menu
+- **Fixed** an issue where the interface displayed incorrectly after setting a fixed IP
+- **Fixed** an issue where gateway rate limiting policies could not be disabled
+- **Fixed** an issue with abnormal use of rate limiting rules in cloud-native microservices
+- **Fixed** an issue with excessive decimal places in the display of managed resources
+
+#### Improvements
+
+- **Improved** the logic for selecting NodePort corresponding to managed Nacos ports 8848/9848,
+  transitioning from random port selection to filtering available ports.
+- **Improved** Nacos, upgrading from version 2.4.1 to 2.4.2.1 (the stable version remains at 2.3.2).
+- **Improved** the upgrade of the gateway control plane Contour to v1.30.0-54ceade.
+- **Improved** the mechanism for reading cached gateway plugins, increasing the wait time for enhanced performance.
+
+## 2024-09-30
+
+### v0.41.3
+
+#### New Features
+
+- **Added** support for non-secure requests when the domain is HTTPS.
+
+#### Fixes
+
+- **Fixed** an issue preventing the display of skoala-init installation status by namespace.
+- **Fixed** gateway statistics not aligning with expectations during multi-replica gateway operation.
+- **Fixed** an issue of missing CRDs during installation.
+- **Fixed** the offline image logic.
+- **Fixed** incomplete audit log records.
+- **Fixed** unexpected Nacos instance status when the hosting cluster becomes unavailable.
+- **Fixed** unexpected gateway instance status when the gateway cluster becomes unavailable.
+- **Fixed** the failure of HTTPS POST requests to the gateway API when debugging HTTP domains without skipping certificate verification.
+- **Fixed** incorrect logic in displaying gateway API policies.
+- **Fixed** unexpected Nacos instance status when the hosting instance's port is occupied.
+- **Fixed** the absence of Pod IPs in the gateway worker node instance list.
+
+#### Improvements
+
+- **Improved** certificate and token management logic.
+- **Improved** support for custom plugins in cloud-native microservices.
+- **Improved** the supported version of hosted Nacos from v2.4.0.1 to v2.4.1.
+
+## 2024-09-02
+
+### v0.40.1
+
+- **Fixed** an issue where the gateway could not be used when sharing LB VIP
+
+## 2024-08-26
+
+### v0.40.0
+
+#### New Features
+
+- **Added** support for querying service instances in Nacos based on metadata labels
+- **Added** the display of fixed IP addresses for nodes in the gateway instance overview
+
+#### Fixes
+
+- **Fixed** an issue where the gateway control plane did not restart as expected in certain situations
+- **Fixed** an issue with the unavailability of managed Nacos namespace-related APIs
+- **Fixed** the API name validation issue when importing gateway APIs
+- **Fixed** the CVE-2024-41110 vulnerability in management components
+
+#### Improvements
+
+- **Improved** the upgrade of the gateway runtime Envoy to v1.31.0
+- **Improved** the upgrade of the gateway control plane Contour to v1.30.0-d59d534
+- **Improved** the configuration for extending the validity period of gateway certificates,
+  with a default duration of 5 years, applicable when updating or creating new gateways
+- **Improved** the upgrade of Nacos to v2.4.0.1, with the default version being the stable v2.3.2
+- **Improved** the dependency detection of related resources when deleting Nacos namespaces
+- **Improved** the gateway deletion functionality, now allowing forced deletion of gateways with abnormal statuses
+- **Improved** the validation logic for gateway domain name security policies
+- **Improved** the display capabilities for exception messages when importing gateway APIs
+
+!!! note
+
+    When upgrading from any version to 0.40.x, due to the reasons related to the Gateway API community version, manual handling of CRD upgrades is required. Refer to [Skoala 0.40.x Upgrade Notes](#skoala-040x-upgrade-notes).
+
+## 2024-08-16
+
+### v0.39.4
+
+- **Fixed** an issue with the unavailability of managed Nacos namespace-related APIs
+
+## 2024-08-15
+
+### v0.39.3
+
+- **Fixed** an issue with the unavailability of managed Nacos namespace-related APIs
+
+## Skoala 0.40.x Upgrade Notes
+
+### Affected Versions
+
+You may be affected if you upgrade from any version to 0.40.x.
+
+### Impact
+
+The 0.40.x version includes updates to related Custom Resource Definitions (CRDs).
+Since the custom resources in the `crds` directory of the skoala-init Chart do not automatically update
+with installation, the updated CRD for this release is the gateway-api CRD, and the BackendTLSPolicy
+upgrade requires manual intervention. Due to compatibility issues within the community regarding this update,
+[refer to the relevant issue on kubernetes-sigs](https://github.com/kubernetes-sigs/gateway-api/issues/3086).
+
+### Steps to upgrade
+
+Please follow these steps to manually update the gateway CRD files that need upgrading:
+
+1. Delete BackendTLSPolicy:
+
+    ```shell
+    kubectl delete crds `kubectl get crds | grep -E "backendtlspolicies.gateway.networking.k8s.io"`
+    ```
+
+2. Manually update the gateway-related CRD files:
+
+    ```shell
+    # CRD related to projectcontour
+    kubectl apply -f skoala-init/charts/contour-provisioner/crds/contour.yaml
+    # CRD related to gateway-api
+    kubectl apply -f skoala-init/charts/contour-provisioner-prereq/crds/gateway-api.yaml
+    ```
+
+## 2024-08-06
+
+### v0.39.2
+
+- **Fixed** an issue with incorrect display of gateway plugin names.
+- **Fixed** an issue where the distributed transaction component could not be edited due to incorrect database addresses.
+- **Fixed** an issue where managed Nacos instances could not be edited when deployed via NodePort if the port was occupied.
+- **Fixed** an issue where the Top 10 total request count data for gateway requests did not meet expectations.
+- **Fixed** an issue where the Sesame management component encountered errors when injecting the Istio Sidecar.
+- **Improved** compatibility with Istio v1.23.0.
+- **Improved** to resolve thread leakage issues in the Hive management component.
+
+## 2024-07-31
+
+### v0.39.1
+
+- **Fixed** an issue with the incorrect version of the Nacos image.
+
+## 2024-07-25
+
+### v0.39.0
+
+#### Features
+
+- **Added** support for integrating LDAP authentication in Nacos.
+- **Added** logic for removing associated resources when Nacos is deleted.
+- **Added** display of policy activation status in gateway domain names, APIs, and service lists.
+- **Added** pre-deletion detection capability for Nacos.
+- **Added** support for displaying detailed gateway exception information.
+- **Added** a rule tag column to the lists of gateway services, APIs, and domain names.
+
+#### Fixes
+
+- **Fixed** issues related to gateway and plugin permissions.
+- **Fixed** startup issues with Nacos under abnormal conditions.
+- **Fixed** an issue where the Nacos deletion operation interface did not return the expected results.
+- **Fixed** an issue where the default tag added after the gateway was enabled was incorrect.
+
+#### Improvements
+
+- **Improved** the Docker base image to version 3.20.1.
+- **Improved** permission logic to automatically generate permission points from API definitions.
+- **Deprecated** ListGatewayPodsByType.
+
+## 2024-07-02
+
+### v0.38.2
+
+- **Fixed** an issue with the display of the Top 10 APIs in gateway statistics.
+
+## 2024-06-25
+
+### v0.38.1
+
+- **Added** gateway access to the registration center service supports auto-fill and multi-instance.
+- **Added** custom data for gateway logs.
+- **Added** API testing capabilities integrated within the gateway `API` documentation.
+- **Fixed** an issue with pulling offline package public images.
+
+## 2024-06-25
+
+### v0.38.0
+
+#### Fixes
+
+- **Fixed** an issue where setting Nacos environment variables had no effect.
+- **Fixed** an issue with the incorrect ratio of gateway memory setting when set as a decimal to maximum heap memory.
+- **Fixed** a permission issue related to domain name queries in gateway logs.
+- **Fixed** an issue with abnormal display of related times in the registration center.
+
+#### Improvements
+
+- **Improved** by upgrading Ghippo integration SDK to v0.28.0-dev1.
+- **Improved** permission dependency logic to align with the new version of the Ghippo SDK.
+
+## 2024-06-04
+
+### v0.37.1
+
+- **Fixed** an issue with incorrect version display in Nacos managed details.
+- **Fixed** an issue with incorrect redirect link for microservice JVM monitoring.
+- **Fixed** an issue with abnormal API call for traffic lane diversion rules.
+- **Fixed** an issue with username and password configuration for Nacos integration in distributed transactions not meeting expectations.
+
+## 2024-05-27
+
+### v0.37.0
+
+#### Features
+
+- **Added** support for displaying exception information of distributed transaction components in the overview.
+- **Added** status code filtering support in gateway logs.
+- **Added** configurability for Nacos JVM implementation.
+- **Added** new log query functionality related to gateway API testing.
+- **Added** support for multiple instances of external services in the gateway.
+- **Added** customizable passwords for Nacos associated with Seata.
+
+#### Fixes
+
+- **Fixed** an issue with abnormal display on the gateway API details page.
+- **Fixed** an issue with local rate-limiting policy in the gateway not functioning properly.
+- **Fixed** an issue with domain-level authentication plugin not disabling correctly.
+- **Fixed** an issue with filtering and checking the gateway's root namespace.
+- **Fixed** an issue with Chinese appearing in the English version of the Sentinel monitoring dashboard.
+
+#### Improvements
+
+- **Improved** managed Nacos version to 2.3.2, replacing version 2.3.1.
+- **Improved** API and added workspace isolation capabilities.
+- **Improved** gateway plugins and custom plugin logic.
+- **Improved** service mesh integration logic.
+- **Improved** gateway control plane component versions and related custom resources.
+- **Improved** gateway API export function to skip traffic lane-related APIs.
+
+!!! note
+
+    Important: Version 0.37.x has updated related Custom Resource Definitions (CRDs). Since custom resources in the Chart crds directory are not automatically updated during installation,
+    please manually apply the relevant CRDs to the worker cluster after upgrading. The file is located at:
+    skoala-init/charts/contour-provisioner/crds/contour.yaml
+
+## 2024-04-30
+
+### v0.36.1
+
+- **Fixed** missing permissions for cloud-native microservice traffic swimlane drainage rules
+- **Fixed** abnormal link information reporting after injecting gateway into the mesh sidecar
+
+## 2024-04-26
+
+### v0.36.0
+
+#### Features
+
+- **Added** Log query functionality for gateway API testing
+- **Added** Support for multiple instances of external services for the gateway
+- **Added** API latency statistics for the gateway
+- **Added** Exception information for distributed transaction component in the overview
+
+#### Bug Fixes
+
+- **Fixed** abnormal Nacos and database configurations for distributed transactions
+- **Fixed** inaccurate display of memory resource configuration for the gateway
+- **Fixed** inaccurate exception information for Nacos and distributed transaction components
+- **Fixed** abnormal saving of gateway API with certificates
+- **Fixed** occasional abnormality in gateway log query
+
+#### Improvements
+
+- **Improved** Replace Nacos with version 2.3.1 instead of 2.3.0
+- **Improved** prompt for unavailable ClusterIP in gateway API testing
+
+## 2024-04-11
+
+### v0.35.2
+
+- **Fixed** an issue of inaccurate permissions in the microservice engine module in the global management
+- **Fixed** abnormal saving of global rate limiting in the gateway
+- **Fixed** abnormal memory configuration when creating a gateway
+- **Fixed** abnormal maximum heap memory configuration at runtime in the gateway
+- **Fixed** abnormal time display in relation to Eureka in the registration center
+- **Fixed** abnormal creation of Seata with custom password in Nacos
+- **Fixed** database initialization exception in Seata
+
+!!! note
+
+    Important: In version 0.35.x, Gateway API related custom resources (CRD) have been updated. Since the chart update does not automatically apply CRD changes,
+    please manually apply the CRD: skoala-init/charts/contour-provisioner-prereq/crds/gateway-api.yaml
+
+## 2024-04-03
+
+### v0.35.1
+
+- **Fixed** error when creating a domain in the gateway
+- **Fixed** mismatch in managed Nacos resource checks
+- **Fixed** abnormal API status after enabling health check port for domain in the gateway and adding health check configuration in API
+- **Fixed** incorrect API statistics overview in the gateway
+- **Fixed** abnormal registration center status
+- **Fixed** abnormal resource annotations when creating traffic lanes
+- **Fixed** gateway custom plugin functionality issues
+
+!!! note
+
+    Important: In version 0.35.x, Gateway API related custom resources (CRD) have been updated. Since the chart update does not automatically apply CRD changes,
+    please manually apply the CRD: skoala-init/charts/contour-provisioner-prereq/crds/gateway-api.yaml
+
+## 2024-03-23
+
+### v0.35.0
+
+#### Features
+
+- **Added** ability for cloud-native gateway API to match routes based on request parameters
+- **Added** ability for distributed transaction Seata to use custom passwords
+- **Added** time filtering capability for Grafana panels in distributed transactions
+- **Added** ability to filter cloud-native microservice traffic lanes by namespace
+
+#### Fixes
+
+- **Fixed** issues related to registration center types
+- **Fixed** inaccurate prompt when gateway instance count is zero
+- **Fixed** logic related to cloud-native microservices
+- **Fixed** issue of traffic lanes list not refreshing on initial load
+- **Fixed** incorrect display of Sentinel password
+- **Fixed** NullPointerException when creating new API with Envoy as xdsServer
+- **Fixed** pagination issue when mesh instance has no services
+- **Fixed** issues resulting from changes in the service mesh module API
+
+#### Improvements
+
+- **Improved** compatibility with distributed transaction Seata 2.0
+- **Improved** default version to Nacos 2.3.0 for managed registration center
+- **Improved** gateway API statistics chart algorithm to incremental statistics mode
+
+## 2024-03-06
+
+### v0.33.4
+
+- **Fixed** logic related to native microservices
+- **Fixed** issue where traffic swim lane list does not refresh on initial load
+- **Fixed** incorrect display of Sentinel password
+- **Fixed** integration issues caused by changes in grid module API
+
+## 2024-03-01
+
+### v0.33.3
+
+- **Fixed** logic related to cloud-native microservices
+- **Fixed** issues caused by changes in grid module API
+
+## 2024-02-02
+
+### v0.34.0
+
+- **Added** namespace information deployed by the gateway in gateway query port based on workbench requirements
+- **Improved** total number of gateway log pagination queries, limited to a maximum display of 10000 list log data
+- **Improved** error prompts for gateway log queries
+
+## 2024-02-01
+
+### v0.33.2
+
+- **Fixed** an issue with abnormal restart of gateway service component
+- **Fixed** an issue with abnormal export of gateway logs
+- **Fixed** an issue with incorrect display of status when the replica count of gateway workload is 0
+- **Fixed** an issue with gateway control plane not restarting application configuration when injecting sidecars to gateway
+- **Fixed** an issue with inconsistency between returned sidecar injection status and actual status in gateway list
+- **Improved** the latest SDK in the mesh module to fix logic related to cloud-native microservices interfaces
+
+## 2024-01-30
+
+### v0.33.1
+
+- **Fixed** a logic related to cascading deletion in Nacos
+
+## 2024-01-18
+
+### v0.32.0
+
+#### Features
+
+- **Added** cloud native microservice monitoring resources
+- **Added** support for connecting to a registry center with authentication mode enabled
+- **Added** ARM architecture offline installation package release process
+
+#### Fixes
+
+- **Fixed** an issuein updating plugin references when updating domain names
+- **Fixed** an issue with incorrect service port in service list query
+- **Fixed** an issue with incorrect display of log protocol fields
+- **Fixed** an issue with unsorted results in service list API of traffic lanes
+- **Fixed** an issue with incorrect number of instances in service list of traffic lanes
+- **Fixed** an issue in refreshing namespace when cloud native gateway is already created
+- **Fixed** an issue with mismatched instance status in connected Kubernetes clusters
+- **Fixed** an issue with incorrect instance list results in connected meshes
+- **Fixed** an issue with incorrect stop address for NodePort services in gateway
+- **Fixed** an issue with abnormal display of Nacos services in non-default groups in registry center
+
+#### Improvements
+
+- **Improved** Routing weight optimization to meet workbench requirements
+- **Improved** Weight validation logic for services in gateway API
+- **Improved** Handling of resource initial operations caused by changes in cluster access addresses
+
+## 2024-01-03
+
+### v0.31.2
+
+- **Fixed** an issue of missing protocol field display in the gateway API
+- **Fixed** an issue of abnormal managed resources due to address changes after cluster reconnection
+- **Fixed** an issue of incorrect statistics for abnormal gateway access
+- **Fixed** an issue of NodePort ports being set to 0 for cluster services
+- **Fixed** an issue of inaccurate status prompts for automatic population of cluster services and mesh services
+- **Fixed** an issue of installation failure for Init Chart when the insight-system namespace does not exist
+
+## 2023-12-26
+
+### v0.31.1
+
+- **Fixed** an issue of missing log files for gateway management components
+
+## 2023-12-26
+
+### v0.31.0
+
+#### Features
+
+- **Added** support for managed Nacos version 2.3.0
+- **Added** support for service and API gateway services as traffic entry points
+- **Added** outlier instance detection
+- **Added** details for traffic swimlane topology (traffic direction and versions)
+- **Added** advanced configuration for heap memory in gateway runtime
+
+#### Fixes
+
+- **Fixed** an issue of missing connection addresses in gateway service lists and service details
+- **Fixed** an issue of missing labels after updating gateway APIs
+- **Fixed** an issue of duplicate gateway API routing rules
+- **Fixed** an issue of empty value for maximum heap memory in gateway runtime
+- **Fixed** an issue of service integration when managing Nacos and mesh services
+- **Fixed** an issue of incorrect Istio sidecar annotations injection in the gateway
+- **Fixed** an issue of abnormal Nacos service query in the gateway
+- **Fixed** an issue of inability to create drainage rules due to long service names in traffic swimlanes
+- **Fixed** an issue of abnormal service port update in the gateway
+- **Fixed** an issue of abnormal resource quota calculation when creating managed resources
+- **Fixed** a logical issue in filtering gateway API lists based on domain names
+- **Fixed** an issue of duplicate ports in cloud native microservice governance
+- **Fixed** an issue of repeated judgment and duplicate conditions when multiple routes exist for an API
+- **Fixed** an issue of abnormal error in API testing for HTTPS domain names
+- **Fixed** an issue of abnormality when deleting Sentinel functionality
+- **Fixed** an issue of component restart when exporting logs with empty gateway logs
+- **Fixed** an issue of empty console address in the response of managed Nacos resource information API
+- **Fixed** an issue of failed Seata plugin activation when the managed Nacos name has the suffix `-seata`
+- **Fixed** an issue of MySQL viewing permissions in managed Nacos middleware management
+- **Fixed** an issue of labels in gateway interface v1alpha2 version
+
+#### Improvements
+
+- **Improved** Skoala Agent component and added logging functionality
+- **Improved** the gateway control plane (Contour) to v1.27.0 private branch version
+- **Improved** the gateway runtime (Envoy) to v1.28.0 official version
+- **Improved** the gateway dependency on Gateway API custom resources to v1.0 official version
+- **Improved** the gateway log query index (compatible with previous versions)
+
+## 2023-12-11
+
+### v0.30.2
+
+- **Fixed** an issue of multiple duplicate route records in the gateway API
+
+## 2023-12-01
+
+### v0.30.0
+
+- **Fixed** an issue with incorrect running status of gateway
+- **Fixed** status check issue with Nacos Operator
+- **Fixed** status check issue with edge instance of mesh service
+- **Improved** gateway-related APIs
+- **Improved** query logic for gateway logs to support custom field queries
+
+## 2023-11-26
+
+### v0.29.0
+
+#### Features
+
+- **Added** API documentation management and API querying
+- **Added** visualization of traffic swimlane for gray release, displaying the internal gray release swimlane division and data flow through views
+
+#### Fixes
+
+- **Fixed** logic for mesh instance list in mesh mode governance
+- **Fixed** synchronization issues with managed Nacos controllers
+
+#### Improvements
+
+- **Improved** gateway service list API and added access address display feature
+- **Improved** logic for synchronizing API updates after modifying services
+- **Improved** loading speed of gateway resource list
+- **Improved** configuration details for gateway timeout settings
+
+### 2023-11-07
+
+#### v0.28.1
+
+- **Fixed** sorting issue in the gateway service list
+- **Fixed** multiple line break issue when importing gateway APIs
+- **Fixed** the problem where Seata Operator image does not support offline repository
+- **Fixed** an issue with abnormal offline release process
+
+## 2023-10-26
+
+### v0.28.0
+
+#### Features
+
+- **Added** support for regular expression and exact match for gateway API request headers.
+- **Added** support for bulk import and export of gateway APIs.
+- **Added** support for managing multiple versions of Nacos (currently supports versions 2.0.4, 2.1.1, and 2.2.3).
+- **Added** support for complex password requirements in Sentinel console.
+- **Added** support for targeted gray release of Nacos configuration files.
+- **Added** support for distributed transactions (including TCC mode, FMT mode, SAGA mode, XA mode).
+- **Added** support for importing interfaces using Swagger standard through visual form interface.
+
+#### Fixes
+
+- **Fixed** an issue of supporting different versions of managed Nacos.
+- **Fixed** an issue of duplicate request methods in the gateway interface list.
+- **Fixed** the problem of Zookeeper registry not being able to connect to instances with TLS protocol.
+- **Fixed** an issue of domain deletion and update failure after enabling global authentication in the gateway.
+- **Fixed** an issue of incorrect CPU usage at the namespace level in managed Nacos.
+- **Fixed** an issue of abnormal service change when switching from NodePod mode to ClusterIP mode in managed Nacos.
+- **Fixed** an issue of abnormal Seata interface verification.
+- **Fixed** an issue of abnormal workspace access when switching registry center.
+- **Fixed** the permission issue with related interfaces of managed Nacos.
+- **Fixed** an issue with Grafana monitoring panel for managed Nacos.
+- **Fixed** an issue with Sentinel Grafana monitoring panel.
+- **Fixed** the accuracy issue with overall permissions.
+
+#### Improvements
+
+- **Improved** the update logic of the gateway, which does not allow disabling HTTPS at the gateway level when the domain has enabled HTTPS.
+- **Improved** the accuracy of audit log events.
+- **Improved** Optimized the logic of cloud native microservice WebAssembly plugins.
+- **Improved** the gateway health query logic on the overview page (changed from Rate to Increase).
+- **Improved** the Swagger path by removing version information from the URL and supporting multiple versions of APIs.
+- **Improved** Skoala Init Helm Chart to support distributed transaction controller (Seata Operator).
+- **Improved** Skoala Agent certificate.
+- **Improved** interface descriptions and details in all Swagger documentation.
+- **Improved** audit log format and automatic generation mechanism.
+- **Improved:** When releasing production versions, the Skoala Helm Chart will be published to the official container registry's System project.
+
+## 2023-09-01
+
+### v0.27.2
+
+- **Fixed** Frontend updated to version 0.18.1, resolving UI issues
+
+### v0.27.1
+
+- **Fixed** an issue of duplicate details in batch deletion response
+- **Fixed** Problem with sorting plugin information in cloud native microservices port list
+- **Fixed** an issue with abnormal display of traffic swimlane list
+- **Fixed** Inconsistent container names for frontend components
+- **Fixed** Some errors in Sentinel business application monitoring reports
+
+- **Improved** Upgraded Insight version to 0.19.2
+- **Improved** Upgraded Ghippo version to 0.20.0
+
+!!! note "Important Note"
+
+    If your Microservice Engine version is greater than `v0.24.2`,
+    it is important to note that there are incompatible updates for versions `v0.24.2`
+    and earlier. This is due to changes in the open-source component repository address
+    related to the gateway. To ensure a smooth upgrade process, make sure to manually
+    delete the old `gateway-api-admission-xxxxx` Job before proceeding with the update.
 
 ## 2023-08-25
 
-### V0.27.0
+### v0.27.0
 
-#### New Features
+#### Features
 
 - **Added** Permission dependencies for various module functionalities
 - **Added** Exception details API field for managed resources
@@ -14,7 +663,8 @@ This page lists the release notes of DME to help you learn its feature developme
 - **Added** Duplicate check API for gateway domain creation
 - **Added** Failure reason API information for service addition in traffic swimlane
 - **Added** API interfaces for managed Nacos gray release
-- **Added** Support for multiple Envoy instances in a single machine for the gateway, resolving injection failure issues for edge cars in the mesh as gateways
+- **Added** Support for multiple Envoy instances in a single machine for the gateway, resolving
+  injection failure issues for edge cars in the mesh as gateways
 - **Added** API interface to retrieve port rate limiting rules list
 - **Added** Regular expression and exact path matching modes for API matching in the gateway
 - **Added** Authentication-related API interfaces for Sentinel console
@@ -26,26 +676,26 @@ This page lists the release notes of DME to help you learn its feature developme
 - **Fixed** Inconsistent permissions between gateway service access and predefined permissions
 - **Fixed** Incorrect representation of service governance status
 - **Fixed** Exceptional return issue in managed Nacos configuration gray release
-- **Fixed** Error in service instance list in managed Nacos
+- **Fixed** an issuein service instance list in managed Nacos
 - **Fixed** Duplicated service versions in traffic swimlane
 - **Fixed** Abnormal service list issue in traffic swimlane
 - **Fixed** Service deletion issue in traffic swimlane
 - **Fixed** Null pointer exception in swimlane list when error reason is empty
 - **Fixed** Non-functional Skoala-init Chart form mode configuration
 
-#### Enhancements
+#### Improvements
 
 - **Improved** Changed the deletion of swimlane services from delete method to put method as required.
 - **Improved** Removed redundant permission dependencies and improved internal permission dependencies
 - **Improved** Adapted interface display requirements for traffic swimlane
-- **Improved** Cloud-native microservice plugin interface
+- **Improved** Cloud native microservice plugin interface
 - **Improved** Changed the method of adding swimlane services from batch to single entry
 - **Improved** Front-end component Deployment port from 80 to 8080
 - **Improved** Upgraded Ghippo SDK to v0.20.0-dev2
 
-!!! note
+!!! note "Important Note"
 
-    Important: When the Microservice Engine version is greater than `v0.24.2`, there are incompatible updates
+    When the Microservice Engine version is greater than `v0.24.2`, there are incompatible updates
     for versions `v0.24.2` and earlier. Since the gateway involves changes in the open-source component
     repository addresses, it is necessary to manually delete the old `gateway-api-admission-xxxxx` Job
     before performing the upgrade. Then proceed with the normal upgrade process.
@@ -54,34 +704,30 @@ This page lists the release notes of DME to help you learn its feature developme
 
 ### v0.26.2
 
-#### Fixed
+- **Fixed** an issue with detection of `Consul` registry connectivity
+- **Fixed** an issue with gateway restarting due to abnormal application of plugins
+- **Fixed** an issue with abnormal configuration of gateway verification plugins
+- **Fixed** an issue with abnormal editing of cluster flow control rules in `Sentinel`
 
-- **Fixed** Issue with detection of `Consul` registry connectivity
-- **Fixed** Issue with gateway restarting due to abnormal application of plugins
-- **Fixed** Issue with abnormal configuration of gateway verification plugins
-- **Fixed** Issue with abnormal editing of cluster flow control rules in `Sentinel`
+!!! note "Important Note"
 
-!!! note
-
-    Important: Starting from Microservice Engine version `v0.24.2`, there is an incompatible update for versions `v0.24.2` and earlier. This is because the gateway involves a change in the address of the open-source component repository. Therefore, before updating, you need to manually delete the existing `gateway-api-admission-xxxxx` Job and then proceed with the normal upgrade process.
+    Starting from Microservice Engine version `v0.24.2`, there is an incompatible update for versions `v0.24.2` and earlier. This is because the gateway involves a change in the address of the open-source component repository. Therefore, before updating, you need to manually delete the existing `gateway-api-admission-xxxxx` Job and then proceed with the normal upgrade process.
 
 ## 2023-07-26
 
 ### v0.26.1
 
-#### Fixes
-
-- **Fixed** the issue of incorrect version of the Agent component.
+- **Fixed** an issue of incorrect version of the Agent component.
 
 ## 2023-07-25
 
 ### v0.26.0
 
-#### New Features
+#### Features
 
 - **Added** interface for viewing Sentinel flow control rules.
-- **Added** APIs for cloud-native microservice governance.
-- **Added** APIs for cloud-native microservice traffic lanes.
+- **Added** APIs for cloud native microservice governance.
+- **Added** APIs for cloud native microservice traffic lanes.
 - **Added** support for version 0.19 of the observability module.
 - **Added** API for displaying audit log in the overall overview.
 - **Added** API for displaying resources in the gateway overview page.
@@ -89,81 +735,69 @@ This page lists the release notes of DME to help you learn its feature developme
 
 #### Fixes
 
-- **Fixed** the issue of Nacos port not being updated.
-- **Fixed** the issue of cluster flow control rules in Sentinel not being saved.
-- **Fixed** the issue of API exception when deleting non-empty services in Nacos.
-- **Fixed** the issue of duplicate data in gateway monitoring data.
-- **Fixed** the issue with the use of plugins in cloud-native microservices related APIs.
-- **Fixed** the issues with gateway domain naming rules.
-- **Fixed** the issue of incorrect version in cloud-native microservice traffic lanes.
+- **Fixed** an issue of Nacos port not being updated.
+- **Fixed** an issue of cluster flow control rules in Sentinel not being saved.
+- **Fixed** an issue of API exception when deleting non-empty services in Nacos.
+- **Fixed** an issue of duplicate data in gateway monitoring data.
+- **Fixed** an issue with the use of plugins in cloud native microservices related APIs.
+- **Fixed** an issues with gateway domain naming rules.
+- **Fixed** an issue of incorrect version in cloud native microservice traffic lanes.
 
-#### Optimizations
+#### Improvements
 
-- **Optimized** the driver name of the People's Congress Golden Warehouse database from "kb_v8r6" to "kingbase".
+- **Improved** the driver name of the People's Congress Golden Warehouse database from "kb_v8r6" to "kingbase".
 
 ## 2023-07-19
 
 ### v0.25.0
 
-#### New Features
+#### Features
 
 - **Added** tagging of gateway runtime mesh injection.
 - **Added** cascading selection capability for permissions associated with middleware.
-- **Added** API for viewing cloud-native microservice flow control rules.
-- **Added** APIs for cloud-native microservice governance.
+- **Added** API for viewing cloud native microservice flow control rules.
+- **Added** APIs for cloud native microservice governance.
 - **Added** component version information for cluster readiness check during managed resource installation.
 - **Added** fuzzy search capability for various search APIs.
 
 #### Fixes
 
-- **Fixed** the issue of incorrect external image scanning address in the pipeline.
-- **Fixed** the issue of missing directory-level dependency for permissions associated with middleware.
+- **Fixed** an issue of incorrect external image scanning address in the pipeline.
+- **Fixed** an issue of missing directory-level dependency for permissions associated with middleware.
 
-#### Optimizations
+#### Improvements
 
-- **Optimized** the chain validation of gateway and related resource changes.
-- **Optimized** the gateway listening port from cluster IP to container port.
+- **Improved** the chain validation of gateway and related resource changes.
+- **Improved** the gateway listening port from cluster IP to container port.
 
 ## 2023-07-06
 
 ### v0.24.2
 
-#### Fixes
-
 - **Fixed** page experience optimization and bug fixes.
 
 ## 2023-07-05
 
-### V0.24.1
+### v0.24.1
 
-#### Fixes
-
-- **Fixed** the issue of outdated versions in Skoala-init Chart form
+- **Fixed** an issue of outdated versions in Skoala-init Chart form
 - **Fixed** page experience improvements and issues
 
 ## 2023-06-30
 
-### V0.24.0
+### v0.24.0
 
-#### New Features
-
-- **Added** API for cloud-native microservices plugins
+- **Added** API for cloud native microservices plugins
 - **Added** cascading selection capability for permissions associated with middleware operations
-
-#### Fixes
-
 - **Fixed** data exception in Insight integration
 - **Fixed** abnormal filtering results for gateway status
-
-#### Improvements
-
 - **Improved** chain validation for gateway and related resource changes
 
 ## 2023-06-26
 
-### V0.23.0
+### v0.23.0
 
-#### New Features
+#### Features
 
 - **Added** batch online/offline interface for gateway API
 - **Added** enhanced health check configuration for engine components
@@ -183,7 +817,7 @@ This page lists the release notes of DME to help you learn its feature developme
 - **Fixed** missing governance status in Nacos instance list
 - **Fixed** cluster flow control name issue in Sentinel
 - **Fixed** query data not being aggregated by workspace in overall overview
-- **Fixed** issue where gateway can enable HTTPS even if it is disabled
+- **Fixed** an issue where gateway can enable HTTPS even if it is disabled
 - **Fixed** default value issue in Skoala-init Chart form data
 
 #### Improvements
@@ -197,48 +831,38 @@ This page lists the release notes of DME to help you learn its feature developme
 
 ## 2023-05-31
 
-### V0.22.2
+### v0.22.2
 
-#### Fixes
-
-- **Fixed** issues with Sentinel cluster flow control API
-- **Fixed** issues with fuzzy query API for Sentinel rules
-
-#### Improvements
-
+- **Fixed** an issues with Sentinel cluster flow control API
+- **Fixed** an issues with fuzzy query API for Sentinel rules
 - **Improved** default values for connecting to the database to increase fault tolerance
 
 ## 2023-05-29
 
-### V0.22.1
-
-#### Bug Fixes
+### v0.22.1
 
 - Positions of plugin CRDs are not correc.
 - Issue related to OpenAPI publishing process.
-
-#### Enhancement
-
 - Set default values for database of Hive component.
 
 ## 2023-05-26
 
-### V0.22.0
+### v0.22.0
 
-#### New Features
+#### Features
 
-- Support for Nacos 2.2.x version.
+- Support for Nacos v2.2.x.
 - Gateway tracing.
-- Cloud-native microservice path rewrite API.
-- Cloud-native microservice timeout API.
-- Cloud-native microservice fault injection API.
-- Cloud-native microservice retry and other APIs.
-- WASM plugin for Cloud-native microservices.
+- Cloud native microservice path rewrite API.
+- Cloud native microservice timeout API.
+- Cloud native microservice fault injection API.
+- Cloud native microservice retry and other APIs.
+- WASM plugin for Cloud native microservices.
 - Skoala-init Chart adds JSON Schema.
 - OpenAPI document publishing process.
 - Hive supports database neutrality.
 
-#### Bug Fixes
+#### Fixes
 
 - NullPointerException in the Nacos related API.
 - Displayed port of Nacos was incorrect.
@@ -255,7 +879,7 @@ This page lists the release notes of DME to help you learn its feature developme
 - Sentinel Token server resources.
 - ZooKeeper tracing is not closed.
 
-#### Enhancement
+#### Improvements
 
 - Sentinel monitoring panel structure and data logic.
 - Remove virtualhost CR from Gateway domain management.
@@ -265,30 +889,20 @@ This page lists the release notes of DME to help you learn its feature developme
 
 ## 2023-05-07
 
-### V0.21.2
-
-#### Bug Fixes
+### v0.21.2
 
 - Sentinel monitoring dashboard.
 - Gateway being injected a service mesh sidecar.
 - Format of registry address for traditional microservices with service mesh enabled.
 - Data service instance is not filtered according to the cluster when selecting the hosted registry.
 - Incorrect registry statistics.
-
-#### Enhancement
-
 - Update the Gateway component to the latest community test version.
 
 ## 2023-04-26
 
-### V0.21.1
+### v0.21.1
 
-#### Bug Fixes
-
-- Cloud-native microservice pagination
-
-#### Enhancement
-
+- Cloud native microservice pagination
 - "disable Istio sidecar injection" for Nacos
 - Insight version to official v0.16.0
 - Retry mechanism of components accessing database
@@ -296,42 +910,42 @@ This page lists the release notes of DME to help you learn its feature developme
 
 ## 2023-04-25
 
-### V0.21.0
+### v0.21.0
 
-#### New Features
+#### Features
 
 - Separate display of gateway access internal and external addresses
-- API related to cloud-native microservice governance capability
+- API related to cloud native microservice governance capability
 - Alert message list API
 - API related to gateway using plugins
 - Gateway logical API of various plugins
 
-#### Bug Fixes
+#### Fixes
 
 - Envoy configuration is not updated when the gateway is updated
 - Only a single port can be added to the gateway
 - Insight problems of integrating JVM queries
-- Cloud-native microservice governance API
+- Cloud native microservice governance API
 - Sentinel rule cannot be stored or pulled
 - Some API calls cause the program to crash when the database is not connected
 - Resource state API
-- Cloud-native microservice governance API time unit
+- Cloud native microservice governance API time unit
 - Domain format verification
 - Some fields of plugins are named incorrectly
 
-#### Enhancement
+#### Improvements
 
 - Version of Insight integrated to 0.16.0
 - Add a prefix to the module name for template end service
 - Virtualhost crd
 - Httpproxy crd
-- Skoalaplugin crd
+- Skoala plugin crd
 
 ## 2023-04-21
 
-### V0.20.0
+### v0.20.0
 
-#### New Features
+#### Features
 
 - Sentinel portal version
 - Gateway domain-level whitelist
@@ -341,13 +955,13 @@ This page lists the release notes of DME to help you learn its feature developme
 - Visualized status of the gateway resource workload
 - Gateway workload policy selection
 
-#### Bug Fixes
+#### Fixes
 
 - Contour image version
 - User-defined role and API mappings
 - API sort and entry in gateway overview page
 
-#### Enhancement
+#### Improvements
 
 - Plugins related API
 - Configuration file structure
@@ -359,36 +973,28 @@ This page lists the release notes of DME to help you learn its feature developme
 
 ## 2023-04-10
 
-### V0.19.4
+### v0.19.4
 
-#### Bug Fixes
-
-- Startup issues of managed Nacos
+- Fixed startup issues of managed Nacos
 
 ## 2023-04-10
 
-### V0.19.3
+### v0.19.3
 
-#### Bug Fixes
-
-- Front-end problems
+- Fixed front-end issues
 
 ## 2023-04-04
 
-### V0.19.2
+### v0.19.2
 
-#### Bug Fixes
-
-- Nacos and Sentinel verify account by default
-- Gateway API sorting in overview page
+- Fixed Nacos and Sentinel verify account by default
+- Fixed Gateway API sorting in overview page
 
 ## 2023-04-04
 
 ### v0.19.1
 
-#### Bug Fixes
-
-- CVE-2022-31045
+- Fixed CVE-2022-31045
 - Plugin API
 - Gateway restart
 - Version cannot be updated when the plugin is updated
@@ -399,7 +1005,7 @@ This page lists the release notes of DME to help you learn its feature developme
 
 ### v0.19.0
 
-#### New Features
+#### Features
 
 - Custom permissions and API implementation
 - APIs related to registry overview
@@ -409,15 +1015,15 @@ This page lists the release notes of DME to help you learn its feature developme
 - API for obtaining Nacos and gateway version information
 - Registry statistics collector in overview page
 - Registry statistics API in overview page
-- Cloud-native microservice list API
-- APIs related to importing cloud-native microservices
+- Cloud native microservice list API
+- APIs related to importing cloud native microservices
 - Custom resource design of plugins
 - APIs related to plugin management
 - API to intercept gateway front-end traffic
 - Package of how cascade resource operation adding transaction
 - Resource restart
 
-#### Bug Fixes
+#### Fixes
 
 - Database script for initializing Nacos in Nacos Operator
 - APIs related to overview Sentinel data
@@ -430,7 +1036,7 @@ This page lists the release notes of DME to help you learn its feature developme
 - Nacos GRPC port name affect integrating Istio
 - External mirror security scan in daily builds
 
-#### Enhancement
+#### Improvements
 
 - Streamline CI actions
 - Use retry mechanism to update all resources
@@ -440,12 +1046,12 @@ This page lists the release notes of DME to help you learn its feature developme
 
 ### v0.18.0
 
-#### New Features
+#### Features
 
 - APIs to separate registries and configuration centers
 - APIs related to overview
 
-#### Bug Fixes
+#### Fixes
 
 - Image version of gateway-api
 - IP pool loading issues of gateways under load balancer mode
@@ -455,7 +1061,7 @@ This page lists the release notes of DME to help you learn its feature developme
 
 ### v0.17.1
 
-#### New Features
+#### Features
 
 - Gateway NodePort
 - Gateway LoadBalancer
@@ -473,11 +1079,11 @@ This page lists the release notes of DME to help you learn its feature developme
 - Security scanning for external images in daily builds
 - Automatic update of image version in the chart
 
-#### Bug Fixes
+#### Fixes
 
 - Error in creating Nacos namespace
-- Error in editing  Nacos persistent storage
-- Resource verification of Nacos life cycle management
+- Error in editing Nacos persistent storage
+- Resource verification of Nacos lifecycle management
 - Data display of gateway monitoring panel
 - Ghippo link GRPC address missing
 - Error of Sentinel cannot acquire cluster flow control API
@@ -492,7 +1098,7 @@ This page lists the release notes of DME to help you learn its feature developme
 - Base image CVE and upgrade to v3.17.2
 - Error of chat update in release process
 
-#### Enhancement
+#### Improvements
 
 - Gateway-api version to v0.6.0
 - Use client-go instead of clusterpedia to get to-be-updated resources
@@ -506,11 +1112,11 @@ This page lists the release notes of DME to help you learn its feature developme
 
 ### v0.16.1
 
-#### Bug Fixes
+#### Fixes
 
 - Repetitive builder creation when building an image
 
-#### Enhancement
+#### Improvements
 
 - Details in Sentinel application monitor panel
 
@@ -518,12 +1124,12 @@ This page lists the release notes of DME to help you learn its feature developme
 
 ### v0.16.0
 
-#### Bug Fixes
+#### Fixes
 
 - Error in Sentinel invoking Nacos interface with authentication enabled
 - Error of nacos-operator frequently modifying service resources
 
-#### Enhancement
+#### Improvements
 
 - Add Grafana monitor panel for Sentinel service
 - Insight to the latest version to support querying monitoring data by cluster name
@@ -532,13 +1138,13 @@ This page lists the release notes of DME to help you learn its feature developme
 
 ### v0.15.2
 
-#### New Features
+#### Features
 
 - Gateway API support for authentication servers
 - API to integrate services in managed registries
 - API about Sentinel cluster flow control
 
-#### Bug Fixes
+#### Fixes
 
 - Sentinel rule concatenation error
 - Error in Sentinel dashboard name
@@ -546,7 +1152,7 @@ This page lists the release notes of DME to help you learn its feature developme
 - Error in Nacos controller logic
 - Error in integrating egress with cluster management
 
-#### Enhancement
+#### Improvements
 
 - Error in dashboard of managed Nacos
 - File obtain address for nacos-operator database initialization
@@ -556,17 +1162,17 @@ This page lists the release notes of DME to help you learn its feature developme
 
 ### v0.14.0
 
-#### New Features
+#### Features
 
 - Offline images required by init Chart
 - Token to get managed Nacos
 
-#### Bug Fixes
+#### Fixes
 
 - Error in naming values in Skoala Chart
 - Mirroring errors in CI flows
 
-#### Enhancement
+#### Improvements
 
 - Output logs to console by default
 - Nacos-operator to the community version
@@ -577,7 +1183,7 @@ This page lists the release notes of DME to help you learn its feature developme
 
 ### v0.13.0
 
-#### New Features
+#### Features
 
 - Connectivity with APIs of MySQL and Redis components
 - API to support gateway JWT verification
@@ -588,14 +1194,14 @@ This page lists the release notes of DME to help you learn its feature developme
 - Complete gitlab release operations after version release
 - Dynamically change log level
 
-#### Bug Fixes
+#### Fixes
 
 - Global flow rules do not take effect after update
 - Envoy log level was not set
 - Error in updated gateways are not classified
 - Error in database initialization of managed Nacos
 
-#### Enhancement
+#### Improvements
 
 - Registries are listed in descending order by update time
 - Unified field name of gateway JWT
@@ -615,12 +1221,12 @@ This page lists the release notes of DME to help you learn its feature developme
 
 ### v0.12.2
 
-#### New Features
+#### Features
 
 - Add Grafana template for Sentinel"s own monitoring
 - Add configuration information of the customized gateway index
 
-#### Bug Fixes
+#### Fixes
 
 - Status error of Insight after added into microservices
 - Status error of Mesh plugin after enabled in managed registries

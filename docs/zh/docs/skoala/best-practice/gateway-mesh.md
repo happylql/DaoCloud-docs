@@ -1,10 +1,12 @@
 # 网关对接服务网格
 
-本文介绍如何对接 DCE 5.0 云原生网关和服务网格，使得可以通过网关访问服务网格下接入的服务，并且可以正常使用网格的所有流量治理能力，例如虚拟服务、目标规则等。
+本文介绍如何对接 DCE 5.0 云原生网关和服务网格，使得可以通过网关访问服务网格下接入的服务，
+并且可以正常使用网格的所有流量治理能力，例如虚拟服务、目标规则等。
 
 ## 现状
 
-目前 DCE 5.0 云原生网关采用 contour 作为控制面，无法同步 Istio 的策略。通过云原生网关访问网格服务时，网关 API 直接连接到网格服务，由于没有同步 Istio 的策略，所以无法应用虚拟服务、目标服务等规则，导致网格能力缺失。
+目前 DCE 5.0 云原生网关采用 contour 作为控制面，无法同步 Istio 的策略。通过云原生网关访问网格服务时，
+网关 API 直接连接到网格服务，由于没有同步 Istio 的策略，所以无法应用虚拟服务、目标服务等规则，导致网格能力缺失。
 
 ## 对接思路
 
@@ -12,9 +14,9 @@
 
 ## 操作步骤
 
-1. [创建云原生网关](../gateway/create-gateway.md)时，开启注入 Sidecar。
+1. [创建云原生网关](../gateway/index.md)时，开启注入 Sidecar。
 
-    <!--截图后补![]()-->
+    ![创建网关](https://docs.daocloud.io/daocloud-docs-images/docs/zh/docs/skoala/images/create-gw01.png)
 
 2. 为 Pod 设置 Annotation 注解 `traffic.sidecar.istio.io/includeInboundPorts: ""`。
 
@@ -24,7 +26,7 @@
 
     ![参数示意图](https://docs.daocloud.io/daocloud-docs-images/docs/zh/docs/skoala/images/br-gw-mesh01.png)
 
-4. 在网关下[添加 API](../gateway/api/add-api.md)时，设置 `Host` 请求头。
+4. 在网关下[添加 API](../gateway/api/index.md)时，设置 `Host` 请求头。
 
     这样可以让网关在多集群场景下，通过 Sidecar 访问其他集群的服务，实现服务的跨集群负载均衡。
 

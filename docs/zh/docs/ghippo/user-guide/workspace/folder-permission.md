@@ -3,7 +3,7 @@
 文件夹具有权限映射能力，能够将用户/用户组在本文件夹的权限映射到其下的子文件夹、工作空间以及资源上。
 
 若用户/用户组在本文件夹是 Folder Admin 角色，映射到子文件夹仍为 Folder Admin 角色，映射到其下的工作空间则为 Workspace Admin；
-若在`工作空间与层级` -> `资源组`中绑定了 Namespace，则映射后该用户/用户组同时还是 Namespace Admin。
+若在 __工作空间与层级__ -> __资源组__ 中绑定了 Namespace，则映射后该用户/用户组同时还是 Namespace Admin。
 
 !!! note
 
@@ -21,15 +21,15 @@
 | --------------------------- | -------- | ------------ | ------------- | ------------- |
 | 对文件夹本身                | 查看     | &check;            | &check;             | &check;             |
 |                             | 授权     | &check;            | &cross;             | &cross;             |
-|                             | 修改别名 | &check;            | &check;             | &cross;             |
+|                             | 修改别名 | &check;            | &cross;             | &cross;             |
 | 对子文件夹                  | 创建     | &check;            | &cross;             | &cross;             |
 |                             | 查看     | &check;            | &check;             | &check;             |
 |                             | 授权     | &check;            | &cross;             | &cross;             |
-|                             | 修改别名 | &check;            | &check;             | &cross;             |
+|                             | 修改别名 | &check;            | &cross;             | &cross;             |
 | 对其下的工作空间            | 创建     | &check;            | &cross;             | &cross;             |
 |                             | 查看     | &check;            | &check;             | &check;             |
 |                             | 授权     | &check;            | &cross;             | &cross;             |
-|                             | 修改别名 | &check;            | &check;             | &cross;             |
+|                             | 修改别名 | &check;            | &cross;             | &cross;             |
 | 对其下的工作空间 - 资源组   | 查看     | &check;            | &check;             | &check;             |
 |                             | 资源绑定 | &check;            | &cross;             | &cross;             |
 |                             | 解除绑定 | &check;            | &cross;             | &cross;             |

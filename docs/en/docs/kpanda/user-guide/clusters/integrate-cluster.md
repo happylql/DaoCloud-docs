@@ -1,11 +1,13 @@
 ---
+MTPE: windsonsea
+Date: 2024-07-19
 hide:
   - toc
 ---
 
 # Integrate Clusters
 
-With the function of integrating clusters, DCE 5.0 allows you to manage on-premise and cloud clusters of various providers in a unified manner. This is quite important in avoiding the risk of being locked in by a certain providers, helping enterprises safely migrate their business to the cloud.
+With the features of integrating clusters, DCE 5.0 allows you to manage on-premise and cloud clusters of various providers in a unified manner. This is quite important in avoiding the risk of being locked in by a certain providers, helping enterprises safely migrate their business to the cloud.
 
 In DCE 5.0 Container Management module, you can integrate a cluster of the following providers: standard Kubernetes clusters, Redhat Openshift, SUSE Rancher, VMware Tanzu, Amazon EKS, Aliyun ACK, Huawei CCE, Tencent TKE, etc.
 
@@ -16,9 +18,9 @@ In DCE 5.0 Container Management module, you can integrate a cluster of the follo
 
 ## Steps
 
-1. Enter Container Management module, and click `Integrate Cluster` in the upper right corner.
+1. Enter Container Management module, and click __Integrate Cluster__ in the upper right corner.
 
-    ![screen](../../images/cluster-integrate01.png)
+    ![screen](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/kpanda/images/cluster-integrate01.png)
 
 2. Fill in the basic information by referring to the following instructions.
 
@@ -26,14 +28,14 @@ In DCE 5.0 Container Management module, you can integrate a cluster of the follo
     - Cluster Alias: Enter any characters, no more than 60 characters.
     - Release Distribution: the cluster provider, support mainstream vendors listed at the beginning.
 
-3. Fill in the KubeConfig of the target cluster and click `Verify Config`. The cluster can be successfully connected only after the verification is passed.
+3. Fill in the KubeConfig of the target cluster and click __Verify Config__ . The cluster can be successfully connected only after the verification is passed.
 
-    > Click `How do I get the KubeConfig?` to see the specific steps for getting this file.
+    > Click __How do I get the KubeConfig?__ to see the specific steps for getting this file.
 
-    ![screen](../../images/cluster-integrate03.png)
+    ![screen](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/kpanda/images/cluster-integrate03.png)
 
-4. Confirm that all parameters are filled in correctly and click `OK` in the lower right corner of the page.
+4. Confirm that all parameters are filled in correctly and click __OK__ in the lower right corner of the page.
 
 !!! note
 
-    The status of the newly integrated cluster is `Integrating`, which will become `Running` after the integration succeeds.
+    The status of the newly integrated cluster is __Integrating__ , which will become __Running__ after the integration succeeds.

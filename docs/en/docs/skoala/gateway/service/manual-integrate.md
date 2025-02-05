@@ -1,86 +1,100 @@
 # Manual access service
 
-The services that are successfully added will be displayed on the service list page. You can also select the services in the list as the target back-end services when adding apis. The microservice gateway supports manual access and automatic discovery to add services. This page describes how to manually add services.
+The services that are successfully added will be displayed on the service list page. You can also select the services
+in the list as the target back-end services when adding apis. The microservice gateway supports manual access and
+automatic discovery to add services. This page describes how to manually add services.
 
-** Prerequisites **
+**Prerequisites**
 
 You need to add the corresponding service source in Source management so that you can select the corresponding service source type when manually adding services.
 
 ## Access service
 
-1. In the `Gateway List` page click on the name of the target gateway, enter the gateway overview page, in the left navigation bar click `Add Service` -- > `Service List`.
+1. In the __Gateway List__ page click the name of the target gateway, enter the gateway overview page, in the left navigation bar click __Add Service__ -> __Service List__ .
 
-    <!--![]()screenshots-->
+    ![service list](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/skoala/gateway/service/images/gw-service03.png)
 
-2. On the `Service List` page click `Manual Add` --> `Add Service`.
+2. Select the service source, configure the service connection information and click __OK__ .
 
-    <!--![]()screenshots-->
+    === "Cluster"
 
-3. Select the service source, configure the service connection information and click `OK`.
+        Select the cluster and namespace where the target service resides, and enter the access protocol, address, and port number.
 
-    - Cluster service: Select the cluster and namespace where the target service resides, and enter the access protocol, address, and port number.
+        ![adding a cluster service](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/skoala/gateway/service/images/gw-service01.png)
 
-        <!--![]()screenshots-->
+        For the cluster service access, in the `Container Management` -> __Container Network__ -> __Services__ click the service name to view:
 
-        For the cluster service access, can be in the `Container Management` -- > `Container Network` -- > `Services` click on the service name to view:
+        ![get the service access address](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/skoala/gateway/service/images/service-access.png)
+    
+    === "Service Mesh"
+        
+        Select the cluster and namespace where the target service resides, and enter the access protocol, address, and port number.
 
-        <!--![]()screenshots-->
+        ![adding a mesh service](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/skoala/gateway/service/images/mesh.png)
 
-    - mesh service:
+    === "Registry Service"
 
-        The functionality of the access mesh service is under development, so stay tuned.
+        Select the registry where the target service resides, and enter the access protocol, address, and port number.
 
-    - Registry Service: Select the registry where the target service resides, and enter the access protocol, address, and port number.
+        ![add registry services](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/skoala/gateway/service/images/service-04.png)
+    
+    === "Hosted Registration Center Service"
+        
+        Select the registry where the target service resides, and enter the access protocol, address, and port number.
 
-        <!--![]()screenshots-->
+        ![add registry services](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/skoala/gateway/service/images/gw-service04.png)
 
-    - External service: Enter the service name, access protocol, address, and port number.
+    === "External service" 
+         
+        Enter the service name, access protocol, address, and port number.
   
-        <!--![]()screenshots-->
+        ![adding external services](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/skoala/gateway/service/images/gw-service02.png)
 
 ## Viewing service details
 
 1. On the service list page, click the name of the target service to access the service details page.
 
-    <!--![]()screenshots-->
+    ![service details](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/skoala/gateway/service/images/gw-service05.png)
 
 2. View service sources, connection information, and associated apis.
 
-    <!--![]()screenshots-->
+    ![service details](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/skoala/gateway/service/images/gw-service06.png)
 
 ## Update service
 
 ### Update basic information
 
-1. In the `Service List` page find need to update the service, in the service of right click ** `ⵗ` **, choose `Basic Info`.
+1. In the __Service List__ page find need to update the service, in the service of right click __ⵗ__ , choose __Basic Info__ .
 
-    <!--![]()screenshots-->
+    ![update service](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/skoala/gateway/service/images/gw-service07.png)
 
-2. To update the basic information, click `OK`.
+2. To update the basic information, click __OK__ .
 
-    <!--![]()screenshots-->
+    ![update service](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/skoala/gateway/service/images/gw-service08.png)
 
 !!! danger
-
-
-<!--![]()screenshots-->
+  
+    If you choose other services or modify the connection information of external services when updating the basic configuration,
+    the original services will be deleted, which is equivalent to adding a new service. However, the APIs associated with the
+    original service will be automatically associated with the new service.
 
 ### Update policy configuration
 
-1. In the `Service List` page find need to update the service, in the service of right click ** `ⵗ` **, choose `Policy Settings`.
+1. In the __Service List__ page find need to update the service, in the service of right click __ⵗ__ , choose __modifying policy settings__ .
 
-    <!--![]()screenshots-->
+    ![update service](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/skoala/gateway/service/images/gw-service09.png)
 
-2. To update policy configuration, click `OK`.
+2. To update policy configuration, click __OK__ .
 
-    <!--![]()screenshots-->
+    ![update service](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/skoala/gateway/service/images//update4.png)
 
 ## Deletion service
 
-In the `Service List` page to find the need to delete the service, in the service of right click ** `ⵗ` **, choose `Delete`.
+In the __Service List__ page to find the need to delete the service, in the service of right click __ⵗ__ , choose __Delete__ .
 
-<!--![]()screenshots-->
+![delete service](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/skoala/gateway/service/images/gw-service10.png)
 
-Before deleting a service, you need to make sure that no apis are using the service. If the service is being used by an API, click `API Management` to delete the associated API as prompted before deleting the service.
+Before deleting a service, you need to make sure that no apis are using the service. If the service is being used by an API,
+click __API Management__ to delete the associated API as prompted before deleting the service.
 
-<!--![]()screenshots-->
+![delete service](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/skoala/gateway/service/images/delete1.png)

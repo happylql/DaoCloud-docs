@@ -71,7 +71,7 @@ users:
 
 View the status of the connected cluster in the container management:
 
-![OpenShift Access](./images/os01.png)
+![OpenShift Access](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/mspider/test/images/os01.png)
 
 ### Creating a Private Mesh
 
@@ -79,15 +79,15 @@ View the status of the connected cluster in the container management:
 
     ![Check Cluster Access Status](https://docs.daocloud.io/daocloud-docs-images/docs/mspider/test/images/os02.png)
 
-2. After completing the configuration for creating the mesh, click `OK`.
+2. After completing the configuration for creating the mesh, click __OK__ .
 
     > For the control plane cluster, select the openshift4-mspider cluster accessed through container management.
 
-    ![Create Mesh](./images/os03.png)
+    ![Create Mesh](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/mspider/test/images/os03.png)
 
 3. OpenShift cluster successfully connects to the mesh.
 
-    ![Successfully Connected to Mesh](./images/os04.png)
+    ![Successfully Connected to Mesh](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/mspider/test/images/os04.png)
 
 4. Check the health of each component.
 
@@ -97,7 +97,7 @@ View the status of the connected cluster in the container management:
 
 #### Issues Encountered during Access
 
-1. Error message: `istio-operator RS CreateFailed`
+1. Error message: __istio-operator RS CreateFailed__ 
 
     ![RS CreateFailed](https://docs.daocloud.io/daocloud-docs-images/docs/mspider/test/images/os07.png)
 
@@ -113,7 +113,7 @@ View the status of the connected cluster in the container management:
 
     Restarting the istio-operator rs resolves the issue.
 
-2. Error message: `message: no running Istio pods in "istio-system"`
+2. Error message: `message: no running Istio pods in "istio-system"` 
 
     Analysis: The literal message indicates a lack of istiod/istio-ingressgateway service pod in the
     istio-system namespace. However, the actual issue is an incorrect memory resource parameter format
@@ -129,7 +129,7 @@ View the status of the connected cluster in the container management:
 
     ![Modify Units](https://docs.daocloud.io/daocloud-docs-images/docs/mspider/test/images/os09.png)
 
-3. When injecting sidecar, receiving the error message `pod Init:CrashLoopBackOff`
+3. When injecting sidecar, receiving the error message `pod Init:CrashLoopBackOff` 
 
     Activate OCP iptables.
 
@@ -191,7 +191,7 @@ View the status of the connected cluster in the container management:
 
 ### Deploying the bookinfo Application for Testing
 
-Create the `bookinfo` namespace and add SCC to the namespace before deploying the bookinfo application.
+Create the __bookinfo__ namespace and add SCC to the namespace before deploying the bookinfo application.
 
 ```shell
 oc adm policy add-scc-to-user privileged -z bookinfo
@@ -199,9 +199,9 @@ oc adm policy add-scc-to-user privileged -z bookinfo
 
 1. Enable sidecar injection for the namespace.
 
-    ![Enable Namespace Sidecar Injection](./images/os10.png)
+    ![Enable Namespace Sidecar Injection](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/mspider/test/images/os10.png)
 
-2. Terminal command to view the labels of the `bookinfo` namespace:
+2. Terminal command to view the labels of the __bookinfo__ namespace:
 
     ```shell
     oc describe ns bookinfo | grep "istio-injection-enabled"

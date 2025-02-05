@@ -1,35 +1,44 @@
-# create key
+# Create Secret
 
-A secret is a resource object used to store and manage sensitive information such as passwords, OAuth tokens, SSH, TLS credentials, etc. Using keys means you don't need to include sensitive secrets in your application code.
+A secret is a resource object used to store and manage sensitive information such as passwords,
+OAuth tokens, SSH, TLS credentials, etc. Using keys means you don't need to include sensitive secrets
+in your application code.
 
-Key  use cases:
+Secrets can be used in some cases:
 
-- Used as an environment variable of the container to provide some necessary information required during the running of the container.
+- Used as an environment variable of the container to provide some necessary information
+  required during the running of the container.
 - Use secrets as pod data volumes.
-- As the identity authentication credential for the container registry when the kubelet pulls the container image.
+- As the identity authentication credential for the container registry
+  when the kubelet pulls the container image.
 
-Two creation methods are supported:
+You can create ConfigMaps with two methods:
 
 - Graphical form creation
 - YAML creation
 
 ## Prerequisites
 
-- The container management module [connected to the Kubernetes cluster](../clusters/integrate-cluster.md) or [created the Kubernetes cluster](../clusters/create-cluster.md), and can access the UI interface of the cluster
+- [Integrated the Kubernetes cluster](../clusters/integrate-cluster.md) or
+  [created the Kubernetes cluster](../clusters/create-cluster.md),
+  and you can access the UI interface of the cluster
 
-- Completed a [namespace creation](../namespaces/createns.md), [user creation](../../../ghippo/user-guide/access-control/user.md), and authorize the user as [`NS Edit`](../permissions/permission-brief.md#ns-edit) role, for details, please refer to [Namespace Authorization](../permissions/cluster-ns-auth.md).
+- Created a [namespace](../namespaces/createns.md),
+  [user](../../../ghippo/user-guide/access-control/user.md),
+  and authorized the user as [NS Editor](../permissions/permission-brief.md#ns-editor).
+  For details, refer to [Namespace Authorization](../permissions/cluster-ns-auth.md).
 
-## Graphical form creation
+## Create secret with wizard
 
-1. Click the name of a cluster on the `Cluster List` page to enter `Cluster Details`.
+1. Click the name of a cluster on the __Clusters__ page to enter __Cluster Details__ .
 
      
 
-2. In the left navigation bar, click `Configuration and Key` -> `Key`, and click the `Create Key` button in the upper right corner.
+2. In the left navigation bar, click __ConfigMap and Secret__ -> __Secret__ , and click the __Create Secret__ button in the upper right corner.
 
      
 
-3. Fill in the configuration information on the `Create Key` page, and click `OK`.
+3. Fill in the configuration information on the __Create Secret__ page, and click __OK__ .
 
      
 
@@ -50,15 +59,15 @@ Two creation methods are supported:
 
 ## YAML creation
 
-1. Click the name of a cluster on the `Cluster List` page to enter `Cluster Details`.
+1. Click the name of a cluster on the __Clusters__ page to enter __Cluster Details__ .
 
      
 
-2. In the left navigation bar, click `Configuration and Key`->`Key`, and click the `YAML Create` button in the upper right corner.
+2. In the left navigation bar, click __ConfigMap and Secret__ -> __Secret__ , and click the __YAML Create__ button in the upper right corner.
 
      
 
-3. Fill in the YAML configuration on the `YAML Creation` page, and click `OK`.
+3. Fill in the YAML configuration on the __Create with YAML__ page, and click __OK__ .
 
      > Supports importing YAML files from local or downloading and saving filled files to local.
 

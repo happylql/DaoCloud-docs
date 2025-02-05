@@ -1,9 +1,11 @@
 ---
+MTPE: windsonsea
+Date: 2024-10-15
 hide:
   - toc
 ---
 
-# instance monitoring
+# Instance monitoring
 
 RabbitMQ has built-in Prometheus and Grafana monitoring modules.
 
@@ -11,14 +13,14 @@ RabbitMQ has built-in Prometheus and Grafana monitoring modules.
 
     <!--screenshot-->
 
-2. In the left navigation bar, click `Instance Monitoring` to access the monitoring module.
+2. In the left navigation bar, click __Instance Monitoring__ to access the monitoring module.
 
     <!--screenshot-->
 
 The monitoring metrics are as follows.
 
 | Panel Name | Metrics | Description |
-| ------------ | --------- | -------------------------- ------- |
+| ---------- | ------- | ----------- |
 | connections | Connections | This metric is used to count the total number of connections in the RabbitMQ instance. |
 | channels | Number of channels | This metric is used to count the total number of channels in the RabbitMQ instance. |
 | queues | Number of queues | This metric is used to count the total number of queues in the RabbitMQ instance. |

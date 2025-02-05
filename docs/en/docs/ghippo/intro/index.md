@@ -1,11 +1,11 @@
 # What is Global Management (Ghippo)?
 
 Global Management is a comprehensive, user-centred service that includes access control,
-enterprise workspace, audit logs, platform settings, and other fundamental modules.
+workspaces and folders, audit logs, platform settings, and other fundamental modules.
 
 - [Access Control](../user-guide/access-control/global.md): Enables users to manage resource access by creating, managing, deleting users/groups and configuring their permissions.
 
-- [Enterprise Workspace](../user-guide/workspace/ws-folder.md): provides a hierarchical structure for resource isolation and control over resource access. Users can set up a hierarchical structure depending on the development environment, department structure, etc., and control who has access to which resources.
+- [Workspaces and Folders](../user-guide/workspace/ws-folder.md): provides a hierarchical structure for resource isolation and control over resource access. Users can set up a hierarchical structure depending on the development environment, and department structure, and control who has access to which resources.
 
 - [Audit Logs](../user-guide/audit/audit-log.md): offer detailed operation records for security analysis and tracking resource changes.
 
@@ -36,18 +36,18 @@ policies, and other settings that simplify user operations and ensure a smooth e
 
 - Beginner Friendly
   
-    Most of the configuration has been done for users in advance, including password rules, session timeout policies, etc., simplifying user operations and making it ready to use.
+    Most of the configuration has been done for users in advance, including password rules and session timeout policies, simplifying user operations and making it ready to use.
 
 ## Procedure
 
 1. Log in to the DCE platform using the DCE platform administrator (Admin) or a user with Admin privileges.
 
-2. Go to `Access Control`. [Create users and authorize](../user-guide/access-control/user.md), then [create groups and authorize](../user-guide/access-control/group.md), and eventually, [create an identity provider](../user-guide/access-control/idprovider.md).
+2. Go to __Access Control__ . [Create users and authorize](../user-guide/access-control/user.md), then [create groups and authorize](../user-guide/access-control/group.md), and eventually, [create an identity provider](../user-guide/access-control/idprovider.md).
 
-3. Go to `Workspace`. [Create enterprise hierarchy relationship](../user-guide/workspace/ws-folder.md), then [create a workspace (tenant)](../user-guide/workspace/workspace.md).
+3. Go to __Workspace__ . [Create enterprise hierarchy relationship](../user-guide/workspace/ws-folder.md), then [create a workspace (tenant)](../user-guide/workspace/workspace.md).
 
-4. Go to `Audit Logs`. View and [export audit logs](../user-guide/audit/audit-log.md).
+4. Go to __Audit Logs__ . View and [export audit logs](../user-guide/audit/audit-log.md).
 
-5. Go to `Platform Settings`. Configure security policy, mail server, appearance, and genuine license.
+5. Go to __Settings__ . Configure security policy, mail server, appearance, and genuine license.
 
 [Start Free Trial Now](../../dce/license0.md){ .md-button .md-button--primary }

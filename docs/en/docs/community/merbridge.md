@@ -1,3 +1,8 @@
+---
+MTPE: windsonsea
+date: 2024-06-19
+---
+
 # Merbridge
 
 Merbridge is designed to make traffic interception and forwarding more efficient for service mesh. It replaced iptables with eBPF.
@@ -26,8 +31,8 @@ Merbridge has following core features:
 
 [Go to Merbridge website](https://merbridge.io/){ .md-button }
 
+![cncf logo](./images/cncf.png)
+
 <p align="center">
-<img src="https://landscape.cncf.io/images/left-logo.svg" width="150"/>&nbsp;&nbsp;<img src="https://landscape.cncf.io/images/right-logo.svg" width="200"/>
-<br/><br/>
-Merbridge has been listed in the <a href="https://landscape.cncf.io/?selected=merbridge">CNCF Landscape</a>.
+Merbridge is <a href="https://landscape.cncf.io/?selected=merbridge">a CNCF sandbox project</a>.
 </p>

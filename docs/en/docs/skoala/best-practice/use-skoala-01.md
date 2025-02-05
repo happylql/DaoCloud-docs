@@ -5,13 +5,13 @@ The micro service engine is a feature of DCE 5.0 Advanced edition, which include
 The full process of this best practice is as follows:
 
 1. Deploy the sample application in Workbench and enable microservice governance
-2. Enable the traditional micro-service governance plug-in in the micro-service engine
+2. Enable the traditional microservice governance plug-in in the microservice engine
 3. Configure the corresponding governance rules in the microservice engine
 4. Expose apis and access applications in the microservice engine
 
 ## Sample application introduction
 
-The sample application used in this practice is based on the OpenTelemetry standard demo application. The DaoCloud Large and Micro Services team has optimized it based on DCE 5.0 features to better reflect cloud native and observable capabilities, and to show the effects of micro-service governance. The sample application is open source on Github, visit [Github registry address ](https://github.com/openinsight-proj/openinsight-helm-charts) for more details.
+The sample application used in this practice is based on the OpenTelemetry standard demo application. The DaoCloud Large and Micro Services team has optimized it based on DCE 5.0 features to better reflect cloud native and observable capabilities, and to show the effects of microservice governance. The sample application is open source on Github, visit [Github registry address ](https://github.com/openinsight-proj/openinsight-helm-charts) for more details.
 
 The architecture diagram for the sample application is as follows:
 
@@ -29,7 +29,7 @@ Before deploying applications, the following conditions must be met:
 
     <!--![]()screenshots-->
 
-- [ Create the Nacos registry instance ](../trad-ms/hosted/create-registry.md)
+- [ Create the Nacos registry instance ](../trad-ms/hosted/index.md)
 
     > Notice Record the address of the registry for subsequent application installation.
 
@@ -37,7 +37,7 @@ Before deploying applications, the following conditions must be met:
 
 ### Deployment based on Helm chart
 
-1. Locate the opentelemetry-demo application in `Workbench` -> `Wizard` -> `From Helm chart` and click the application card to install it
+1. Locate the opentelemetry-demo application in `Workbench` -> __Wizard__ -> __From Helm chart__ and click the application card to install it
 
     <!--![]()screenshots-->
 
@@ -69,7 +69,7 @@ Before deploying applications, the following conditions must be met:
         -Dspring.cloud.sentinel.transport.dashboard=nacos-test-sentinel.skoala-test:8080  # change to address of Sentinel console
     ```
 
-> For details about how to obtain the cluster ID, cluster name, and namespace name, see `kubectl get cluster <clusername> -o json | jq.metadata.uid`.
+    > For details about how to obtain the cluster ID, cluster name, and namespace name, see `kubectl get cluster <clusername> -o json | jq.metadata.uid`.
 
 1. After the application is successfully created, the list of Helm applications in Workbench is displayed.
 
@@ -99,18 +99,19 @@ When using `java -jar` to start a project, add the corresponding environment var
 
 !!! note
 
+    The `metadata` information above should not be missing, as the services displayed in the registry will lack this information.
 
 ### Use container image deployment
 
-If you choose to deploy applications based on container images, you can directly enable micro-service governance in the user interface configuration and select the corresponding registry module for easier operation. For details, see [ Build micro-service application based on Git repository ](../../amamba/user-guide/wizard/create-app-git.md).
+If you choose to deploy applications based on container images, you can directly enable microservice governance in the user interface configuration and select the corresponding registry module for easier operation. For details, see [ Build microservice application based on Git repository ](../../amamba/user-guide/wizard/create-app-git.md).
 
 <!--![]()screenshots-->
 
-## Enable traditional micro-service governance
+## Enable traditional microservice governance
 
-Before using the micro-service governance function, you need to enable the corresponding governance plug-in in the plug-in center under the corresponding registry. The plug-in Center provides two plug-ins, Sentinel governance and Mesh governance, and supports visual configuration through the user interface. After the plug-in is installed, the micro-service governance capability can be expanded to meet service requirements in different cases.
+Before using the microservice governance function, you need to enable the corresponding governance plug-in in the plug-in center under the corresponding registry. The plug-in Center provides two plug-ins, Sentinel governance and Mesh governance, and supports visual configuration through the user interface. After the plug-in is installed, the microservice governance capability can be expanded to meet service requirements in different cases.
 
-In this practice, traditional micro-service governance is adopted, namely, Sentinel governance plug-in is opened. For details, see [ Enable the Sentinel governance plug-in ](../trad-ms/hosted/plugins/sentinel.md).
+In this practice, traditional microservice governance is adopted, namely, Sentinel governance plug-in is opened. For details, see [ Enable the Sentinel governance plug-in ](../trad-ms/hosted/plugins/sentinel.md).
 
 <!--![]()screenshots-->
 
@@ -132,14 +133,15 @@ By accessing the service address, we can see that if the number of requests in o
 
 ## Expose the API and access the application
 
-After the deployment of a micro-service application is complete, the application portal needs to be opened to external access through the API gateway. This step is the complete service usage experience. To expose service apis, you need to create a cloud native gateway, connect services to the gateway, and create API routes.
+After the deployment of a microservice application is complete, the application portal needs to be opened to external access through the API gateway. This step is the complete service usage experience. To expose service apis, you need to create a cloud native gateway, connect services to the gateway, and create API routes.
 
 ### Create a cloud native gateway
 
-Create a cloud native gateway. For details, see [Create Gateway](../gateway/create-gateway.md).
+Create a cloud native gateway. For details, see [Create Gateway](../gateway/index.md).
 
 !!! note
 
+    When creating a gateway, it is recommended to deploy the gateway in the cluster where the sample application is located, and the gateway should govern the namespace where the sample application resides.
 
 <!--![]()screenshots-->
 
@@ -153,10 +155,11 @@ Nacos Registry services are adopted in this demonstration, which greatly expands
 
 !!! info
 
+    When a service is not within the namespace governed by the gateway or when you want to access the registry or other external services (using domain names/IP), you can manually connect to the service.
 
 ### Create an API route
 
-See [Add API](../gateway/api/add-api.md) to create an API route.
+See [Add API](../gateway/api/index.md) to create an API route.
 
 <!--![]()screenshots-->
 
@@ -172,11 +175,11 @@ After the gateway API is created, you can access the application page by using *
 
 <!--![]()screenshots-->
 
-## conclusion
+## Conclusion
 
-This is the experience of the entire microservices engine module. With the support of the entire DCE 5.0 capability, we successfully completed application deployment, enabling micro-service governance, configuring and testing micro-service governance policies, opening apis through cloud native gateway, and actually accessing applications.
+This is the experience of the entire microservices engine module. With the support of the entire DCE 5.0 capability, we successfully completed application deployment, enabling microservice governance, configuring and testing microservice governance policies, opening apis through cloud native gateway, and actually accessing applications.
 
-### More capacity
+### More capabilities
 
 After our application is deployed successfully, we rely heavily on the observation capability provided by DCE 5.0 for subsequent application maintenance. Next, we will add the corresponding observable capability practice.
 

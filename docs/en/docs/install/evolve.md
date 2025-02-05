@@ -1,6 +1,11 @@
+---
+MTPE: windsonsea
+date: 2024-05-11
+---
+
 # Upgrade DCE 5.0 Standard to Platinum
 
-DCE 5.0 supports multiple versions, and all versions except DCE Community are DCE 5.0 Enterprise. This article demonstrates how to upgrade from DCE 5.0 Standard to DCE 5.0 Platinum.
+DCE 5.0 supports multiple versions, and all versions except DCE Community are DCE 5.0 Enterprise. This page demonstrates how to upgrade from DCE 5.0 Standard to DCE 5.0 Platinum.
 
 ![Modules](https://docs.daocloud.io/daocloud-docs-images/docs/en/docs/images/dce-modules04.jpg)
 
@@ -11,9 +16,9 @@ DCE 5.0 supports multiple versions, and all versions except DCE Community are DC
 
 ## Steps
 
-### Step 1: Configure the manifest.yaml file
+### Step 1: Edit manifest.yaml
 
-Change the values of `enable` fields in the `manifest.yaml` from `false` to `true`.
+Change all `enable: false` to `enable: true` in the manifest.yaml file.
 
 ```yaml
 skoala:
@@ -59,7 +64,7 @@ skoala:
    variables:
 ```
 
-### Step 2: run commands
+### Step 2: Run commands
 
 Perform the upgrade command by running:
 
